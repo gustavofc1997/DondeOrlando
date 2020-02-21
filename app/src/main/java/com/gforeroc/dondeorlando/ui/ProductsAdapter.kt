@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
-import com.gforeroc.dondeorlando.utils.IProductAdded
+import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item.view.*
 
-class ProductsAdapter(private val productClickListener: IProductAdded?) :
+class ProductsAdapter(private val productClickListener: IProductSelected?) :
     RecyclerView.Adapter<TaskViewHolder>() {
 
     private var taskList = emptyList<Product>().toMutableList()
@@ -28,6 +28,9 @@ class ProductsAdapter(private val productClickListener: IProductAdded?) :
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = taskList[position]
         with(holder.containerView) {
+            this.setOnClickListener {
+                productClickListener?.onProductSelected(task)
+            }
             productTitle.text = task.Nombre
         }
     }

@@ -10,22 +10,26 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
-import com.gforeroc.dondeorlando.utils.IProductAdded
-import com.gforeroc.dondeorlando.viewmodels.BeveragesViewModel
+import com.gforeroc.dondeorlando.utils.IProductSelected
+import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
+import com.gforeroc.dondeorlando.utils.QuantityDialog
 import com.gforeroc.dondeorlando.viewmodels.SidesViewModel
 
-class AdditionalFragment : BaseFragment() {
+class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),IProductSelected,
+    OnProductOrderAdded {
 
-    override var productsAdapter = ProductsAdapter(listener)
+
+    override var productsAdapter = ProductsAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_additional_list, container, false)
-        // Set the adapter
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = GridLayoutManager(context, columnCount)
@@ -42,10 +46,11 @@ class AdditionalFragment : BaseFragment() {
             productsAdapter.setItems(it)
         })
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is IProductAdded) {
-            listener = context
+        if (context is OnProductOrderAdded) {
+            onProductOrderAdded = context
         } else {
             throw RuntimeException("$context must implement OnListFragmentInteractionListener")
         }
@@ -53,7 +58,14 @@ class AdditionalFragment : BaseFragment() {
 
     override fun onDetach() {
         super.onDetach()
-        listener = null
+        onProductOrderAdded = null
     }
 
+    override fun onProductSelected(product: Product) {
+        QuantityDialog(this,product).show(childFragmentManager,"null")
+    }
+
+    override fun setProduct(product: ProductOrder) {
+        onProductOrderAdded?.setProduct(product)
+    }
 }

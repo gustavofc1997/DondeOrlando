@@ -11,12 +11,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.gforeroc.dondeorlando.data.Product
-import com.gforeroc.dondeorlando.utils.IProductAdded
+import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), IProductAdded {
+class MainActivity : AppCompatActivity(), IProductSelected {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
