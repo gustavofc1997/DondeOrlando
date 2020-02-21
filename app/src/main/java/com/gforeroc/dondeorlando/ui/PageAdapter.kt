@@ -14,8 +14,8 @@ class PageAdapter(manager: FragmentManager) :
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> MeatFragment()
-            1 -> MeatFragment()
-            2 -> MeatFragment()
+            1 -> BeveragesFragment()
+            2 -> AdditionalFragment()
             else -> MeatFragment()
         }
     }
@@ -29,7 +29,7 @@ class PageAdapter(manager: FragmentManager) :
         return when (position) {
             0 -> "Carnes"
             1 -> "Bebidas"
-            2 -> "Adicionales"
+            2 -> "Acompañamientos"
             3 -> "Otros"
             else -> null
         }

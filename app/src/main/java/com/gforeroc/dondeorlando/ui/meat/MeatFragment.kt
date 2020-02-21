@@ -13,6 +13,7 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.ui.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
 import com.gforeroc.dondeorlando.utils.IProductAdded
+import com.gforeroc.dondeorlando.utils.QuantityDialog
 import com.gforeroc.dondeorlando.viewmodels.MeatViewModel
 
 class MeatFragment : BaseFragment() {
@@ -32,13 +33,14 @@ class MeatFragment : BaseFragment() {
                 adapter = productsAdapter
             }
         }
+        QuantityDialog().show(childFragmentManager,"")
         return view
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MeatViewModel::class.java)
-        viewModel.taskList.observe(this, Observer {
+        (viewModel as MeatViewModel).meats.observe(this, Observer {
             productsAdapter.setItems(it)
         })
     }

@@ -2,27 +2,25 @@ package com.gforeroc.dondeorlando.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.gforeroc.dondeorlando.data.IProductRepository
-import com.gforeroc.dondeorlando.data.MeatsRepository
+import com.gforeroc.dondeorlando.data.BeveragesRepository
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 
-class MeatViewModel : BaseViewModel() {
+class BeveragesViewModel : BaseViewModel() {
 
-    private val meatsList = MutableLiveData<List<Product>>()
-    val meats: LiveData<List<Product>>
-        get() = meatsList
+    private val beveragesList = MutableLiveData<List<Product>>()
+    val beverages: LiveData<List<Product>>
+        get() = beveragesList
+
 
     init {
-        repository = MeatsRepository()
+        repository = BeveragesRepository()
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    meatsList.value = it
+                    beveragesList.value = it
                 },
                 {
                     it.printStackTrace()
