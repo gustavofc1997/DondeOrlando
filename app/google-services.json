@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "228739652875",
+    "firebase_url": "https://donde-orlando.firebaseio.com",
+    "project_id": "donde-orlando",
+    "storage_bucket": "donde-orlando.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228739652875:android:82682a6e6c46ed4792960e",
+        "android_client_info": {
+          "package_name": "com.gforeroc.dondeorlando"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228739652875-c56tt233n12tfs7tqsrdhb3lktnrtv8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7RwlCXXGJ4cVvRvxRqhM3HL9uATDkSyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228739652875-c56tt233n12tfs7tqsrdhb3lktnrtv8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
