@@ -24,7 +24,10 @@ class MeatFragment (override var onProductOrderAdded: OnProductOrderAdded?): Bas
 
     override var productsAdapter = ProductsAdapter(this)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_meat_list, container, false)
         // Set the adapter
         if (view is RecyclerView) {
@@ -64,5 +67,4 @@ class MeatFragment (override var onProductOrderAdded: OnProductOrderAdded?): Bas
     override fun setProduct(product: ProductOrder) {
         onProductOrderAdded?.setProduct(product)
     }
-
 }

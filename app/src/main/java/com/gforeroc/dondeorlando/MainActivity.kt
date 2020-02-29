@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity(), IProductSelected {
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
                 R.id.nav_tools
-            ), drawerLayout)
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -50,11 +51,6 @@ class MainActivity : AppCompatActivity(), IProductSelected {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-     fun onProductAdded(product: Product) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun onProductSelected(product: Product) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

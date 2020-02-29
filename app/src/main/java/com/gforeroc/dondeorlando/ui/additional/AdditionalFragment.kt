@@ -24,7 +24,10 @@ class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?)
 
     override var productsAdapter = ProductsAdapter(this)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_additional_list, container, false)
         if (view is RecyclerView) {
             with(view) {

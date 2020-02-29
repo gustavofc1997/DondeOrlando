@@ -21,17 +21,18 @@ import com.gforeroc.dondeorlando.viewmodels.MeatViewModel
 
 class OthersFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),IProductSelected,
     OnProductOrderAdded {
-
-
     override var productsAdapter = ProductsAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_meat_list, container, false)
         // Set the adapter
         if (view is RecyclerView) {
-            with(view) { layoutManager = GridLayoutManager(context, columnCount)
+            with(view) {
+                layoutManager =
+                    GridLayoutManager(context, columnCount)
                 adapter = productsAdapter
             }
         }
@@ -66,5 +67,4 @@ class OthersFragment(override var onProductOrderAdded: OnProductOrderAdded?) : B
     override fun setProduct(product: ProductOrder) {
         onProductOrderAdded?.setProduct(product)
     }
-
 }

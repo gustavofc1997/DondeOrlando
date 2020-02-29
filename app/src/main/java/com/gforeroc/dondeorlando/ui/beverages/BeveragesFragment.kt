@@ -19,7 +19,8 @@ import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityDialog
 import com.gforeroc.dondeorlando.viewmodels.BeveragesViewModel
 
-class BeveragesFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),IProductSelected,
+class BeveragesFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),
+    IProductSelected,
     OnProductOrderAdded {
 
     override var productsAdapter = ProductsAdapter(this)
@@ -62,7 +63,7 @@ class BeveragesFragment(override var onProductOrderAdded: OnProductOrderAdded?) 
     }
 
     override fun onProductSelected(product: Product) {
-        QuantityDialog(this,product).show(childFragmentManager,"null")
+        QuantityDialog(this, product).show(childFragmentManager, "null")
     }
 
     override fun setProduct(product: ProductOrder) {
