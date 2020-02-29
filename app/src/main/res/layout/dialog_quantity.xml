@@ -19,6 +19,7 @@
 
     <com.github.guilhe.views.QuantityPickerView
         android:id="@+id/qty_orden"
+        app:min="1"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
