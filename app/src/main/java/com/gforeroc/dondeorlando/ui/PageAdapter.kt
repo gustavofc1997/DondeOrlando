@@ -9,7 +9,7 @@ import com.gforeroc.dondeorlando.ui.meat.MeatFragment
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 
-class PageAdapter(manager: FragmentManager,var listener: OnProductOrderAdded?) :
+class PageAdapter(manager: FragmentManager, private var listener: OnProductOrderAdded?) :
     FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {

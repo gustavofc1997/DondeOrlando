@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.domain.ProductOrder
+import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.ui.PageAdapter
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment(), OnProductOrderAdded {
 
     private var mContext: Context? = null
+    private lateinit var newOrder: NewOrder
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +25,11 @@ class HomeFragment : Fragment(), OnProductOrderAdded {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        newOrder = NewOrder()
+
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mContext = this.activity
@@ -33,6 +40,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded {
     }
 
     override fun setProduct(product: ProductOrder) {
+        newOrder.addProduct(product)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

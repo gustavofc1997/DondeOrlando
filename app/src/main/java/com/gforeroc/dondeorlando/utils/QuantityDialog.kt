@@ -24,8 +24,7 @@ class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product
         window = dialog?.window
         if (rootView == null) {
             rootView = inflater.inflate(
-                R
-                    .layout.dialog_quantity, container, false
+                R.layout.dialog_quantity, container, false
             )
         }
         setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
@@ -39,6 +38,7 @@ class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product
         btn_add.setOnClickListener {
             val productOrder = ProductOrder(product, qty_orden.value)
             quantityAdded.setProduct(productOrder)
+            dismissAllowingStateLoss()
         }
     }
 }
