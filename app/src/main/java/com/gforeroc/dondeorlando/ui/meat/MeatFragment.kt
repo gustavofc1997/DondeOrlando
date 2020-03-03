@@ -32,8 +32,7 @@ class MeatFragment (override var onProductOrderAdded: OnProductOrderAdded?): Bas
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
-                layoutManager =
-                    GridLayoutManager(context, columnCount)
+                layoutManager = GridLayoutManager(context, columnCount)
                 adapter = productsAdapter
             }
         }
@@ -52,7 +51,7 @@ class MeatFragment (override var onProductOrderAdded: OnProductOrderAdded?): Bas
         if (context is OnProductOrderAdded) {
             onProductOrderAdded = context
         } else {
-            throw RuntimeException("$context must implement OnListFragmentInteractionListener")
+            return
         }
     }
 
@@ -68,5 +67,4 @@ class MeatFragment (override var onProductOrderAdded: OnProductOrderAdded?): Bas
     override fun setProduct(product: ProductOrder) {
         onProductOrderAdded?.setProduct(product)
     }
-
 }

@@ -5,7 +5,6 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface IProductRepository {
-
     fun getAllProducts(): Single<List<Product>>
     fun addProduct(product: Product): Completable
     fun deleteProduct(productId: String): Completable

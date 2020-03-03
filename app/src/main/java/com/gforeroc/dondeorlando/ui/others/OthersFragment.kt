@@ -21,8 +21,6 @@ import com.gforeroc.dondeorlando.viewmodels.MeatViewModel
 
 class OthersFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),IProductSelected,
     OnProductOrderAdded {
-
-
     override var productsAdapter = ProductsAdapter(this)
 
     override fun onCreateView(
@@ -53,7 +51,7 @@ class OthersFragment(override var onProductOrderAdded: OnProductOrderAdded?) : B
         if (context is OnProductOrderAdded) {
             onProductOrderAdded = context
         } else {
-            throw RuntimeException("$context must implement OnListFragmentInteractionListener")
+            return
         }
     }
 
@@ -69,5 +67,4 @@ class OthersFragment(override var onProductOrderAdded: OnProductOrderAdded?) : B
     override fun setProduct(product: ProductOrder) {
         onProductOrderAdded?.setProduct(product)
     }
-
 }

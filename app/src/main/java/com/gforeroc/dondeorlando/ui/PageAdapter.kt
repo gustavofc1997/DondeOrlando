@@ -25,7 +25,6 @@ class PageAdapter(manager: FragmentManager,var listener: OnProductOrderAdded?) :
         return 4
     }
 
-
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> "Carnes"

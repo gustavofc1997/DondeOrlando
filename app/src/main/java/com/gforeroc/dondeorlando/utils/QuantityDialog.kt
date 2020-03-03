@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.view.Window.FEATURE_NO_TITLE
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
@@ -16,6 +15,7 @@ class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product
     DialogFragment() {
     private var window: Window? = null
     private var rootView: View? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

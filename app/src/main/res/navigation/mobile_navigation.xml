@@ -3,7 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_initialize">
+
+    <fragment
+        android:id="@+id/nav_initialize"
+        android:name="com.gforeroc.dondeorlando.ui.initialize.AttractFragment"
+        tools:layout="@layout/fragment_attract" >
+        <action
+            android:id="@+id/action_nav_initialize_to_nav_home"
+            app:destination="@+id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_home"

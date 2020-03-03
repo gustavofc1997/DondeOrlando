@@ -33,6 +33,7 @@ class BeveragesRepository : IProductRepository {
                         if (value == null || error != null) {
                             return@addSnapshotListener
                         }
+                        addProduct(Product(1,"","",""))
 
                         if (!emitter.isDisposed) {
                             emitter.onNext(value.documents)
@@ -76,8 +77,8 @@ class BeveragesRepository : IProductRepository {
         return Completable.create { emitter ->
 
             val taskData = HashMap<String, Any>()
-//            taskData[TASK_FIELD_TITLE] = task.title
-//          taskData[TASK_FIELD_CREATED] = Timestamp(task.created.time / 1000, (task.created.time % 1000 * 1000).toInt())
+          taskData["TASK_FIELD_TITLE"] = "task.title"
+          taskData["TASK_FIELD_CREATED"] = "Timestamp(task.created.time / 1000, (task.created.time % 1000 * 1000).toInt())"
 
             remoteDB.collection(MENU_COLLECTION)
                 .add(taskData)

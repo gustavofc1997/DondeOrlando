@@ -1,43 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:textStyle="bold"
-        android:padding="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:padding="4dp"
+        android:text="Selecciona la cantidad que quieres añadir!"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        android:text="Selecciona la cantidad que quieres añadir!"
-        android:layout_height="wrap_content" />
-
+        android:textStyle="bold" />
 
     <com.github.guilhe.views.QuantityPickerView
-        android:layout_width="100dp"
         android:id="@+id/qty_orden"
-        android:layout_marginTop="20sp"
-        app:value="1"
-        android:layout_gravity="center"
-        app:isOpen="true"
+        app:min="1"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        app:isOpen="true"
         app:textLabelFormatter="%s"
-        app:textLabelSize="18sp"/>
-
-
+        app:textLabelSize="18sp"
+        app:value="1" />
     <Button
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Agregar"
-        android:padding="4dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_height="wrap_content">
-
+        android:layout_marginTop="36dp"
+        android:padding="4dp"
+        android:text="Agregar">
     </Button>
 </LinearLayout>

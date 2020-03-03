@@ -22,7 +22,6 @@ import com.gforeroc.dondeorlando.viewmodels.SidesViewModel
 class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),IProductSelected,
     OnProductOrderAdded {
 
-
     override var productsAdapter = ProductsAdapter(this)
 
     override fun onCreateView(
@@ -52,7 +51,7 @@ class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?)
         if (context is OnProductOrderAdded) {
             onProductOrderAdded = context
         } else {
-            throw RuntimeException("$context must implement OnListFragmentInteractionListener")
+            return
         }
     }
 
