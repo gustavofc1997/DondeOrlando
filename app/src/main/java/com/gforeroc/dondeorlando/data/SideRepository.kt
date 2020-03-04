@@ -11,18 +11,12 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-class SideRepository : IProductRepository {
+class SideRepository(override var remoteDB: FirebaseFirestore)  : IProductRepository {
 
     companion object {
         private const val MENU_COLLECTION = "menu"
         private const val MEATS_DOCUMENT = "Acompañamientos"
         private const val ITEMS = "items"
-    }
-
-    private val remoteDB = FirebaseFirestore.getInstance().apply {
-        firestoreSettings = FirebaseFirestoreSettings.Builder()
-            .setPersistenceEnabled(false)
-            .build()
     }
 
     private val changeObservable =
@@ -93,25 +87,6 @@ class SideRepository : IProductRepository {
                 }
         }
     }
-
-    // second option to add data
-//    override fun addTask(task: Task): Completable {
-//        return Completable.create { emitter ->
-//
-//            remoteDB.collection(TASKS_COLLECTION)
-//                .add(mapToRemoteTask(task))
-//                .addOnSuccessListener {
-//                    if (!emitter.isDisposed) {
-//                        emitter.onComplete()
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    if (!emitter.isDisposed) {
-//                        emitter.onError(it)
-//                    }
-//                }
-//        }
-//    }
 
     override fun deleteProduct(productId: String): Completable {
         return Completable.create { emitter ->

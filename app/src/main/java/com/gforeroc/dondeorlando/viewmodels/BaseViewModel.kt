@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 open class BaseViewModel :ViewModel(){
 
-    lateinit var repository: IProductRepository
+    open lateinit var repository: IProductRepository
     protected val disposable = CompositeDisposable()
 
 }

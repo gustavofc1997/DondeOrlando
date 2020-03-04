@@ -2,24 +2,23 @@ package com.gforeroc.dondeorlando.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.gforeroc.dondeorlando.data.BeveragesRepository
 import com.gforeroc.dondeorlando.data.IProductRepository
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class BeveragesViewModel(override var repository: IProductRepository) : BaseViewModel() {
+class OthersViewModel(override var repository: IProductRepository) : BaseViewModel() {
 
-    private val beveragesList = MutableLiveData<List<Product>>()
-    val beverages: LiveData<List<Product>>
-        get() = beveragesList
+    private val otherList = MutableLiveData<List<Product>>()
+    val others: LiveData<List<Product>>
+        get() = otherList
 
     init {
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    beveragesList.value = it
+                    otherList.value = it
                 },
                 {
                     it.printStackTrace()

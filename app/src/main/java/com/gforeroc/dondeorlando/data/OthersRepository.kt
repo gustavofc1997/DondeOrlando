@@ -3,6 +3,7 @@ package com.gforeroc.dondeorlando.data
 import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -10,11 +11,11 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-class MeatsRepository(override var remoteDB: FirebaseFirestore) : IProductRepository {
+class OthersRepository (override var remoteDB: FirebaseFirestore) : IProductRepository {
 
     companion object {
         private const val MENU_COLLECTION = "menu"
-        private const val MEATS_DOCUMENT = "Carnes"
+        private const val MEATS_DOCUMENT = "Bebidas"
         private const val ITEMS = "items"
     }
 
@@ -26,11 +27,9 @@ class MeatsRepository(override var remoteDB: FirebaseFirestore) : IProductReposi
                         if (value == null || error != null) {
                             return@addSnapshotListener
                         }
-
                         if (!emitter.isDisposed) {
                             emitter.onNext(value.documents)
                         }
-
                         value.documentChanges.forEach {
                             Log.d(
                                 "FirestoreTaskRepository",
@@ -69,8 +68,8 @@ class MeatsRepository(override var remoteDB: FirebaseFirestore) : IProductReposi
         return Completable.create { emitter ->
 
             val taskData = HashMap<String, Any>()
-//            taskData[TASK_FIELD_TITLE] = task.title
-//          taskData[TASK_FIELD_CREATED] = Timestamp(task.created.time / 1000, (task.created.time % 1000 * 1000).toInt())
+          taskData["TASK_FIELD_TITLE"] = "task.title"
+          taskData["TASK_FIELD_CREATED"] = "Timestamp(task.created.time / 1000, (task.created.time % 1000 * 1000).toInt())"
 
             remoteDB.collection(MENU_COLLECTION)
                 .add(taskData)

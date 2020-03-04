@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
@@ -18,12 +17,14 @@ import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityDialog
 import com.gforeroc.dondeorlando.viewmodels.BeveragesViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class BeveragesFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),
     IProductSelected,
     OnProductOrderAdded {
 
     override var productsAdapter = ProductsAdapter(this)
+    private val beveragesViewModel: BeveragesViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +43,7 @@ class BeveragesFragment(override var onProductOrderAdded: OnProductOrderAdded?) 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BeveragesViewModel::class.java)
-        (viewModel as BeveragesViewModel).beverages.observe(this, Observer {
+        beveragesViewModel.beverages.observe(this, Observer {
             productsAdapter.setItems(it)
         })
     }

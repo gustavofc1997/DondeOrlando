@@ -3,7 +3,6 @@ package com.gforeroc.dondeorlando.data
 import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -11,18 +10,12 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-class BeveragesRepository : IProductRepository {
+class BeveragesRepository(override var remoteDB: FirebaseFirestore) : IProductRepository {
 
     companion object {
         private const val MENU_COLLECTION = "menu"
         private const val MEATS_DOCUMENT = "Bebidas"
         private const val ITEMS = "items"
-    }
-
-    private val remoteDB = FirebaseFirestore.getInstance().apply {
-        firestoreSettings = FirebaseFirestoreSettings.Builder()
-            .setPersistenceEnabled(false)
-            .build()
     }
 
     private val changeObservable =
@@ -33,12 +26,9 @@ class BeveragesRepository : IProductRepository {
                         if (value == null || error != null) {
                             return@addSnapshotListener
                         }
-                        addProduct(Product(1,"","",""))
-
                         if (!emitter.isDisposed) {
                             emitter.onNext(value.documents)
                         }
-
                         value.documentChanges.forEach {
                             Log.d(
                                 "FirestoreTaskRepository",

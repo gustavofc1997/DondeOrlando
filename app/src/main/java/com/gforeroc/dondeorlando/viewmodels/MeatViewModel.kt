@@ -10,14 +10,13 @@ import com.gforeroc.dondeorlando.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class MeatViewModel : BaseViewModel() {
+class MeatViewModel (override var repository: IProductRepository): BaseViewModel() {
 
     private val meatsList = MutableLiveData<List<Product>>()
     val meats: LiveData<List<Product>>
         get() = meatsList
 
     init {
-        repository = MeatsRepository()
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
