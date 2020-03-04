@@ -63,64 +63,6 @@ class BeveragesRepository(override var remoteDB: FirebaseFirestore) : IProductRe
     private fun mapDocumentToRemoteTask(document: DocumentSnapshot) =
         document.toObject(Product::class.java)!!.apply { id = document.id }
 
-    override fun addProduct(product: Product): Completable {
-        return Completable.create { emitter ->
-
-            val taskData = HashMap<String, Any>()
-          taskData["TASK_FIELD_TITLE"] = "task.title"
-          taskData["TASK_FIELD_CREATED"] = "Timestamp(task.created.time / 1000, (task.created.time % 1000 * 1000).toInt())"
-
-            remoteDB.collection(MENU_COLLECTION)
-                .add(taskData)
-                .addOnSuccessListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onComplete()
-                    }
-                }
-                .addOnFailureListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onError(it)
-                    }
-                }
-        }
-    }
-
-    // second option to add data
-//    override fun addTask(task: Task): Completable {
-//        return Completable.create { emitter ->
-//
-//            remoteDB.collection(TASKS_COLLECTION)
-//                .add(mapToRemoteTask(task))
-//                .addOnSuccessListener {
-//                    if (!emitter.isDisposed) {
-//                        emitter.onComplete()
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    if (!emitter.isDisposed) {
-//                        emitter.onError(it)
-//                    }
-//                }
-//        }
-//    }
-
-    override fun deleteProduct(productId: String): Completable {
-        return Completable.create { emitter ->
-            remoteDB.collection(MENU_COLLECTION)
-                .document(productId)
-                .delete()
-                .addOnSuccessListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onComplete()
-                    }
-                }
-                .addOnFailureListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onError(it)
-                    }
-                }
-        }
-    }
 
     override fun getChangeObservable(): Observable<List<Product>> =
         changeObservable.hide()
