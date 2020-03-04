@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.gforeroc.dondeorlando.ui.additional.AdditionalFragment
 import com.gforeroc.dondeorlando.ui.beverages.BeveragesFragment
 import com.gforeroc.dondeorlando.ui.meat.MeatFragment
+import com.gforeroc.dondeorlando.ui.others.OthersFragment
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 
@@ -17,6 +18,7 @@ class PageAdapter(manager: FragmentManager, private var listener: OnProductOrder
             0 -> MeatFragment(listener)
             1 -> BeveragesFragment(listener)
             2 -> AdditionalFragment(listener)
+            3 -> OthersFragment(listener)
             else -> MeatFragment(listener)
         }
     }

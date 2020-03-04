@@ -3,8 +3,6 @@ package com.gforeroc.dondeorlando.data
 import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
-import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.Single
@@ -15,14 +13,14 @@ class OthersRepository (override var remoteDB: FirebaseFirestore) : IProductRepo
 
     companion object {
         private const val MENU_COLLECTION = "menu"
-        private const val MEATS_DOCUMENT = "Bebidas"
+        private const val OTHERS_DOCUMENT = "Otros"
         private const val ITEMS = "items"
     }
 
     private val changeObservable =
         BehaviorSubject.create<List<DocumentSnapshot>> { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
             val listeningRegistration =
-                remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS)
+                remoteDB.collection(MENU_COLLECTION).document(OTHERS_DOCUMENT).collection(ITEMS)
                     .addSnapshotListener { value, error ->
                         if (value == null || error != null) {
                             return@addSnapshotListener
@@ -43,7 +41,7 @@ class OthersRepository (override var remoteDB: FirebaseFirestore) : IProductRepo
 
     override fun getAllProducts(): Single<List<Product>> {
         return Single.create<List<DocumentSnapshot>> { emitter ->
-            remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS).get()
+            remoteDB.collection(MENU_COLLECTION).document(OTHERS_DOCUMENT).collection(ITEMS).get()
                 .addOnSuccessListener {
                     if (!emitter.isDisposed) {
                         emitter.onSuccess(it.documents)
