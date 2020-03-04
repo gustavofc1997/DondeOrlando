@@ -5,13 +5,16 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:paddingRight="32dp"
+    android:paddingTop="22dp"
+    android:paddingLeft="32dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="4dp"
+        android:layout_marginTop="32sp"
         android:text="Selecciona la cantidad que quieres añadir!"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -23,11 +26,18 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20sp"
+        android:layout_margin="32sp"
         app:isOpen="true"
         app:textLabelFormatter="%s"
         app:textLabelSize="18sp"
         app:value="1" />
+
+    <CheckBox
+        android:id="@+id/chk_additional"
+        android:layout_width="wrap_content"
+        android:buttonTint="@android:color/holo_green_light"
+        android:text="Es una porción adicional?"
+        android:layout_height="wrap_content" />
     <Button
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
@@ -35,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="36dp"
+        android:layout_margin="40dp"
         android:padding="4dp"
         android:text="Agregar">
     </Button>
