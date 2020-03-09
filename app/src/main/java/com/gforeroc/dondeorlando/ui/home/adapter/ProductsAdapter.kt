@@ -1,4 +1,4 @@
-package com.gforeroc.dondeorlando.ui
+package com.gforeroc.dondeorlando.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +11,8 @@ import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item.view.*
+import kotlin.random.Random
+
 
 class ProductsAdapter(private val productClickListener: IProductSelected?) :
     RecyclerView.Adapter<TaskViewHolder>() {
@@ -27,11 +29,13 @@ class ProductsAdapter(private val productClickListener: IProductSelected?) :
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = taskList[position]
+        holder.setColorView()
         with(holder.containerView) {
             this.setOnClickListener {
                 productClickListener?.onProductSelected(task)
             }
             productTitle.text = task.Nombre
+            text_count.text = task.Cantidad.toString()
         }
     }
 
@@ -44,4 +48,12 @@ class ProductsAdapter(private val productClickListener: IProductSelected?) :
 }
 
 class TaskViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-    LayoutContainer
+    LayoutContainer {
+
+    fun setColorView() {
+        val colorsArray = containerView.context.resources.getIntArray(R.array.rainbow)
+        val randomColor = Random.nextInt(colorsArray.size)
+        val color = colorsArray[randomColor]
+        containerView.cardView.setCardBackgroundColor(color)
+    }
+}

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
-import com.gforeroc.dondeorlando.ui.ProductsAdapter
+import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
@@ -21,7 +21,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class OthersFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),IProductSelected,
     OnProductOrderAdded {
-    override var productsAdapter = ProductsAdapter(this)
+    override var productsAdapter =
+        ProductsAdapter(this)
     private val othersViewModel: OthersViewModel by viewModel()
 
     override fun onCreateView(

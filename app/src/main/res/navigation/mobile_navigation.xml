@@ -20,4 +20,16 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_orders"
+        android:name="com.gforeroc.dondeorlando.ui.orders.OrdersFragment"
+        android:label="@string/menu_orders"
+        tools:layout="@layout/fragment_orders"/>
+
+    <fragment
+        android:id="@+id/nav_inventory"
+        android:name="com.gforeroc.dondeorlando.ui.stock.StockFragment"
+        android:label="@string/menu_inventory"
+        tools:layout="@layout/fragment_inventory" />
+
 </navigation>

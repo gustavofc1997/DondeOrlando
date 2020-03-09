@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
-import com.gforeroc.dondeorlando.ui.ProductsAdapter
+import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
@@ -23,7 +23,8 @@ class BeveragesFragment(override var onProductOrderAdded: OnProductOrderAdded?) 
     IProductSelected,
     OnProductOrderAdded {
 
-    override var productsAdapter = ProductsAdapter(this)
+    override var productsAdapter =
+        ProductsAdapter(this)
     private val beveragesViewModel: BeveragesViewModel by viewModel()
 
     override fun onCreateView(

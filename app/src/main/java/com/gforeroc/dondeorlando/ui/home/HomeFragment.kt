@@ -23,9 +23,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded {
     private val ordersViewModel: OrdersViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -33,13 +31,16 @@ class HomeFragment : Fragment(), OnProductOrderAdded {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         newOrder = NewOrder()
-
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mContext = this.activity?.applicationContext
         setHasOptionsMenu(true)
-        val adapter = PageAdapter(childFragmentManager, this)
+        val adapter = PageAdapter(
+            childFragmentManager,
+            this
+        )
         viewpager.adapter = adapter
         tabCategories.setupWithViewPager(viewpager)
     }

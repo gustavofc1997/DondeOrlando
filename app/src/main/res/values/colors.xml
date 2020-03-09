@@ -4,4 +4,21 @@
     <color name="colorPrimaryDark">#9a0007</color>
     <color name="colorPrimaryLight">#ff6659</color>
     <color name="colorAccent">#FFF</color>
+
+    <color name="blue" >#5E97F6</color>
+    <color name="green" >#66bb6a</color>
+    <color name="red" >#ef5350</color>
+    <color name="dark_blue" >#78909c</color>
+    <color name="dark_purple" >#ab47bc</color>
+    <color name="dark_orange" >#ffa726</color>
+
+    <array name="rainbow">
+        <item>@color/blue</item>
+        <item>@color/green</item>
+        <item>@color/red</item>
+        <item>@color/dark_blue</item>
+        <item>@color/dark_purple</item>
+        <item>@color/dark_orange</item>
+    </array>
+
 </resources>
