@@ -3,6 +3,7 @@ package com.gforeroc.dondeorlando.data
 import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.Single
@@ -68,4 +69,10 @@ class OthersRepository (override var remoteDB: FirebaseFirestore) : IProductRepo
             .map { list ->
                 list.map(::mapDocumentToRemoteTask)
             }
+
+    override fun updateStock(quantity: Long, id:String): Completable {
+        remoteDB.collection(MENU_COLLECTION).document(OTHERS_DOCUMENT).collection(ITEMS).document(id).update(
+            mapOf("Cantidad" to quantity))
+        return Completable.complete()
+    }
 }

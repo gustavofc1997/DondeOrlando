@@ -1,25 +1,23 @@
-package com.gforeroc.dondeorlando.ui
+package com.gforeroc.dondeorlando.ui.stock.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.gforeroc.dondeorlando.ui.additional.AdditionalFragment
-import com.gforeroc.dondeorlando.ui.beverages.BeveragesFragment
-import com.gforeroc.dondeorlando.ui.meat.MeatFragment
-import com.gforeroc.dondeorlando.ui.others.OthersFragment
-import com.gforeroc.dondeorlando.utils.IProductSelected
-import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
+import com.gforeroc.dondeorlando.ui.stock.StockAdditionalFragment
+import com.gforeroc.dondeorlando.ui.stock.StockBeveragesFragment
+import com.gforeroc.dondeorlando.ui.stock.StockMeatFragment
+import com.gforeroc.dondeorlando.ui.stock.StockOthersFragment
 
-class PageAdapter(manager: FragmentManager, private var listener: OnProductOrderAdded?) :
+class StockPageAdapter(manager: FragmentManager) :
     FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> MeatFragment(listener)
-            1 -> BeveragesFragment(listener)
-            2 -> AdditionalFragment(listener)
-            3 -> OthersFragment(listener)
-            else -> MeatFragment(listener)
+            0 -> StockMeatFragment()
+            1 -> StockBeveragesFragment()
+            2 -> StockAdditionalFragment()
+            3 -> StockOthersFragment()
+            else -> StockMeatFragment()
         }
     }
 

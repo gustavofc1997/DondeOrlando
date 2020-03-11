@@ -70,4 +70,10 @@ class BeveragesRepository(override var remoteDB: FirebaseFirestore) : IProductRe
             .map { list ->
                 list.map(::mapDocumentToRemoteTask)
             }
+
+    override fun updateStock(quantity: Long, id:String): Completable {
+        remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS).document(id).update(
+            mapOf("Cantidad" to quantity))
+        return Completable.complete()
+    }
 }

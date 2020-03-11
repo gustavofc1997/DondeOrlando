@@ -1,4 +1,4 @@
-package com.gforeroc.dondeorlando.ui.meat
+package com.gforeroc.dondeorlando.ui.stock
 
 import android.content.Context
 import android.os.Bundle
@@ -9,18 +9,22 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.MeatsRepository
+import com.gforeroc.dondeorlando.data.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
-import com.gforeroc.dondeorlando.utils.QuantityDialog
+import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
 import com.gforeroc.dondeorlando.viewmodels.MeatViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.dialog_quantity_update.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MeatFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(), IProductSelected,
-    OnProductOrderAdded {
+class StockMeatFragment() : BaseFragment(), IProductSelected,
+    OnProductOrderAdded, OnQuantityUpdate {
 
     override var productsAdapter = ProductsAdapter(this)
     private val meatsViewModel: MeatViewModel by viewModel()
@@ -61,10 +65,14 @@ class MeatFragment(override var onProductOrderAdded: OnProductOrderAdded?) : Bas
     }
 
     override fun onProductSelected(product: Product) {
-        QuantityDialog(this, product).show(childFragmentManager, "null")
+        QuantityUpdateDialog(this, product).show(childFragmentManager, "null")
     }
 
     override fun setProduct(product: ProductOrder) {
         onProductOrderAdded?.setProduct(product)
+    }
+
+    override fun updateQuantity(setUpdateQuantity: Long, id:String) {
+        MeatsRepository(FirebaseFirestore.getInstance()).updateStock(setUpdateQuantity, id)
     }
 }

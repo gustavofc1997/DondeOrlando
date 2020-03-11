@@ -43,6 +43,6 @@ class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product
     }
 }
 
-interface OnProductOrderAdded{
+interface OnProductOrderAdded {
     fun setProduct(product: ProductOrder)
 }
