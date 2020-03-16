@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.OnQuantityUpdate
+import com.gforeroc.dondeorlando.data.Product
 import kotlinx.android.synthetic.main.dialog_quantity_update.*
 
-class QuantityUpdateDialog(): DialogFragment() {
+class QuantityUpdateDialog(private var onQuantityUpdate: OnQuantityUpdate, private var products: Product) : DialogFragment() {
     private var window: Window? = null
     private var rootView: View? = null
 
@@ -22,7 +24,7 @@ class QuantityUpdateDialog(): DialogFragment() {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.dialog_quantity_update, container, false)
         }
-        setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogStyle)
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
         return rootView
@@ -30,8 +32,12 @@ class QuantityUpdateDialog(): DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_update.setOnClickListener{
-
+        btn_update.setOnClickListener {
+            val updateEdit = edit_quantity.text.toString().toLong()
+            val newQuantity = products.Cantidad.plus(updateEdit)
+            val id = products.id
+            onQuantityUpdate.updateQuantity(newQuantity, id)
+            dismissAllowingStateLoss()
         }
     }
 }

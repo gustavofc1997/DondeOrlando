@@ -1,40 +1,33 @@
 package com.gforeroc.dondeorlando.ui.stock
 
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import android.view.*
+import androidx.fragment.app.Fragment
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.Product
-import com.gforeroc.dondeorlando.ui.base.BaseFragment
-import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter
-import com.gforeroc.dondeorlando.utils.IProductSelected
-import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
+import com.gforeroc.dondeorlando.ui.stock.adapter.StockPageAdapter
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class StockFragment : BaseFragment(),IProductSelected {
 
-    override var stockAdapter = StockAdapter(this)
+class StockFragment : Fragment() {
+
+    private var mContext: Context? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.recycler_stock, container, false)
-        if (view is RecyclerView){
-            with(view){
-                adapter = stockAdapter
-                layoutManager
-            }
-        }
-        return view
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mContext = this.activity?.applicationContext
+        setHasOptionsMenu(true)
+        val adapter = StockPageAdapter(
+            childFragmentManager
+        )
+        viewpager.adapter = adapter
+        tabCategories.setupWithViewPager(viewpager)
     }
-
-    override fun onProductSelected(product: Product) {
-        QuantityUpdateDialog().show(childFragmentManager, "")
-    }
-
 }
+

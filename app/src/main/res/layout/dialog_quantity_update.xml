@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingTop="22dp"
+    android:paddingRight="32dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32sp"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="Ingrese la cantidad que quiere añadir al inventario!"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339" />
+        android:inputType="number"
+        android:layout_margin="50dp" />
 
     <Button
         android:id="@+id/btn_update"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="80dp"
-        android:textColor="@android:color/white"
+        android:layout_gravity="center"
         android:background="@color/colorPrimary"
-        android:text="UPDATE QUANTITY"
-        app:layout_constraintTop_toBottomOf="@+id/edit_quantity" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Actualizar"
+        android:textColor="@android:color/white" />
+</LinearLayout>
