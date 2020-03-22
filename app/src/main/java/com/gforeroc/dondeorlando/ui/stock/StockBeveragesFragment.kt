@@ -75,7 +75,7 @@ class StockBeveragesFragment() : BaseFragment(),
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id:String) {
-        BeveragesRepository(FirebaseFirestore.getInstance()).updateStock(setUpdateQuantity, id)
+        beveragesViewModel.updateQuantity(setUpdateQuantity, id)
     }
 
 }

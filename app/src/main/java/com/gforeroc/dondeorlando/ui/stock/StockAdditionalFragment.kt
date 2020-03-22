@@ -74,6 +74,6 @@ class StockAdditionalFragment() : BaseFragment(),IProductSelected,
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
-        SideRepository(FirebaseFirestore.getInstance()).updateStock(setUpdateQuantity, id)
+        sidesViewModel.updateQuantity(setUpdateQuantity, id)
     }
 }

@@ -73,6 +73,6 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id:String) {
-        MeatsRepository(FirebaseFirestore.getInstance()).updateStock(setUpdateQuantity, id)
+        meatsViewModel.updateQuantity(setUpdateQuantity, id)
     }
 }

@@ -30,6 +30,10 @@ class MeatViewModel (override var repository: IProductRepository): BaseViewModel
             .addTo(disposable)
     }
 
+    fun updateQuantity(setUpdateQuantity: Long, id: String){
+        repository.updateStock(setUpdateQuantity, id)
+    }
+
     fun deleteTask(taskId: String) {
         /*repository.deleteTask(taskId)
             .subscribeOn(Schedulers.io())

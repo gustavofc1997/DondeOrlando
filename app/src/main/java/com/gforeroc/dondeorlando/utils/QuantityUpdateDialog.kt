@@ -24,7 +24,7 @@ class QuantityUpdateDialog(private var onQuantityUpdate: OnQuantityUpdate, priva
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.dialog_quantity_update, container, false)
         }
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogStyle)
+        setStyle(STYLE_NO_TITLE, R.style.DialogStyle)
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
         return rootView
