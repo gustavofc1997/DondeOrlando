@@ -37,6 +37,7 @@ class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product
         super.onViewCreated(view, savedInstanceState)
         btn_add.setOnClickListener {
             val productOrder = ProductOrder(product, qty_orden.value)
+            productOrder.isAdditional = chk_additional.isChecked
             quantityAdded.setProduct(productOrder)
             dismissAllowingStateLoss()
         }

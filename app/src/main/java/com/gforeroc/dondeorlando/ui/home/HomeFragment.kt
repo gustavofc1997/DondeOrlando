@@ -14,7 +14,6 @@ import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.SummaryOrderDialogFragment
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import ir.androidexception.andexalertdialog.AndExAlertDialog
-import ir.androidexception.andexalertdialog.AndExAlertDialogListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -67,7 +66,6 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
         } else
             showWarningDialog()
     }
-
 
     private fun canFinishOrder(): Boolean {
         return newOrder.items.isNotEmpty()
