@@ -34,27 +34,6 @@ class MeatViewModel (override var repository: IProductRepository): BaseViewModel
         repository.updateStock(setUpdateQuantity, id)
     }
 
-    fun deleteTask(taskId: String) {
-        /*repository.deleteTask(taskId)
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                {},
-                {
-                    it.printStackTrace()
-                })
-            .addTo(disposable)*/
-    }
-
-    fun addTask(taskTitle: String) {
-        /* repository.addTask(Task("${System.currentTimeMillis()}", taskTitle))
-             .subscribeOn(Schedulers.io())
-             .subscribe(
-                 {},
-                 {
-                     it.printStackTrace()
-                 })
-             .addTo(disposable)*/
-    }
 
     override fun onCleared() {
         super.onCleared()

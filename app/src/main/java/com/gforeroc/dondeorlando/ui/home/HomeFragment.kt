@@ -10,10 +10,11 @@ import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.PageAdapter
-import com.gforeroc.dondeorlando.utils.SummaryOrderDialogFragment
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
+import com.gforeroc.dondeorlando.utils.SummaryOrderDialogFragment
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
-import kotlinx.android.synthetic.main.dialog_check_order_item.*
+import ir.androidexception.andexalertdialog.AndExAlertDialog
+import ir.androidexception.andexalertdialog.AndExAlertDialogListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -58,10 +59,18 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
     }
 
     private fun sendOrder() {
-        newOrder.setDate()
-        newOrder.calculateTotals()
-        val dialog = SummaryOrderDialogFragment(newOrder, this)
-        childFragmentManager.let { dialog.show(it, "SummaryOrderDialogFragment") }
+        if (canFinishOrder()) {
+            newOrder.setDate()
+            newOrder.calculateTotals()
+            val dialog = SummaryOrderDialogFragment(newOrder, this)
+            childFragmentManager.let { dialog.show(it, "SummaryOrderDialogFragment") }
+        } else
+            showWarningDialog()
+    }
+
+
+    private fun canFinishOrder(): Boolean {
+        return newOrder.items.isNotEmpty()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -75,5 +84,19 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
     override fun confirmOrderListener() {
         ordersViewModel.sendOrder(newOrder)
     }
+
+    private fun showWarningDialog() {
+        AndExAlertDialog.Builder(context)
+            .setTitle("Oopss")
+            .setMessage("Debes agregar productos primero")
+            .setPositiveBtnText("Cerrar")
+            .setCancelableOnTouchOutside(false)
+            .OnPositiveClicked {
+            }
+            .build();
+    }
+
 }
+
+
 

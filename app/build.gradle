@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.gforeroc.dondeorlando"
         minSdkVersion 24
@@ -57,6 +57,6 @@ dependencies {
     implementation "org.koin:koin-android:2.1.1"
     implementation "org.koin:koin-android-scope:2.1.1"
     implementation "org.koin:koin-android-viewmodel:2.1.1"
-
+    implementation 'com.github.salehyarahmadi:AndExAlertDialog:v1.0.1'
 }
 apply plugin: 'com.google.gms.google-services'
