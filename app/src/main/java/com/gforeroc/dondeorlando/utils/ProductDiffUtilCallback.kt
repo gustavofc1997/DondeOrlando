@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.gforeroc.dondeorlando.data.Product
 
 class ProductDiffUtilCallback(
-    private val oldList: List<Product>,
+    private val oldList: MutableList<Product>,
     private val newList: List<Product>
 ) : DiffUtil.Callback() {
 

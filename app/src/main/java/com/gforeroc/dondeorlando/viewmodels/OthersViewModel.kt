@@ -27,6 +27,10 @@ class OthersViewModel(override var repository: IProductRepository) : BaseViewMod
             .addTo(disposable)
     }
 
+    fun updateQuantity(setUpdateQuantity: Long, id: String){
+        repository.updateStock(setUpdateQuantity, id)
+    }
+
     override fun onCleared() {
         super.onCleared()
         disposable.clear()

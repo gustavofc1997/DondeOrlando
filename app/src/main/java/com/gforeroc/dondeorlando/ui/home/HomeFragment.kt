@@ -6,16 +6,19 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.PageAdapter
+import com.gforeroc.dondeorlando.utils.SummaryOrderDialogFragment
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
+import kotlinx.android.synthetic.main.dialog_check_order_item.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : Fragment(), OnProductOrderAdded {
+class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
 
     private var mContext: Context? = null
     private lateinit var newOrder: NewOrder
@@ -57,15 +60,20 @@ class HomeFragment : Fragment(), OnProductOrderAdded {
     private fun sendOrder() {
         newOrder.setDate()
         newOrder.calculateTotals()
-        ordersViewModel.sendOrder(newOrder)
-
+        val dialog = SummaryOrderDialogFragment(newOrder, this)
+        childFragmentManager.let { dialog.show(it, "SummaryOrderDialogFragment") }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.cancel_order -> findNavController().popBackStack()
             R.id.finish_order -> sendOrder()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun confirmOrderListener() {
+        ordersViewModel.sendOrder(newOrder)
     }
 }
 

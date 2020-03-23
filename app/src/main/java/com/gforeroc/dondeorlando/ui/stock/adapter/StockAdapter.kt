@@ -11,7 +11,6 @@ import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item_stock.view.*
-import kotlin.random.Random
 
 class StockAdapter(private val productClickListenerStock: IProductSelected?) :
     RecyclerView.Adapter<StockVH>() {
@@ -27,7 +26,6 @@ class StockAdapter(private val productClickListenerStock: IProductSelected?) :
 
     override fun onBindViewHolder(holder: StockVH, position: Int) {
         val task = taskList[position]
-        holder.setColorView()
         with(holder.containerView) {
             this.setOnClickListener {
                 productClickListenerStock?.onProductSelected(task)
@@ -48,10 +46,5 @@ class StockAdapter(private val productClickListenerStock: IProductSelected?) :
 class StockVH(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
-    fun setColorView() {
-        val colorsArray = containerView.context.resources.getIntArray(R.array.rainbow)
-        val randomColor = Random.nextInt(colorsArray.size)
-        val color = colorsArray[randomColor]
-        containerView.card_view_stock.setCardBackgroundColor(color)
-    }
+
 }

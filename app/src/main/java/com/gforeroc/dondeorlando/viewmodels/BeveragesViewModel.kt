@@ -28,6 +28,10 @@ class BeveragesViewModel(override var repository: IProductRepository) : BaseView
             .addTo(disposable)
     }
 
+    fun updateQuantity(setUpdateQuantity: Long, id: String){
+        repository.updateStock(setUpdateQuantity, id)
+    }
+
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
