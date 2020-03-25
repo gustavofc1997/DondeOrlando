@@ -1,5 +1,6 @@
 package com.gforeroc.dondeorlando
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ class CheckOrderAdapter(private var taskList: ArrayList<ProductOrder>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckVH {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.dialog_check_order_item, parent, false)
-        return CheckVH(view, viewType)
+        return CheckVH(view)
     }
 
     override fun getItemCount() = taskList.size
@@ -23,14 +24,22 @@ class CheckOrderAdapter(private var taskList: ArrayList<ProductOrder>) :
     override fun onBindViewHolder(holder: CheckVH, position: Int) {
         val task = taskList[position]
         with(holder.containerView) {
-            product.text = task.product.Nombre
-            quantity.text = task.quantity.toString()
-            price.text = task.product.Precio
+            if (task.isAdditional){
+                val aditional = " --Adicional"
+                product.text = task.product.Nombre.plus(aditional)
+                quantity.text = task.quantity.toString()
+                price.text = (task.product.Adicional.toInt() * task.quantity).toString()
+            }else {
+                product.text = task.product.Nombre
+                quantity.text = task.quantity.toString()
+                price.text = task.product.Precio
+
+            }
         }
     }
 }
 
-class CheckVH(override val containerView: View, val viewType: Int) :
+class CheckVH(override val containerView: View) :
     RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 }

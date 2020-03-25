@@ -4,5 +4,6 @@ data class Product(
     val Cantidad: Long = 0,
     val Nombre: String = "",
     val Precio: String = "",
-    var id: String = "", var Adicional: String = ""
+    var id: String = "",
+    val Adicional: String = ""
 )
