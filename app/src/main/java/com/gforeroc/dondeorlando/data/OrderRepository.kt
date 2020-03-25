@@ -1,8 +1,14 @@
 package com.gforeroc.dondeorlando.data
 
+import android.util.Log
 import com.gforeroc.dondeorlando.domain.NewOrder
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 
 class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderRepository {
 
@@ -10,9 +16,26 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
         const val MENU_ORDERS = "Ordenes"
     }
 
-
-    override fun getOrderlist() {
-    }
+    private val changeObservable =
+        BehaviorSubject.create { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
+            val listeningRegistration =
+                remoteDB.collection(MENU_ORDERS)
+                    .addSnapshotListener { value, error ->
+                        if (value == null || error != null) {
+                            return@addSnapshotListener
+                        }
+                        if (!emitter.isDisposed) {
+                            emitter.onNext(value.documents)
+                        }
+                        value.documentChanges.forEach {
+                            Log.d(
+                                "Firestore Orders Repository",
+                                "Data changed type ${it.type} document ${it.document.id}"
+                            )
+                        }
+                    }
+            emitter.setCancellable { listeningRegistration.remove() }
+        }
 
     override fun sendOrder(order: NewOrder): Completable {
         return Completable.create { emitter ->
@@ -30,12 +53,21 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
         }
     }
 
+    private fun mapDocumentToRemoteTask(document: DocumentSnapshot) =
+        document.toObject(NewOrder::class.java)!!
+
+    override fun getChangeObservable(): Observable<List<NewOrder>> =
+        changeObservable.hide()
+            .observeOn(Schedulers.io())
+            .map { list ->
+                list.map(::mapDocumentToRemoteTask)
+            }
+
 }
 
 interface IOrderRepository {
     var remoteDB: FirebaseFirestore
-
-    fun getOrderlist()
     fun sendOrder(order: NewOrder): Completable
+    fun getChangeObservable(): Observable<List<NewOrder>>
 
 }

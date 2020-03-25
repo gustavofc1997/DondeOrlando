@@ -19,7 +19,7 @@ class OthersRepository (override var remoteDB: FirebaseFirestore) : IProductRepo
     }
 
     private val changeObservable =
-        BehaviorSubject.create<List<DocumentSnapshot>> { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
+        BehaviorSubject.create { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
             val listeningRegistration =
                 remoteDB.collection(MENU_COLLECTION).document(OTHERS_DOCUMENT).collection(ITEMS)
                     .addSnapshotListener { value, error ->
