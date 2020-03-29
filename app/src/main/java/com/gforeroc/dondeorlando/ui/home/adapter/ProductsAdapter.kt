@@ -39,9 +39,15 @@ class ProductsAdapter(private val productClickListener: IProductSelected?) :
             }
             productTitle.text = task.Nombre
             when {
-                task.Cantidad >= 80 -> text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
-                task.Cantidad <= 80 -> text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
-                task.Cantidad <= 20 -> text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
+                task.Cantidad <= 20 -> {
+                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
+                }
+                task.Cantidad > 80 -> {
+                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
+                }
+                task.Cantidad <= 80 -> {
+                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
+                }
             }
             text_count.text = task.Cantidad.toString()
         }

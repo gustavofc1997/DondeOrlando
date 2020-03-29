@@ -22,6 +22,7 @@ class SummaryOrderDialogFragment(
     private var window: Window? = null
     private var rootView: View? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

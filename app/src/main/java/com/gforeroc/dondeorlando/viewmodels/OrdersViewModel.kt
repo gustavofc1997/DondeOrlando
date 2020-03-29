@@ -49,5 +49,4 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
         super.onCleared()
         disposable.clear()
     }
-
 }
