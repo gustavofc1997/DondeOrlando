@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
-import com.gforeroc.dondeorlando.domain.NewOrder
+import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import kotlinx.android.synthetic.main.fragment_orders.*
@@ -41,17 +41,17 @@ class OrdersFragment : Fragment() {
        })
     }
 
-    private fun mapArray(args: List<NewOrder>): List<Product> {
+    private fun mapArray(args: List<MyOrder>): List<Product> {
         val myMap = HashMap<String, Long>()
         args.forEach { orderData ->
             orderData.items.forEach { product ->
-                val myKey = product.product.Nombre
+                val myKey = product.product.nombre
                 if (myMap.containsKey(myKey)) {
                     var quantity = myMap[myKey] ?: 0L
-                    quantity += product.product.Cantidad
+                    quantity += product.product.cantidad
                     myMap[myKey] = quantity
                 } else {
-                    myMap[myKey] = product.product.Cantidad
+                    myMap[myKey] = product.product.cantidad
                 }
             }
         }

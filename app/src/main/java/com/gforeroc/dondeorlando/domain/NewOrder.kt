@@ -13,7 +13,7 @@ class NewOrder(
     }
 
     fun setDate() {
-        val s = SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault())
+        val s = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
         val format: String = s.format(Date())
         date = format
     }
