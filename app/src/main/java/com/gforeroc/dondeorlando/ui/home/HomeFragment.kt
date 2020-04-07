@@ -3,11 +3,8 @@ package com.gforeroc.dondeorlando.ui.home
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.gforeroc.dondeorlando.BR
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
@@ -31,11 +28,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-
-        val binding: ViewDataBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        binding.setVariable(BR.currentOrder, newOrder)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

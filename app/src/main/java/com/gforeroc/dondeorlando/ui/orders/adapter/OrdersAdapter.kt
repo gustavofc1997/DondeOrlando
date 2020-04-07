@@ -3,9 +3,11 @@ package com.gforeroc.dondeorlando.ui.orders.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item_orders.view.*
 
@@ -25,13 +27,15 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersVH>() {
         val task = ordersList[position]
         with(holder.containerView) {
             text_name_product.text = task.Nombre
-            text_count.text = task.Cantidad.toString()
+            text_count.text = task.Quantity.toString()
         }
     }
 
     fun setItems(newTaskList: List<Product>) {
+        val diffResult = DiffUtil.calculateDiff(ProductDiffUtilCallback(ordersList, newTaskList))
         ordersList.clear()
         ordersList.addAll(newTaskList)
+        diffResult.dispatchUpdatesTo(this)
     }
 }
 
