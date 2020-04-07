@@ -1,4 +1,4 @@
-package com.gforeroc.dondeorlando.ui.attract
+package com.gforeroc.dondeorlando.ui.initialize
 
 import android.os.Bundle
 import android.view.LayoutInflater

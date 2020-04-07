@@ -114,4 +114,8 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
             }
             .build();
     }
+
 }
+
+
+

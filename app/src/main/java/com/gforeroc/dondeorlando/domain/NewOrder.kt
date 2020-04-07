@@ -50,6 +50,4 @@ class NewOrder(
             }
         }.sum().toLong()
     }
-
-
 }
