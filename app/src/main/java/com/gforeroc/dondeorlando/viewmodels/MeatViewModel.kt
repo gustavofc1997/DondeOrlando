@@ -34,7 +34,6 @@ class MeatViewModel (override var repository: IProductRepository): BaseViewModel
         repository.updateStock(setUpdateQuantity, id)
     }
 
-
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
