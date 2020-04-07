@@ -9,49 +9,37 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
-import kotlinx.android.synthetic.main.dialog_check_order_list.*
+import kotlinx.android.synthetic.main.dialog_car_orde_list.*
 
-class SummaryOrderDialogFragment(
-    private val newOrder: NewOrder,
-    private val iConfirmOrder: IConfirmOrder
-) :
-    DialogFragment() {
+class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() {
 
-    private var window: Window? = null
-    private var rootView: View? = null
+    private var windows: Window? = null
+    private var rootview: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        window = dialog?.window
-        if (rootView == null) {
-            rootView = inflater.inflate(
-                R.layout.dialog_check_order_list, container, false
-            )
+        windows = dialog?.window
+        if (rootview == null) {
+            rootview = inflater.inflate(R.layout.dialog_car_orde_list, container, false)
         }
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
-        return rootView
+        return rootview
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Rv_summary.setHasFixedSize(true)
-        text_Total.text = newOrder.total.toString()
+        Rv_summary_car.setHasFixedSize(true)
+        text_total_car.text = newOrder.total.toString()
         val checkOrderAdapter = CheckOrderAdapter(newOrder.items)
-        Rv_summary.apply {
+        Rv_summary_car.apply {
             adapter = checkOrderAdapter
             layoutManager = LinearLayoutManager(context)
-        }
-        button_check.setOnClickListener {
-            iConfirmOrder.confirmOrderListener()
-            dialog?.dismiss()
-            newOrder.clearData()
         }
     }
 

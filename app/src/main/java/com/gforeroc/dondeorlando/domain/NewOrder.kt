@@ -22,6 +22,12 @@ class NewOrder(
 
     }
 
+    fun clearData() {
+        items.clear()
+        total = 0
+        date?.isEmpty()
+    }
+
     fun setDate() {
         val s = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
         val format: String = s.format(Date())

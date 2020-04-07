@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/title_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="30dp"
         android:text="Resumen de la orden"
         android:textSize="22dp"
         android:textStyle="bold"
@@ -23,13 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
         android:background="@color/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintTop_toBottomOf="@+id/title_car">
 
         <TextView
-            android:id="@+id/text_name_product"
+            android:id="@+id/text_name_product_car"
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:text="Producto"
@@ -37,7 +36,7 @@
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/text_quantity_product"
+            android:id="@+id/text_quantity_product_car"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:text="Cantidad"
@@ -45,19 +44,17 @@
             android:textSize="17dp" />
 
         <TextView
-            android:id="@+id/text_price_product"
+            android:id="@+id/text_price_product_car"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right"
             android:text="Precio"
             android:textColor="@android:color/white"
             android:textSize="18dp" />
-
     </LinearLayout>
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Rv_summary"
+        android:id="@+id/Rv_summary_car"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginLeft="17dp"
@@ -72,24 +69,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="Rv_summary"
+        app:constraint_referenced_ids="Rv_summary_car"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_check" />
+        app:layout_constraintTop_toBottomOf="@id/text_total_car" />
 
     <TextView
-        android:id="@+id/text_title_total"
+        android:id="@+id/text_title_total_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="Total"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/Rv_summary"
-        app:layout_constraintTop_toBottomOf="@+id/Rv_summary" />
+        app:layout_constraintStart_toStartOf="@id/Rv_summary_car"
+        app:layout_constraintTop_toBottomOf="@+id/Rv_summary_car" />
 
     <TextView
-        android:id="@+id/text_Total"
+        android:id="@+id/text_total_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -97,32 +94,7 @@
         android:text="Total"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rv_summary" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/checkFree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:buttonTint="@android:color/holo_green_light"
-        android:text="Es cortesia?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_Total" />
-
-    <Button
-        android:id="@+id/button_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:text="Confirmar"
-        android:elevation="10dp"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkFree" />
+        app:layout_constraintTop_toBottomOf="@+id/Rv_summary_car" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
