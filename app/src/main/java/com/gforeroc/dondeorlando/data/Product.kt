@@ -5,6 +5,5 @@ data class Product(
     var Nombre: String = "",
     val Precio: String = "",
     var id: String = "",
-    val Adicional: String = "",
-    var Quantity: Long = 0
+    val Adicional: String = ""
 )

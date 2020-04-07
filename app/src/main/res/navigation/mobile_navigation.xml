@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/nav_orders"
         android:name="com.gforeroc.dondeorlando.ui.orders.OrdersFragment"
-        android:label="@string/menu_sales"
+        android:label="@string/menu_orders"
         tools:layout="@layout/fragment_orders"/>
 
     <fragment

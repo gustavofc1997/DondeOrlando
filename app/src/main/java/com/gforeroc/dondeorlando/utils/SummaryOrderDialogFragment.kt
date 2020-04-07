@@ -22,6 +22,7 @@ class SummaryOrderDialogFragment(
     private var window: Window? = null
     private var rootView: View? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,12 +52,12 @@ class SummaryOrderDialogFragment(
         button_check.setOnClickListener {
             iConfirmOrder.confirmOrderListener()
             dialog?.dismiss()
-            newOrder.clearData()
         }
     }
 
     override fun onStart() {
         super.onStart()
         dialog?.window?.apply { setLayout(530, 430) }
+
     }
 }
