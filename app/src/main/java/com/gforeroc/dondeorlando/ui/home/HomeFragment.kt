@@ -3,6 +3,8 @@ package com.gforeroc.dondeorlando.ui.home
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gforeroc.dondeorlando.R
@@ -11,7 +13,9 @@ import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.PageAdapter
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
+import com.gforeroc.dondeorlando.utils.OrderCarDialogFragment
 import com.gforeroc.dondeorlando.utils.SummaryOrderDialogFragment
+import com.gforeroc.dondeorlando.utils.ZoomOutPageTransformer
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -28,7 +32,9 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val binding : ViewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, null, false)
+        binding.setVariable(newOrder.items.size, this)
+        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +51,9 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
             this
         )
         viewpager.adapter = adapter
+        viewpager.setPageTransformer(true, ZoomOutPageTransformer())
         tabCategories.setupWithViewPager(viewpager)
+        btn_car.setOnClickListener { checkOrderCar()}
     }
 
     override fun setProduct(product: ProductOrder) {
@@ -55,6 +63,16 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun checkOrderCar() {
+        if (canFinishOrder()) {
+            newOrder.setDate()
+            newOrder.calculateTotals()
+            val dialogCar = OrderCarDialogFragment(newOrder)
+            childFragmentManager.let { dialogCar.show(it, "OrderCarDialogFragment") }
+        } else
+            showWarningDialog()
     }
 
     private fun sendOrder() {
@@ -93,8 +111,4 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
             }
             .build();
     }
-
 }
-
-
-

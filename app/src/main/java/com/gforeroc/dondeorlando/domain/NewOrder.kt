@@ -1,5 +1,7 @@
 package com.gforeroc.dondeorlando.domain
 
+import androidx.databinding.BaseObservable
+import com.gforeroc.dondeorlando.BR
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -7,9 +9,20 @@ class NewOrder(
     var items: ArrayList<ProductOrder> = arrayListOf(),
     var total: Long = 0,
     var date: String? = null
-) {
+) : BaseObservable() {
+
     fun addProduct(productOrder: ProductOrder) {
         items.add(productOrder)
+    }
+
+    fun getCarVisibility(visible: Int){
+        notifyPropertyChanged(BR.newOrder)
+    }
+
+    fun clearData() {
+        items.clear()
+        total = 0
+        date?.isEmpty()
     }
 
     fun setDate() {
