@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gforeroc.dondeorlando.data.IOrderRepository
 import com.gforeroc.dondeorlando.domain.NewOrder
+import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -12,9 +13,9 @@ import io.reactivex.disposables.CompositeDisposable
 class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
 
     private val disposable = CompositeDisposable()
-    private val ordersList = MutableLiveData<List<NewOrder>>()
+    private val ordersList = MutableLiveData<List<MyOrder>>()
 
-    val allOrders: LiveData<List<NewOrder>>
+    val allOrders: LiveData<List<MyOrder>>
         get() = ordersList
 
     fun sendOrder(order: NewOrder) {
@@ -49,5 +50,4 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
         super.onCleared()
         disposable.clear()
     }
-
 }

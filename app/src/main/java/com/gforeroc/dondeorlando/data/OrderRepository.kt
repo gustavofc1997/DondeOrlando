@@ -2,6 +2,7 @@ package com.gforeroc.dondeorlando.data
 
 import android.util.Log
 import com.gforeroc.dondeorlando.domain.NewOrder
+import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
@@ -54,9 +55,9 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
     }
 
     private fun mapDocumentToRemoteTask(document: DocumentSnapshot) =
-        document.toObject(NewOrder::class.java)!!
+        document.toObject(MyOrder::class.java)!!
 
-    override fun getChangeObservable(): Observable<List<NewOrder>> =
+    override fun getChangeObservable(): Observable<List<MyOrder>> =
         changeObservable.hide()
             .observeOn(Schedulers.io())
             .map { list ->
@@ -68,6 +69,6 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
 interface IOrderRepository {
     var remoteDB: FirebaseFirestore
     fun sendOrder(order: NewOrder): Completable
-    fun getChangeObservable(): Observable<List<NewOrder>>
+    fun getChangeObservable(): Observable<List<MyOrder>>
 
 }

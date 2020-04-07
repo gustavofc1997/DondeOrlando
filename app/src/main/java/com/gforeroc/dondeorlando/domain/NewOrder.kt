@@ -13,12 +13,18 @@ class NewOrder(
     }
 
     fun setDate() {
-        val s = SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault())
+        val s = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
         val format: String = s.format(Date())
         date = format
     }
 
     fun calculateTotals() {
-        total = items.map { it.quantity * (it.product.Precio.toInt()) }.sum().toLong()
+        total = items.map {
+            if (it.isAdditional) {
+                it.quantity * (it.product.Adicional.toInt())
+            } else {
+                it.quantity * (it.product.Precio.toInt())
+            }
+        }.sum().toLong()
     }
 }
