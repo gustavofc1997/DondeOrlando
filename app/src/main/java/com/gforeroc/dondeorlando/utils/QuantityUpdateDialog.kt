@@ -11,7 +11,10 @@ import com.gforeroc.dondeorlando.data.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.Product
 import kotlinx.android.synthetic.main.dialog_quantity_update.*
 
-class QuantityUpdateDialog(private var onQuantityUpdate: OnQuantityUpdate, private var products: Product) : DialogFragment() {
+class QuantityUpdateDialog(
+    private var onQuantityUpdate: OnQuantityUpdate,
+    private var products: Product
+) : DialogFragment() {
     private var window: Window? = null
     private var rootView: View? = null
 

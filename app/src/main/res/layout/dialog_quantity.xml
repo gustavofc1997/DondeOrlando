@@ -15,7 +15,7 @@
         android:gravity="center"
         android:padding="4dp"
         android:layout_marginTop="32sp"
-        android:text="Selecciona la cantidad que quieres añadir!"
+        android:text="@string/text_add_quantity"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -36,7 +36,7 @@
         android:id="@+id/chk_additional"
         android:layout_width="wrap_content"
         android:buttonTint="@android:color/holo_green_light"
-        android:text="Es una porción adicional?"
+        android:text="@string/text_check_box"
         android:layout_height="wrap_content" />
     <Button
         android:textColor="@android:color/white"
@@ -47,6 +47,7 @@
         android:layout_gravity="center"
         android:layout_margin="40dp"
         android:padding="4dp"
-        android:text="Agregar">
+        android:textAllCaps="false"
+        android:text="@string/text_btn_add">
     </Button>
 </LinearLayout>

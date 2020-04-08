@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Reporte de ventas"
+        android:text="@string/report_sales"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
         android:layout_below="@+id/txt_ventas_dia"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:text="Ventas del dia"
+        android:text="@string/sales_day"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -54,8 +54,9 @@
         android:layout_below="@+id/recycler_orders"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
+        android:textAllCaps="false"
         android:background="@color/colorPrimary"
-        android:text="Cerrar Ventas"
+        android:text="@string/close_sales"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>

@@ -9,8 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Carne en bisteck"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/text_count"
@@ -18,8 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:gravity="end"
-        android:layout_marginLeft="15dp"
-        android:text="20"
-        android:textSize="18dp" />
+        android:layout_marginStart="15dp"
+        android:textSize="18sp" />
 
 </LinearLayout>

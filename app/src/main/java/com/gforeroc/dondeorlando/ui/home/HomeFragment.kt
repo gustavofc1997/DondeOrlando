@@ -33,7 +33,6 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-
         val binding: ViewDataBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.setVariable(BR.currentOrder, newOrder)
@@ -56,7 +55,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
         viewpager.adapter = adapter
         viewpager.setPageTransformer(true, ZoomOutPageTransformer())
         tabCategories.setupWithViewPager(viewpager)
-        btn_car.setOnClickListener { checkOrderCar()}
+        btn_car.setOnClickListener { checkOrderCar() }
     }
 
     override fun setProduct(product: ProductOrder) {

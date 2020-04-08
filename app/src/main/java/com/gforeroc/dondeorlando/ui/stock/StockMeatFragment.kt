@@ -9,18 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.MeatsRepository
 import com.gforeroc.dondeorlando.data.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
-import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
 import com.gforeroc.dondeorlando.viewmodels.MeatViewModel
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.dialog_quantity_update.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StockMeatFragment() : BaseFragment(), IProductSelected,
@@ -31,7 +28,8 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_meat_list, container, false)
         // Set the adapter
         if (view is RecyclerView) {
@@ -72,7 +70,7 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
         onProductOrderAdded?.setProduct(product)
     }
 
-    override fun updateQuantity(setUpdateQuantity: Long, id:String) {
+    override fun updateQuantity(setUpdateQuantity: Long, id: String) {
         meatsViewModel.updateQuantity(setUpdateQuantity, id)
     }
 }

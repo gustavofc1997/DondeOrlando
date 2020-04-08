@@ -6,7 +6,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.ui.stock.adapter.StockPageAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.gforeroc.dondeorlando.utils.ZoomOutPageTransformer
+import kotlinx.android.synthetic.main.fragment_stock.*
 
 
 class StockFragment : Fragment() {
@@ -16,7 +17,7 @@ class StockFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_stock, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,6 +27,7 @@ class StockFragment : Fragment() {
         val adapter = StockPageAdapter(
             childFragmentManager
         )
+        viewpager.setPageTransformer(true, ZoomOutPageTransformer())
         viewpager.adapter = adapter
         tabCategories.setupWithViewPager(viewpager)
     }

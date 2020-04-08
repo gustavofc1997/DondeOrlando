@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -15,28 +15,13 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
 
-
-        <LinearLayout
-            android:id="@+id/llCar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <Button
-                android:id="@+id/btn_car"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ver carrito"
-                android:visibility="@{currentOrder.visibility}" />
-        </LinearLayout>
-
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay"
-            app:layout_constraintBottom_toTopOf="@id/llCar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_scrollFlags="scroll|enterAlways">
 
@@ -48,13 +33,30 @@
                 app:tabMaxWidth="0dp"
                 app:tabMode="fixed" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_view" />
+                android:layout_height="match_parent"
+                android:background="@android:color/white">
 
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_view" />
+
+                <Button
+                    android:id="@+id/btn_car"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/viewpager"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorPrimary"
+                    android:elevation="20dp"
+                    android:text="@string/ver_carrito"
+                    android:textAllCaps="false"
+                    android:visibility="@{currentOrder.visibility}" />
+            </RelativeLayout>
         </com.google.android.material.appbar.AppBarLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

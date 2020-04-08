@@ -10,22 +10,19 @@
         android:id="@+id/product"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:text="TextView" />
+        android:layout_weight="0.5" />
 
     <TextView
         android:id="@+id/quantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:text="TextView" />
+        android:layout_weight="0.2" />
 
     <TextView
         android:id="@+id/price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
-        android:gravity="right"
-        android:text="TextView" />
+        android:gravity="end" />
 
 </LinearLayout>

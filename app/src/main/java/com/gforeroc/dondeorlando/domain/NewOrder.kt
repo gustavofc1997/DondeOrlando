@@ -13,13 +13,12 @@ class NewOrder(
     var date: String? = null
 ) : BaseObservable() {
 
-
     @Bindable
     var visibility = View.GONE
+
     fun addProduct(productOrder: ProductOrder) {
         items.add(productOrder)
         changeVisibility()
-
     }
 
     fun clearData() {
