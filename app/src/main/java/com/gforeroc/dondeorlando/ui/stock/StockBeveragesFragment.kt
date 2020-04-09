@@ -15,6 +15,7 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.VMStockBeverages
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
@@ -28,7 +29,7 @@ class StockBeveragesFragment() : BaseFragment(),
 
     override var productsAdapter =
         ProductsAdapter(this)
-    private val beveragesViewModel: BeveragesViewModel by viewModel()
+    private val vmStockBeverages : VMStockBeverages by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +48,7 @@ class StockBeveragesFragment() : BaseFragment(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        beveragesViewModel.beverages.observe(this, Observer {
+        vmStockBeverages.stockBeverages.observe(this, Observer {
             productsAdapter.setItems(it)
         })
     }
@@ -75,7 +76,7 @@ class StockBeveragesFragment() : BaseFragment(),
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id:String) {
-        beveragesViewModel.updateQuantity(setUpdateQuantity, id)
+        vmStockBeverages.updateQuantity(setUpdateQuantity, id)
     }
 
 }

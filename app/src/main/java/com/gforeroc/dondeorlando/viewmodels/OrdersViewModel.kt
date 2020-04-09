@@ -45,7 +45,6 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
             .addTo(disposable)
     }
 
-
     override fun onCleared() {
         super.onCleared()
         disposable.clear()

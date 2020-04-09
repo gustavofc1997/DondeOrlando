@@ -2,11 +2,12 @@ package com.gforeroc.dondeorlando.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.gforeroc.dondeorlando.data.BeveragesRepository
+import androidx.lifecycle.Observer
 import com.gforeroc.dondeorlando.data.IProductRepository
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
+import java.text.FieldPosition
 
 class BeveragesViewModel(override var repository: IProductRepository) : BaseViewModel() {
 
@@ -19,17 +20,13 @@ class BeveragesViewModel(override var repository: IProductRepository) : BaseView
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    beveragesList.value = it
+                   beveragesList.value = it.filter { it.Cantidad.toInt() > 0 }
                 },
                 {
                     it.printStackTrace()
                 }
             )
             .addTo(disposable)
-    }
-
-    fun updateQuantity(setUpdateQuantity: Long, id: String){
-        repository.updateStock(setUpdateQuantity, id)
     }
 
     override fun onCleared() {

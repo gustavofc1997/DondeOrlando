@@ -15,6 +15,7 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.VMStockOthers
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
@@ -25,7 +26,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class StockOthersFragment() : BaseFragment(),IProductSelected,
     OnProductOrderAdded, OnQuantityUpdate {
     override var productsAdapter = ProductsAdapter(this)
-    private val othersViewModel: OthersViewModel by viewModel()
+    private val vmStockOthersViewModel : VMStockOthers by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +46,7 @@ class StockOthersFragment() : BaseFragment(),IProductSelected,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        othersViewModel.others.observe(this, Observer {
+        vmStockOthersViewModel.stockOther.observe(this, Observer {
             productsAdapter.setItems(it)
         })
     }
@@ -72,6 +73,6 @@ class StockOthersFragment() : BaseFragment(),IProductSelected,
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
-        othersViewModel.updateQuantity(setUpdateQuantity, id)
+        vmStockOthersViewModel.updateQuantity(setUpdateQuantity, id)
     }
 }

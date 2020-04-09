@@ -14,17 +14,17 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
 import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.VMStockMeat
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
-import com.gforeroc.dondeorlando.viewmodels.MeatViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StockMeatFragment() : BaseFragment(), IProductSelected,
     OnProductOrderAdded, OnQuantityUpdate {
 
     override var productsAdapter = ProductsAdapter(this)
-    private val meatsViewModel: MeatViewModel by viewModel()
+    private val vmSockMeat: VMStockMeat by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,7 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        meatsViewModel.meats.observe(this, Observer {
+        vmSockMeat.stockMeats.observe(this, Observer {
             productsAdapter.setItems(it)
         })
     }
@@ -71,6 +71,6 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
-        meatsViewModel.updateQuantity(setUpdateQuantity, id)
+        vmSockMeat.updateQuantity(setUpdateQuantity, id)
     }
 }
