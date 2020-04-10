@@ -18,17 +18,13 @@ class OthersViewModel(override var repository: IProductRepository) : BaseViewMod
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    otherList.value = it
+                    otherList.value = it.filter { it.Cantidad.toInt() > 0 }
                 },
                 {
                     it.printStackTrace()
                 }
             )
             .addTo(disposable)
-    }
-
-    fun updateQuantity(setUpdateQuantity: Long, id: String){
-        repository.updateStock(setUpdateQuantity, id)
     }
 
     override fun onCleared() {

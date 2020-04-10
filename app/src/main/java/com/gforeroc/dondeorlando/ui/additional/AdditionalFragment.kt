@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
-import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityDialog
 import com.gforeroc.dondeorlando.viewmodels.SidesViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),IProductSelected,
+class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),
+    IProductSelected,
     OnProductOrderAdded {
 
     override var productsAdapter =
@@ -62,7 +63,7 @@ class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?)
     }
 
     override fun onProductSelected(product: Product) {
-        QuantityDialog(this,product).show(childFragmentManager,"null")
+        QuantityDialog(this, product).show(childFragmentManager, "null")
     }
 
     override fun setProduct(product: ProductOrder) {

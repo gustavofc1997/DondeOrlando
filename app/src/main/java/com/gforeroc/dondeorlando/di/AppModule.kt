@@ -1,6 +1,10 @@
 package com.gforeroc.dondeorlando.di
 
 import com.gforeroc.dondeorlando.data.*
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockAdditionalViewModel
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockBeveragesViewModel
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockMeatViewModel
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockOthersViewModel
 import com.gforeroc.dondeorlando.viewmodels.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -27,4 +31,9 @@ val appModule = module {
     viewModel { SidesViewModel(get(named("sideRepository"))) }
     viewModel { MeatViewModel(get(named("meatsRepository"))) }
     viewModel { OthersViewModel(get(named("othersRepository"))) }
+    viewModel { StockMeatViewModel(get(named("meatsRepository"))) }
+    viewModel { StockBeveragesViewModel(get(named("beveragesRepository"))) }
+    viewModel { StockAdditionalViewModel(get(named("sideRepository"))) }
+    viewModel { StockOthersViewModel(get(named("othersRepository"))) }
+
 }

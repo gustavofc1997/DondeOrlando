@@ -1,32 +1,35 @@
-package com.gforeroc.dondeorlando.viewmodels
+package com.gforeroc.dondeorlando.ui.stock.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.gforeroc.dondeorlando.data.IProductRepository
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.addTo
+import com.gforeroc.dondeorlando.viewmodels.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import java.text.FieldPosition
 
-class BeveragesViewModel(override var repository: IProductRepository) : BaseViewModel() {
+class StockOthersViewModel(override var repository: IProductRepository) : BaseViewModel() {
 
-    private val beveragesList = MutableLiveData<List<Product>>()
-    val beverages: LiveData<List<Product>>
-        get() = beveragesList
+    private val stockOthersList = MutableLiveData<List<Product>>()
+    val stockOther: LiveData<List<Product>>
+        get() = stockOthersList
 
     init {
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { productList ->
-                    beveragesList.value = productList.filter { it.Cantidad.toInt() > 0 }
+                {
+                    stockOthersList.value = it
                 },
                 {
                     it.printStackTrace()
                 }
             )
             .addTo(disposable)
+    }
+
+    fun updateQuantity(setUpdateQuantity: Long, id: String) {
+        repository.updateStock(setUpdateQuantity, id)
     }
 
     override fun onCleared() {

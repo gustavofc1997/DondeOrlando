@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gforeroc.dondeorlando.data.IProductRepository
 import com.gforeroc.dondeorlando.data.Product
-import com.gforeroc.dondeorlando.data.SideRepository
 import com.gforeroc.dondeorlando.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class SidesViewModel (override var repository: IProductRepository): BaseViewModel() {
+class SidesViewModel(override var repository: IProductRepository) : BaseViewModel() {
 
     private val sidesList = MutableLiveData<List<Product>>()
     val sides: LiveData<List<Product>>
@@ -19,17 +18,13 @@ class SidesViewModel (override var repository: IProductRepository): BaseViewMode
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    sidesList.value = it
+                    sidesList.value = it.filter { it.Cantidad.toInt() > 0 }
                 },
                 {
                     it.printStackTrace()
                 }
             )
             .addTo(disposable)
-    }
-
-    fun updateQuantity(setUpdateQuantity: Long, id: String){
-        repository.updateStock(setUpdateQuantity, id)
     }
 
     override fun onCleared() {

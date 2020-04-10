@@ -9,26 +9,23 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.BeveragesRepository
 import com.gforeroc.dondeorlando.data.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
-import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockBeveragesViewModel
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
-import com.gforeroc.dondeorlando.viewmodels.BeveragesViewModel
-import com.google.firebase.firestore.FirebaseFirestore
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StockBeveragesFragment() : BaseFragment(),
     IProductSelected,
     OnProductOrderAdded, OnQuantityUpdate {
 
-    override var productsAdapter =
-        ProductsAdapter(this)
-    private val beveragesViewModel: BeveragesViewModel by viewModel()
+    var stockAdapter = StockAdapter(this)
+    private val stockBeveragesViewModel : StockBeveragesViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +36,7 @@ class StockBeveragesFragment() : BaseFragment(),
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = GridLayoutManager(context, columnCount)
-                adapter = productsAdapter
+                adapter = stockAdapter
             }
         }
         return view
@@ -47,8 +44,8 @@ class StockBeveragesFragment() : BaseFragment(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        beveragesViewModel.beverages.observe(this, Observer {
-            productsAdapter.setItems(it)
+        stockBeveragesViewModel.stockBeverages.observe(this, Observer {
+            stockAdapter.setItems(it)
         })
     }
 
@@ -75,7 +72,7 @@ class StockBeveragesFragment() : BaseFragment(),
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id:String) {
-        beveragesViewModel.updateQuantity(setUpdateQuantity, id)
+        stockBeveragesViewModel.updateQuantity(setUpdateQuantity, id)
     }
 
 }

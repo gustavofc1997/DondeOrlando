@@ -10,35 +10,38 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.recycler_item.view.*
 import kotlinx.android.synthetic.main.recycler_item_stock.view.*
+import kotlin.random.Random
 
 class StockAdapter(private val productClickListenerStock: IProductSelected?) :
     RecyclerView.Adapter<StockVH>() {
 
-    private var taskList = emptyList<Product>().toMutableList()
+    private var stockProductList = emptyList<Product>().toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockVH {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_item_stock, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_item_stock, parent, false)
         return StockVH(view)
     }
 
-    override fun getItemCount() = taskList.size
+    override fun getItemCount() = stockProductList.size
 
     override fun onBindViewHolder(holder: StockVH, position: Int) {
-        val task = taskList[position]
+        val product = stockProductList[position]
+        holder.bind(product)
         with(holder.containerView) {
             this.setOnClickListener {
-                productClickListenerStock?.onProductSelected(task)
+                productClickListenerStock?.onProductSelected(product)
             }
-            product_title_stock.text = task.Nombre
-            text_count_stock.text = task.Cantidad.toString()
         }
     }
 
     fun setItems(newTaskList: List<Product>) {
-        val diffResult = DiffUtil.calculateDiff(ProductDiffUtilCallback(taskList, newTaskList))
-        taskList.clear()
-        taskList.addAll(newTaskList)
+        val diffResult =
+            DiffUtil.calculateDiff(ProductDiffUtilCallback(stockProductList, newTaskList))
+        stockProductList.clear()
+        stockProductList.addAll(newTaskList)
         diffResult.dispatchUpdatesTo(this)
     }
 }
@@ -46,5 +49,29 @@ class StockAdapter(private val productClickListenerStock: IProductSelected?) :
 class StockVH(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
+    fun bind(product: Product) {
+        with(containerView) {
+            product_title_stock.text = product.Nombre
+            tv_stock_quantity.text = product.Cantidad.toString()
+            when {
+                product.Cantidad <= 20 -> {
+                    tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
+                }
+                product.Cantidad > 80 -> {
+                    tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
+                }
+                product.Cantidad <= 80 -> {
+                    tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
+                }
+            }
+        }
+        setColorView()
+    }
 
+    fun setColorView() {
+        val colorsArray = containerView.context.resources.getIntArray(R.array.rainbow)
+        val randomColor = Random.nextInt(colorsArray.size)
+        val color = colorsArray[randomColor]
+        containerView.card_view_stock.setCardBackgroundColor(color)
+    }
 }
