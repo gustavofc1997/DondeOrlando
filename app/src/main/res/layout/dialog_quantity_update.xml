@@ -14,7 +14,7 @@
         android:layout_marginTop="32sp"
         android:gravity="center"
         android:padding="4dp"
-        android:text="Ingrese la cantidad que quiere añadir al inventario!"
+        android:text="@string/update_stock_text"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -23,8 +23,9 @@
         android:id="@+id/edit_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:layout_margin="50dp" />
+        android:layout_margin="50dp"
+        android:hint="@string/hint_quantity"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btn_update"
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
-        android:text="Actualizar"
+        android:text="@string/text_update"
+        android:textAllCaps="false"
         android:textColor="@android:color/white" />
 </LinearLayout>

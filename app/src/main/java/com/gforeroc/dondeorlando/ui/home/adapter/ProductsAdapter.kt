@@ -1,10 +1,8 @@
 package com.gforeroc.dondeorlando.ui.home.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
@@ -12,7 +10,6 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.dialog_check_order_list.view.*
 import kotlinx.android.synthetic.main.recycler_item.view.*
 import kotlin.random.Random
 
@@ -39,9 +36,15 @@ class ProductsAdapter(private val productClickListener: IProductSelected?) :
             }
             productTitle.text = task.Nombre
             when {
-                task.Cantidad >= 80 -> text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
-                task.Cantidad <= 80 -> text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
-                task.Cantidad <= 20 -> text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
+                task.Cantidad <= 20 -> {
+                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
+                }
+                task.Cantidad > 80 -> {
+                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
+                }
+                task.Cantidad <= 80 -> {
+                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
+                }
             }
             text_count.text = task.Cantidad.toString()
         }
