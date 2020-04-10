@@ -32,7 +32,6 @@ class CheckOrderAdapter(private var taskList: ArrayList<ProductOrder>) :
                 product.text = task.product.Nombre
                 quantity.text = task.quantity.toString()
                 price.text = task.product.Precio
-
             }
         }
     }

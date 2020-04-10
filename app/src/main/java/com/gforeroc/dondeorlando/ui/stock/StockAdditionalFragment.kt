@@ -1,7 +1,6 @@
 package com.gforeroc.dondeorlando.ui.stock
 
 import android.content.Context
-import android.content.LocusId
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,23 +11,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.Product
-import com.gforeroc.dondeorlando.data.SideRepository
 import com.gforeroc.dondeorlando.domain.ProductOrder
-import com.gforeroc.dondeorlando.ui.home.adapter.ProductsAdapter
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
-import com.gforeroc.dondeorlando.ui.stock.viewmodel.VMStockAdditional
+import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter
+import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockAdditionalViewModel
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
-import com.gforeroc.dondeorlando.viewmodels.SidesViewModel
-import com.google.firebase.firestore.FirebaseFirestore
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StockAdditionalFragment() : BaseFragment(),IProductSelected,
     OnProductOrderAdded, OnQuantityUpdate {
 
-    override var productsAdapter = ProductsAdapter(this)
-    private val vmStockAdditional : VMStockAdditional by viewModel()
+    var stockAdapter = StockAdapter(this)
+    private val stockAdditionalViewModel : StockAdditionalViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +34,7 @@ class StockAdditionalFragment() : BaseFragment(),IProductSelected,
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = GridLayoutManager(context, columnCount)
-                adapter = productsAdapter
+                adapter = stockAdapter
             }
         }
         return view
@@ -46,8 +42,8 @@ class StockAdditionalFragment() : BaseFragment(),IProductSelected,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vmStockAdditional.stockAdditional.observe(this, Observer {
-            productsAdapter.setItems(it)
+        stockAdditionalViewModel.stockAdditional.observe(this, Observer {
+            stockAdapter.setItems(it)
         })
     }
 
@@ -74,6 +70,6 @@ class StockAdditionalFragment() : BaseFragment(),IProductSelected,
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
-        vmStockAdditional.updateQuantity(setUpdateQuantity, id)
+        stockAdditionalViewModel.updateQuantity(setUpdateQuantity, id)
     }
 }

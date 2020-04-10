@@ -15,51 +15,57 @@ import kotlin.random.Random
 
 
 class ProductsAdapter(private val productClickListener: IProductSelected?) :
-    RecyclerView.Adapter<TaskViewHolder>() {
+    RecyclerView.Adapter<ProductsViewHolder>() {
 
-    private var taskList = emptyList<Product>().toMutableList()
+    private var productList = emptyList<Product>().toMutableList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.recycler_item, parent, false)
-        return TaskViewHolder(view)
+        return ProductsViewHolder(view)
     }
 
-    override fun getItemCount() = taskList.size
+    override fun getItemCount() = productList.size
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task = taskList[position]
-        holder.setColorView()
+    override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
+        val product = productList[position]
+        holder.bind(product)
         with(holder.containerView) {
             this.setOnClickListener {
-                productClickListener?.onProductSelected(task)
+                productClickListener?.onProductSelected(product)
             }
-            productTitle.text = task.Nombre
-            when {
-                task.Cantidad <= 20 -> {
-                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
-                }
-                task.Cantidad > 80 -> {
-                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
-                }
-                task.Cantidad <= 80 -> {
-                    text_count.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
-                }
-            }
-            text_count.text = task.Cantidad.toString()
         }
     }
 
     fun setItems(newTaskList: List<Product>) {
-        val diffResult = DiffUtil.calculateDiff(ProductDiffUtilCallback(taskList, newTaskList))
-        taskList.clear()
-        taskList.addAll(newTaskList)
+        val diffResult = DiffUtil.calculateDiff(ProductDiffUtilCallback(productList, newTaskList))
+        productList.clear()
+        productList.addAll(newTaskList)
         diffResult.dispatchUpdatesTo(this)
     }
 }
 
-class TaskViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+class ProductsViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
+
+    fun bind(product: Product) {
+        with(containerView) {
+            productTitle.text = product.Nombre
+            when {
+                product.Cantidad <= 20 -> {
+                    tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
+                }
+                product.Cantidad > 80 -> {
+                    tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
+                }
+                product.Cantidad <= 80 -> {
+                    tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
+                }
+            }
+            tv_quantity.text = product.Cantidad.toString()
+        }
+        setColorView()
+    }
 
     fun setColorView() {
         val colorsArray = containerView.context.resources.getIntArray(R.array.rainbow)

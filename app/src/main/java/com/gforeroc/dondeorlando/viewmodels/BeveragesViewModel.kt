@@ -19,8 +19,8 @@ class BeveragesViewModel(override var repository: IProductRepository) : BaseView
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {
-                   beveragesList.value = it.filter { it.Cantidad.toInt() > 0 }
+                { productList ->
+                    beveragesList.value = productList.filter { it.Cantidad.toInt() > 0 }
                 },
                 {
                     it.printStackTrace()

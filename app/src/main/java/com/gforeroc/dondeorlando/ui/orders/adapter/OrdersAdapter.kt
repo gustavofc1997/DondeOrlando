@@ -27,7 +27,7 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersVH>() {
         val task = ordersList[position]
         with(holder.containerView) {
             text_name_product.text = task.Nombre
-            text_count.text = task.Quantity.toString()
+            tv_orders_quantity.text = task.Quantity.toString()
         }
     }
 

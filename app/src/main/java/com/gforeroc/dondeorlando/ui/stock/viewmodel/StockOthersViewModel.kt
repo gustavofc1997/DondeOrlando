@@ -8,7 +8,7 @@ import com.gforeroc.dondeorlando.utils.addTo
 import com.gforeroc.dondeorlando.viewmodels.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class VMStockOthers(override var repository: IProductRepository) : BaseViewModel() {
+class StockOthersViewModel(override var repository: IProductRepository) : BaseViewModel() {
 
     private val stockOthersList = MutableLiveData<List<Product>>()
     val stockOther: LiveData<List<Product>>
