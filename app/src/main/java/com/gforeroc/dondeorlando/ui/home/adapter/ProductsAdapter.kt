@@ -51,6 +51,7 @@ class ProductsViewHolder(override val containerView: View) : RecyclerView.ViewHo
     fun bind(product: Product) {
         with(containerView) {
             productTitle.text = product.Nombre
+            productId.text = product.id
             when {
                 product.Cantidad <= 20 -> {
                     tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))

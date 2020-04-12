@@ -15,6 +15,9 @@
     <color name="dark_blue" >#78909c</color>
     <color name="dark_purple" >#ab47bc</color>
     <color name="primary_orange" >#ffa726</color>
+    <color name="blue_dark">#34495E</color>
+    <color name="green_mint">#27AE60</color>
+    <color name="red_dark">#C0392B</color>
 
     <array name="rainbow">
         <item>@color/blue</item>
@@ -23,6 +26,9 @@
         <item>@color/dark_blue</item>
         <item>@color/dark_purple</item>
         <item>@color/primary_orange</item>
+        <item>@color/blue_dark</item>
+        <item>@color/green_mint</item>
+        <item>@color/red_dark</item>
     </array>
 
 </resources>

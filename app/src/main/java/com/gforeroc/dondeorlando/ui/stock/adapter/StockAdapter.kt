@@ -53,6 +53,7 @@ class StockVH(override val containerView: View) : RecyclerView.ViewHolder(contai
         with(containerView) {
             product_title_stock.text = product.Nombre
             tv_stock_quantity.text = product.Cantidad.toString()
+            product_id_stock.text = product.id
             when {
                 product.Cantidad <= 20 -> {
                     tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
