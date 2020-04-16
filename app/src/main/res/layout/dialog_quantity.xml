@@ -1,53 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingRight="32dp"
-    android:paddingTop="22dp"
-    android:paddingLeft="32dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:padding="4dp"
-        android:layout_marginTop="32sp"
-        android:text="@string/text_add_quantity"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
-    <com.github.guilhe.views.QuantityPickerView
-        android:id="@+id/qty_orden"
-        app:min="1"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="32sp"
-        app:isOpen="true"
-        app:textLabelFormatter="%s"
-        app:textLabelSize="18sp"
-        app:value="1" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/chk_additional"
-        android:layout_width="wrap_content"
-        android:buttonTint="@android:color/holo_green_light"
-        android:text="@string/text_check_box"
-        android:layout_height="wrap_content" />
-    <Button
-        android:textColor="@android:color/white"
-        android:background="@drawable/button_custom"
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="15dp"
-        android:textSize="17sp"
-        android:textAllCaps="false"
-        android:text="@string/text_btn_add">
-    </Button>
-</LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/text_add_quantity"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/close_dialog_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0.05"
+                android:src="@drawable/ic_close" />
+
+        </LinearLayout>
+
+        <com.github.guilhe.views.QuantityPickerView
+            android:id="@+id/qty_orden"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="32sp"
+            app:btnAdd="@drawable/custom_btn_add"
+            app:btnRemove="@drawable/custom_btn_remove"
+            app:isOpen="true"
+            app:min="1"
+            app:textLabelFormatter="%s"
+            app:textLabelSize="18sp"
+            app:value="1" />
+
+        <CheckBox
+            android:id="@+id/chk_additional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:text="@string/text_check_box"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/button_custom"
+            android:text="@string/text_btn_add"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

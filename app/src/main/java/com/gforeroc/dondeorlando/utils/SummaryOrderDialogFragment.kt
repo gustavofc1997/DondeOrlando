@@ -12,6 +12,7 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import kotlinx.android.synthetic.main.dialog_check_order_list.*
+import kotlinx.android.synthetic.main.dialog_quantity.*
 
 class SummaryOrderDialogFragment(
     private val newOrder: NewOrder,
@@ -36,12 +37,14 @@ class SummaryOrderDialogFragment(
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Rv_summary.setHasFixedSize(true)
+        close_dialog_order.setOnClickListener { dismiss() }
         text_Total.text = newOrder.total.toString()
         val checkOrderAdapter = CheckOrderAdapter(newOrder.items)
         Rv_summary.apply {

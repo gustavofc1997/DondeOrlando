@@ -30,11 +30,13 @@ class QuantityUpdateDialog(
         setStyle(STYLE_NO_TITLE, R.style.DialogStyle)
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        close_dialog_update.setOnClickListener { dismiss() }
         btn_update.setOnClickListener {
             val updateEdit = edit_quantity.text.toString().toLong()
             val newQuantity = products.Cantidad.plus(updateEdit)

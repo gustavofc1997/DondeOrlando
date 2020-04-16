@@ -1,5 +1,6 @@
 package com.gforeroc.dondeorlando.utils
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.domain.NewOrder
 import kotlinx.android.synthetic.main.dialog_car_orde_list.*
+
 
 class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() {
 
@@ -35,6 +37,7 @@ class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Rv_summary_car.setHasFixedSize(true)
+        close_dialog_car.setOnClickListener { dismiss() }
         text_total_car.text = newOrder.total.toString()
         val checkOrderAdapter = CheckOrderAdapter(newOrder.items)
         Rv_summary_car.apply {
@@ -45,6 +48,7 @@ class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() 
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.apply { setLayout(530, 430) }
+        dialog?.window?.apply { setLayout(530, 410) }
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
 }

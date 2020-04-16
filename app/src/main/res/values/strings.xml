@@ -24,6 +24,7 @@
     <string name="quantity">Cantidad</string>
     <string name="price">Precio</string>
     <string name="total">Total</string>
+    <string name="total_car">Total :</string>
     <string name="summary_order">Resumen de la orden</string>
     <string name="report_sales">Reporte de ventas</string>
     <string name="sales_day">Ventas del dia</string>
