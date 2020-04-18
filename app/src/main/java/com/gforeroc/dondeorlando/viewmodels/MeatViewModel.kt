@@ -17,8 +17,8 @@ class MeatViewModel(override var repository: IProductRepository) : BaseViewModel
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {
-                    meatsList.value = it.filter { it.Cantidad.toInt() > 0 }
+                { productList ->
+                    meatsList.value = productList.filter { it.Amount.toInt() > 0 }
                 },
                 {
                     it.printStackTrace()

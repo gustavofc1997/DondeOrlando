@@ -39,7 +39,7 @@ class QuantityUpdateDialog(
         close_dialog_update.setOnClickListener { dismiss() }
         btn_update.setOnClickListener {
             val updateEdit = edit_quantity.text.toString().toLong()
-            val newQuantity = products.Cantidad.plus(updateEdit)
+            val newQuantity = products.Amount.plus(updateEdit)
             val id = products.id
             onQuantityUpdate.updateQuantity(newQuantity, id)
             dismissAllowingStateLoss()

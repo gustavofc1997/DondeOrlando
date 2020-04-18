@@ -24,7 +24,8 @@ class NewOrder(
     fun clearData() {
         items.clear()
         total = 0
-        date?.isEmpty()
+        date = null
+        changeVisibility()
     }
 
     fun setDate() {
@@ -43,9 +44,9 @@ class NewOrder(
     fun calculateTotals() {
         total = items.map {
             if (it.isAdditional) {
-                it.quantity * (it.product.Adicional.toInt())
+                it.quantity * (it.product.Additional.toInt())
             } else {
-                it.quantity * (it.product.Precio.toInt())
+                it.quantity * (it.product.Price.toInt())
             }
         }.sum().toLong()
     }

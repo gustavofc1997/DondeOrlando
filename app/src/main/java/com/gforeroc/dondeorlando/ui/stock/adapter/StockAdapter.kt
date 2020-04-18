@@ -10,7 +10,6 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.recycler_item.view.*
 import kotlinx.android.synthetic.main.recycler_item_stock.view.*
 import kotlin.random.Random
 
@@ -51,17 +50,17 @@ class StockVH(override val containerView: View) : RecyclerView.ViewHolder(contai
 
     fun bind(product: Product) {
         with(containerView) {
-            product_title_stock.text = product.Nombre
-            tv_stock_quantity.text = product.Cantidad.toString()
+            product_title_stock.text = product.Name
+            tv_stock_quantity.text = product.Amount.toString()
             product_id_stock.text = product.id
             when {
-                product.Cantidad <= 20 -> {
+                product.Amount <= 20 -> {
                     tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
                 }
-                product.Cantidad > 80 -> {
+                product.Amount > 80 -> {
                     tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
                 }
-                product.Cantidad <= 80 -> {
+                product.Amount <= 80 -> {
                     tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
                 }
             }

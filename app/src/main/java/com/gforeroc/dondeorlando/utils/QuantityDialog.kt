@@ -37,6 +37,8 @@ class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         close_dialog_quantity.setOnClickListener { dismiss() }
+        qty_orden.setBackgroundColor(resources.getColor(R.color.colorAccent))
+        tv_product_name.text = product.Name
         btn_add.setOnClickListener {
             val productOrder = ProductOrder(product, qty_orden.value)
             productOrder.isAdditional = chk_additional.isChecked

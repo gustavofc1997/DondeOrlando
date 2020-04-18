@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp">
 
@@ -21,10 +21,10 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6"
+                android:layout_weight="0.5"
                 android:gravity="center"
                 android:text="@string/update_stock_text"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="0.05"
+                android:layout_weight="0.06"
                 android:src="@drawable/ic_close" />
 
         </LinearLayout>
@@ -43,9 +43,11 @@
             android:id="@+id/edit_quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
+            android:layout_margin="40dp"
+            android:backgroundTint="@color/colorPrimary"
             android:hint="@string/hint_quantity"
-            android:inputType="number"
+            android:inputType="phone"
+            android:textColorHint="@color/grayPrimary"
             android:textSize="18sp" />
 
         <Button

@@ -26,7 +26,7 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersVH>() {
     override fun onBindViewHolder(holder: OrdersVH, position: Int) {
         val task = ordersList[position]
         with(holder.containerView) {
-            text_name_product.text = task.Nombre
+            text_name_product.text = task.Name
             tv_orders_quantity.text = task.Quantity.toString()
         }
     }

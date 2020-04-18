@@ -16,6 +16,6 @@ class ProductDiffUtilCallback(
     override fun getNewListSize() = newList.size
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].Nombre == newList[newItemPosition].Nombre
+        return oldList[oldItemPosition].Name == newList[newItemPosition].Name
     }
 }

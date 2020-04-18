@@ -75,7 +75,7 @@ class MeatsRepository(override var remoteDB: FirebaseFirestore) : IProductReposi
 
     override fun updateStock(quantity: Long, id:String): Completable {
         remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS).document(id).update(
-            mapOf("Cantidad" to quantity))
+            mapOf("Amount" to quantity))
         return Completable.complete()
     }
 }

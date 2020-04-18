@@ -1,10 +1,11 @@
 package com.gforeroc.dondeorlando.data
 
 data class Product(
-    var Cantidad: Long = 0,
-    var Nombre: String = "",
-    val Precio: String = "",
+    var Amount: Long = 0,
+    var Name: String = "",
+    val Price: String = "",
     var id: String = "",
-    val Adicional: String = "",
-    var Quantity: Long = 0
+    val Additional: String = "",
+    var Quantity: Long = 0,
+    var Image: String = "http://www.cpsglobalgroup.com/wp-content/uploads/2017/11/placeholder.jpg"
 )
