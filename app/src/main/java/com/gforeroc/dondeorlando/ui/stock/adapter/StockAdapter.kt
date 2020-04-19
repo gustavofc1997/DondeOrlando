@@ -9,6 +9,7 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
+import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item_stock.view.*
 import kotlin.random.Random
@@ -53,6 +54,7 @@ class StockVH(override val containerView: View) : RecyclerView.ViewHolder(contai
             product_title_stock.text = product.Name
             tv_stock_quantity.text = product.Amount.toString()
             product_id_stock.text = product.id
+            Picasso.get().load(product.Image).fit().centerCrop().into(iv_stock)
             when {
                 product.Amount <= 20 -> {
                     tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
@@ -65,13 +67,5 @@ class StockVH(override val containerView: View) : RecyclerView.ViewHolder(contai
                 }
             }
         }
-        setColorView()
-    }
-
-    fun setColorView() {
-        val colorsArray = containerView.context.resources.getIntArray(R.array.rainbow)
-        val randomColor = Random.nextInt(colorsArray.size)
-        val color = colorsArray[randomColor]
-        containerView.card_view_stock.setCardBackgroundColor(color)
     }
 }

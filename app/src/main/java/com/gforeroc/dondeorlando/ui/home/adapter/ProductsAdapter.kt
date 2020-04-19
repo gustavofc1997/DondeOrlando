@@ -53,7 +53,7 @@ class ProductsViewHolder(override val containerView: View) : RecyclerView.ViewHo
         with(containerView) {
             productTitle.text = product.Name
             productId.text = product.id
-            Picasso.get().load(product.Image).into(imageCard)
+            Picasso.get().load(product.Image).fit().into(imageCard)
             when {
                 product.Amount <= 20 -> {
                     tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
