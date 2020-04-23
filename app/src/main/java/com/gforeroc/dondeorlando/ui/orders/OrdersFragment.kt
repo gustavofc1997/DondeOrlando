@@ -47,7 +47,7 @@ class OrdersFragment: Fragment() {
         args.forEach { orderData ->
             orderData.items.forEach { product ->
                 txt_total_ventas.text = args.map { it.total * (product.quantity) }.sum().toString()
-                val myKey = product.product.nombre
+                val myKey = product.product.name
                 if (myMap.containsKey(myKey)) {
                     var quantity = myMap[myKey] ?: 0L
                     quantity += product.quantity
@@ -59,7 +59,7 @@ class OrdersFragment: Fragment() {
         }
         return myMap.map {
             val product = Product()
-            product.Nombre = it.key
+            product.Name = it.key
             product.Quantity = it.value
             product
         }

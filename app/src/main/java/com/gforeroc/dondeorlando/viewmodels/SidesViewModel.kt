@@ -17,8 +17,8 @@ class SidesViewModel(override var repository: IProductRepository) : BaseViewMode
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {
-                    sidesList.value = it.filter { it.Cantidad.toInt() > 0 }
+                { product ->
+                    sidesList.value = product.filter { it.Amount.toInt() > 0 }
                 },
                 {
                     it.printStackTrace()

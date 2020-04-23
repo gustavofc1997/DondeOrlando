@@ -17,8 +17,8 @@ class OthersViewModel(override var repository: IProductRepository) : BaseViewMod
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {
-                    otherList.value = it.filter { it.Cantidad.toInt() > 0 }
+                { productList ->
+                    otherList.value = productList.filter { it.Amount.toInt() > 0 }
                 },
                 {
                     it.printStackTrace()

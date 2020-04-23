@@ -14,7 +14,7 @@ import io.reactivex.subjects.BehaviorSubject
 class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderRepository {
 
     companion object {
-        const val MENU_ORDERS = "Ordenes"
+        const val MENU_ORDERS = "orders"
     }
 
     private val changeObservable =

@@ -23,15 +23,15 @@ class CheckOrderAdapter(private var taskList: ArrayList<ProductOrder>) :
     override fun onBindViewHolder(holder: CheckVH, position: Int) {
         val task = taskList[position]
         with(holder.containerView) {
-            if (task.isAdditional){
+            if (task.isAdditional) {
                 val aditional = " --Adicional"
-                product.text = task.product.Nombre.plus(aditional)
+                product.text = task.product.Name.plus(aditional)
                 quantity.text = task.quantity.toString()
-                price.text = (task.product.Adicional.toInt() * task.quantity).toString()
-            }else {
-                product.text = task.product.Nombre
+                price.text = (task.product.Additional.toInt() * task.quantity).toString()
+            } else {
+                product.text = task.product.Name
                 quantity.text = task.quantity.toString()
-                price.text = task.product.Precio
+                price.text = task.product.Price
             }
         }
     }

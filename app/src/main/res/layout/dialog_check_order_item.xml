@@ -10,12 +10,13 @@
         android:id="@+id/product"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.4" />
 
     <TextView
         android:id="@+id/quantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="start"
         android:layout_weight="0.2" />
 
     <TextView

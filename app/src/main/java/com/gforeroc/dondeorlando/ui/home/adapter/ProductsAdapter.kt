@@ -9,6 +9,7 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
+import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item.view.*
 import kotlin.random.Random
@@ -50,27 +51,21 @@ class ProductsViewHolder(override val containerView: View) : RecyclerView.ViewHo
 
     fun bind(product: Product) {
         with(containerView) {
-            productTitle.text = product.Nombre
+            productTitle.text = product.Name
+            productId.text = product.id
+            Picasso.get().load(product.Image).fit().into(imageCard)
             when {
-                product.Cantidad <= 20 -> {
+                product.Amount <= 20 -> {
                     tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
                 }
-                product.Cantidad > 80 -> {
+                product.Amount > 80 -> {
                     tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_green))
                 }
-                product.Cantidad <= 80 -> {
+                product.Amount <= 80 -> {
                     tv_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count_orange))
                 }
             }
-            tv_quantity.text = product.Cantidad.toString()
+            tv_quantity.text = product.Amount.toString()
         }
-        setColorView()
-    }
-
-    fun setColorView() {
-        val colorsArray = containerView.context.resources.getIntArray(R.array.rainbow)
-        val randomColor = Random.nextInt(colorsArray.size)
-        val color = colorsArray[randomColor]
-        containerView.cardView.setCardBackgroundColor(color)
     }
 }

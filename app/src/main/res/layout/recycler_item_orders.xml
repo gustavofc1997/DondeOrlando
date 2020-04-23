@@ -19,5 +19,4 @@
         android:gravity="end"
         android:layout_marginStart="15dp"
         android:textSize="18sp" />
-
 </LinearLayout>
