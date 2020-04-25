@@ -12,6 +12,7 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
+import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -33,6 +34,12 @@ class OrdersFragment: Fragment() {
         recycler_orders.adapter = ordersAdapter
         recycler_orders.layoutManager = LinearLayoutManager(context)
         recycler_orders.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        button_close.setOnClickListener { closeSell() }
+    }
+
+   private fun closeSell(){
+        val dialog = PasswordDialogFragment()
+        childFragmentManager.let { dialog.show(it, "PasswordDialog") }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

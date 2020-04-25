@@ -19,6 +19,7 @@ import com.gforeroc.dondeorlando.utils.SummaryOrderDialogFragment
 import com.gforeroc.dondeorlando.utils.ZoomOutPageTransformer
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import ir.androidexception.andexalertdialog.AndExAlertDialog
+import kotlinx.android.synthetic.main.dialog_car_orde_list.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

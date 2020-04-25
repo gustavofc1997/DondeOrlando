@@ -28,8 +28,8 @@ class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product
             )
         }
         setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
-        dialog?.setCancelable(true)
-        dialog?.setCanceledOnTouchOutside(true)
+        dialog?.setCancelable(false)
+        dialog?.setCanceledOnTouchOutside(false)
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         return rootView
     }
