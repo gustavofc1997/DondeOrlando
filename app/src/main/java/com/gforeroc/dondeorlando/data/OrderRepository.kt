@@ -10,6 +10,8 @@ import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import org.koin.core.qualifier._q
+import org.koin.ext.getScopeId
 
 class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderRepository {
 
@@ -54,6 +56,22 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
         }
     }
 
+    override fun deleteOrders(): Completable {
+        return Completable.create { emitter ->
+            remoteDB.collection(MENU_ORDERS).document().delete()
+                .addOnSuccessListener {
+                    if (!emitter.isDisposed) {
+                        emitter.onComplete()
+                    }
+                }
+                .addOnFailureListener {
+                    if (!emitter.isDisposed) {
+                        emitter.onError(it)
+                    }
+                }
+        }
+    }
+
     private fun mapDocumentToRemoteTask(document: DocumentSnapshot) =
         document.toObject(MyOrder::class.java)!!
 
@@ -63,12 +81,11 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
             .map { list ->
                 list.map(::mapDocumentToRemoteTask)
             }
-
 }
 
 interface IOrderRepository {
     var remoteDB: FirebaseFirestore
     fun sendOrder(order: NewOrder): Completable
     fun getChangeObservable(): Observable<List<MyOrder>>
-
+    fun deleteOrders(): Completable
 }

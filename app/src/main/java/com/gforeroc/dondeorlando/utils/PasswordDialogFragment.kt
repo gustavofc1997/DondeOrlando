@@ -1,20 +1,27 @@
 package com.gforeroc.dondeorlando.utils
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.IDeleteOrders
 import com.gforeroc.dondeorlando.databinding.DialogPasswordBinding
+import com.pixplicity.easyprefs.library.Prefs
+import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.dialog_password.*
 
-class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
+
+class PasswordDialogFragment(private val iDeleteOrders : IDeleteOrders) : DialogFragment(), OnNumberClickListener {
 
     private var window: Window? = null
-    private var rootView: View? = null
+    private var adminPassword = "1111"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -31,19 +38,49 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         close_dialog_password.setOnClickListener { dismiss() }
-        btn_remove.setOnClickListener {
-            removeAt()
-        }
+        btn_remove.setOnClickListener { removeAt() }
+        et_code.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (et_code.text?.length!! > 3) {
+                    val password = et_code.text.toString()
+                    val myPrefs = Prefs.getInt(adminPassword, password.toInt())
+                    if (password.contains(myPrefs.toString())) {
+                        iDeleteOrders.deletOrdersListener()
+                        et_code.setText("")
+                    } else {
+                        et_code.setText("")
+                        Toast.makeText(context, "Codigo Erroneo", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        })
     }
 
     private fun removeAt() {
         val removeAt = et_code.text?.length
         if (removeAt != null) {
-            if (removeAt > 0){
-                et_code.text?.delete(removeAt -1, removeAt)
+            if (removeAt > 0) {
+                et_code.text?.delete(removeAt - 1, removeAt)
             }
         }
+    }
+
+    private fun showWarningDialog(message: String) {
+        AndExAlertDialog.Builder(context)
+            .setTitle("Success")
+            .setMessage(message)
+            .setPositiveBtnText("Cerrar")
+            .setCancelableOnTouchOutside(false)
+            .OnPositiveClicked {
+            }
+            .build();
     }
 
     override fun onStart() {

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.IDeleteOrders
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class OrdersFragment : Fragment() {
+class OrdersFragment : Fragment(), IDeleteOrders {
 
     private val ordersAdapter = OrdersAdapter()
     private val ordersViewModel: OrdersViewModel by viewModel()
@@ -43,7 +44,7 @@ class OrdersFragment : Fragment() {
     }
 
     private fun closeSell() {
-        val dialog = PasswordDialogFragment()
+        val dialog = PasswordDialogFragment(this)
         childFragmentManager.let { dialog.show(it, "PasswordDialog") }
     }
 
@@ -88,5 +89,9 @@ class OrdersFragment : Fragment() {
             product.Quantity = it.value
             product
         }
+    }
+
+    override fun deletOrdersListener() {
+        ordersViewModel.deleteOrder()
     }
 }

@@ -16,6 +16,11 @@
             android:id="@+id/nav_inventory"
             android:icon="@drawable/ic_inventory"
             android:title="@string/menu_inventory" />
+
+        <item
+            android:id="@+id/nav_update"
+            android:icon="@android:color/black"
+            android:title="@string/menu_update" />
     </group>
 
 </menu>

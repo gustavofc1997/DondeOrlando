@@ -31,6 +31,19 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
             .addTo(disposable)
     }
 
+    fun deleteOrder() {
+        repository.deleteOrders().observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+
+                },
+                {
+                    it.printStackTrace()
+                }
+            )
+            .addTo(disposable)
+    }
+
     init {
         repository.getChangeObservable()
             .observeOn(AndroidSchedulers.mainThread())
