@@ -56,7 +56,7 @@ class PasswordDialogFragment(private val iDeleteOrders : IDeleteOrders) : Dialog
                         et_code.setText("")
                     } else {
                         et_code.setText("")
-                        Toast.makeText(context, "Codigo Erroneo", Toast.LENGTH_LONG).show()
+                        showWarningDialog()
                     }
                 }
             }
@@ -72,10 +72,10 @@ class PasswordDialogFragment(private val iDeleteOrders : IDeleteOrders) : Dialog
         }
     }
 
-    private fun showWarningDialog(message: String) {
+    private fun showWarningDialog() {
         AndExAlertDialog.Builder(context)
-            .setTitle("Success")
-            .setMessage(message)
+            .setTitle("Oopss")
+            .setMessage("Codigo Erroneo")
             .setPositiveBtnText("Cerrar")
             .setCancelableOnTouchOutside(false)
             .OnPositiveClicked {

@@ -72,7 +72,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
         if (canFinishOrder()) {
             newOrder.setDate()
             newOrder.calculateTotals()
-            val dialogCar = OrderCarDialogFragment(newOrder)
+            val dialogCar = OrderCarDialogFragment(newOrder, this)
             childFragmentManager.let { dialogCar.show(it, "OrderCarDialogFragment") }
         } else
             showWarningDialog()
