@@ -13,10 +13,22 @@ import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import kotlinx.android.synthetic.main.dialog_car_orde_list.*
 
-class OrderCarDialogFragment(private val newOrder: NewOrder, private val iConfirmOrder: IConfirmOrder) : DialogFragment() {
+class OrderCarDialogFragment(
+    private val newOrder: NewOrder,
+    private val iConfirmOrder: IConfirmOrder
+) : DialogFragment() {
 
     private var windows: Window? = null
     private var rootview: View? = null
+
+    companion object {
+        fun newInstance(
+            newOrder: NewOrder
+            , iConfirmOrder: IConfirmOrder
+        ): OrderCarDialogFragment {
+            return OrderCarDialogFragment(newOrder, iConfirmOrder)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

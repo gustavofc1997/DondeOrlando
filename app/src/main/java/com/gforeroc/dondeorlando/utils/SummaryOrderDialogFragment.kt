@@ -23,6 +23,15 @@ class SummaryOrderDialogFragment(
     private var window: Window? = null
     private var rootView: View? = null
 
+    companion object {
+        fun newInstance(
+            newOrder: NewOrder,
+            iConfirmOrder: IConfirmOrder
+        ): SummaryOrderDialogFragment {
+            return SummaryOrderDialogFragment(newOrder, iConfirmOrder)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

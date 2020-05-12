@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.IDeleteOrders
+import com.gforeroc.dondeorlando.data.IPasswordAction
+import com.gforeroc.dondeorlando.data.IShowOrders
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
@@ -19,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class OrdersFragment : Fragment(), IDeleteOrders {
+class OrdersFragment : Fragment() {
 
     private val ordersAdapter = OrdersAdapter()
     private val ordersViewModel: OrdersViewModel by viewModel()
@@ -27,6 +29,11 @@ class OrdersFragment : Fragment(), IDeleteOrders {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        showPasswordDialog(object : IShowOrders {
+            override fun onPasswordSuccessful() {
+                rl_orders.visibility = View.VISIBLE
+            }
+        }, false)
         return inflater.inflate(R.layout.fragment_orders, container, false)
     }
 
@@ -40,11 +47,17 @@ class OrdersFragment : Fragment(), IDeleteOrders {
                 LinearLayoutManager.VERTICAL
             )
         )
-        button_close.setOnClickListener { closeSell() }
+        button_close.setOnClickListener {
+            showPasswordDialog(object : IDeleteOrders {
+                override fun onPasswordSuccessful() {
+                    ordersViewModel.deleteOrder()
+                }
+            }, true)
+        }
     }
 
-    private fun closeSell() {
-        val dialog = PasswordDialogFragment(this)
+    private fun showPasswordDialog(listener: IPasswordAction, isDismissible: Boolean) {
+        val dialog = PasswordDialogFragment.newInstance(listener, isDismissible)
         childFragmentManager.let { dialog.show(it, "PasswordDialog") }
     }
 
@@ -60,7 +73,8 @@ class OrdersFragment : Fragment(), IDeleteOrders {
         args.forEach { orderData ->
             orderData.items.forEach { product ->
                 if (product.additional) {
-                    txt_total_ventas.text = args.map { it.total * (product.quantity) }.sum().toString()
+                    txt_total_ventas.text =
+                        args.map { it.total * (product.quantity) }.sum().toString()
                     val additional = " --Adicional"
                     val myKey = product.product.name.plus(additional)
                     if (myMap.containsKey(myKey)) {
@@ -71,7 +85,8 @@ class OrdersFragment : Fragment(), IDeleteOrders {
                         myMap[myKey] = product.quantity
                     }
                 } else {
-                    txt_total_ventas.text = args.map { it.total * (product.quantity) }.sum().toString()
+                    txt_total_ventas.text =
+                        args.map { it.total * (product.quantity) }.sum().toString()
                     val myKey = product.product.name
                     if (myMap.containsKey(myKey)) {
                         var quantity = myMap[myKey] ?: 0L
@@ -89,9 +104,5 @@ class OrdersFragment : Fragment(), IDeleteOrders {
             product.Quantity = it.value
             product
         }
-    }
-
-    override fun deletOrdersListener() {
-        ordersViewModel.deleteOrder()
     }
 }

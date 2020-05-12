@@ -11,10 +11,19 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import kotlinx.android.synthetic.main.dialog_quantity.*
 
-class QuantityDialog(private val quantityAdded: OnProductOrderAdded, var product: Product) :
+class QuantityDialog(var product: Product, private val quantityAdded: OnProductOrderAdded) :
     DialogFragment() {
     private var window: Window? = null
     private var rootView: View? = null
+
+    companion object {
+        fun newInstance(
+            product: Product,
+            quantityAdded: OnProductOrderAdded
+        ): QuantityDialog {
+            return QuantityDialog(product, quantityAdded)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

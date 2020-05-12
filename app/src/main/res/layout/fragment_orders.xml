@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_orders"
+    android:id="@+id/rl_orders"
+    android:visibility="gone"
     tools:context=".ui.orders.OrdersFragment">
 
     <TextView

@@ -63,7 +63,8 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun onProductSelected(product: Product) {
-        QuantityUpdateDialog(this, product).show(childFragmentManager, "null")
+       val dialog =  QuantityUpdateDialog.newInstance(product, this)
+        childFragmentManager.let { dialog.show(it, "null") }
     }
 
     override fun setProduct(product: ProductOrder) {

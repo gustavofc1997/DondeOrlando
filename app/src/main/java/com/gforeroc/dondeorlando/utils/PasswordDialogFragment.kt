@@ -7,21 +7,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.IDeleteOrders
+import com.gforeroc.dondeorlando.data.IPasswordAction
 import com.gforeroc.dondeorlando.databinding.DialogPasswordBinding
 import com.pixplicity.easyprefs.library.Prefs
 import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.dialog_password.*
 
 
-class PasswordDialogFragment(private val iDeleteOrders : IDeleteOrders) : DialogFragment(), OnNumberClickListener {
+class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
 
     private var window: Window? = null
-    private var adminPassword = "1111"
+    private lateinit var delegate: IPasswordAction
+    private var isDismissible: Boolean = true
+
+    companion object {
+        fun newInstance(
+            iPasswordAction: IPasswordAction,
+            isDismissible: Boolean
+        ): PasswordDialogFragment {
+            return PasswordDialogFragment().apply {
+                setDelegate(iPasswordAction)
+                setDismissible(isDismissible)
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,7 +50,9 @@ class PasswordDialogFragment(private val iDeleteOrders : IDeleteOrders) : Dialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        if (isDismissible) {
+            close_dialog_password.visibility = View.VISIBLE
+        }
         close_dialog_password.setOnClickListener { dismiss() }
         btn_remove.setOnClickListener { removeAt() }
         et_code.addTextChangedListener(object : TextWatcher {
@@ -48,12 +62,15 @@ class PasswordDialogFragment(private val iDeleteOrders : IDeleteOrders) : Dialog
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (et_code.text?.length!! > 3) {
+                val length = et_code.text?.length ?: 0
+                if (length > 3) {
                     val password = et_code.text.toString()
-                    val myPrefs = Prefs.getInt(adminPassword, password.toInt())
+                    val myPrefs =
+                        Prefs.getString(KEY_PASSWORD, DEFAULT_PASSWORD)
                     if (password.contains(myPrefs.toString())) {
-                        iDeleteOrders.deletOrdersListener()
+                        delegate.onPasswordSuccessful()
                         et_code.setText("")
+                        dismiss()
                     } else {
                         et_code.setText("")
                         showWarningDialog()
@@ -61,6 +78,14 @@ class PasswordDialogFragment(private val iDeleteOrders : IDeleteOrders) : Dialog
                 }
             }
         })
+    }
+
+    private fun setDismissible(dismiss: Boolean) {
+        isDismissible = dismiss
+    }
+
+    private fun setDelegate(iPasswordAction: IPasswordAction) {
+        delegate = iPasswordAction
     }
 
     private fun removeAt() {
