@@ -42,7 +42,7 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
             DataBindingUtil.inflate(inflater, R.layout.dialog_password, container, false)
         binding.listener = this
         window = dialog?.window
-        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.setCancelable(false)
         return binding.root

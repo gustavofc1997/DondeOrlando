@@ -39,7 +39,7 @@ class OrderCarDialogFragment(
         if (rootview == null) {
             rootview = inflater.inflate(R.layout.dialog_car_orde_list, container, false)
         }
-        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
         dialog?.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
         return rootview
