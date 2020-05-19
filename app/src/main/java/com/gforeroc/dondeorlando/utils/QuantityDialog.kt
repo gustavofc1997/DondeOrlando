@@ -52,7 +52,7 @@ class QuantityDialog(var product: Product, private val quantityAdded: OnProductO
             val productOrder = ProductOrder(product, qty_orden.value)
             productOrder.isAdditional = chk_additional.isChecked
             quantityAdded.setProduct(productOrder)
-            dismissAllowingStateLoss()
+            dismiss()
         }
     }
 }

@@ -13,7 +13,7 @@ import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), IProductSelected {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -38,9 +38,5 @@ class MainActivity : AppCompatActivity(), IProductSelected {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-
-    override fun onProductSelected(product: Product) {
     }
 }
