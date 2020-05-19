@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.IPasswordAction
+import com.gforeroc.dondeorlando.data.IShowOrders
 import com.gforeroc.dondeorlando.utils.DEFAULT_PASSWORD
 import com.gforeroc.dondeorlando.utils.KEY_PASSWORD
+import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.pixplicity.easyprefs.library.Prefs
 import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.fragment_update_password.*
@@ -23,6 +26,12 @@ class UpdatePasswordFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        showPasswordDialog(object : IShowOrders {
+            override fun onPasswordSuccessful() {
+                cl_orders.visibility = View.VISIBLE
+            }
+        })
+
         return inflater.inflate(R.layout.fragment_update_password, container, false)
     }
 
@@ -44,6 +53,11 @@ class UpdatePasswordFragment : Fragment() {
                 Toast.makeText(context, "Solo 4 Numeros", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun showPasswordDialog(listener: IPasswordAction) {
+        val dialog = PasswordDialogFragment.newInstance(listener, false)
+        childFragmentManager.let { dialog.show(it, "PasswordDialog") }
     }
 
     private fun showWarningDialog(message: String) {
