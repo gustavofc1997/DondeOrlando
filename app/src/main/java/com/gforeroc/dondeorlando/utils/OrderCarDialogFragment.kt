@@ -9,13 +9,26 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
+import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import kotlinx.android.synthetic.main.dialog_car_orde_list.*
 
-class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() {
+class OrderCarDialogFragment(
+    private val newOrder: NewOrder,
+    private val iConfirmOrder: IConfirmOrder
+) : DialogFragment() {
 
     private var windows: Window? = null
     private var rootview: View? = null
+
+    companion object {
+        fun newInstance(
+            newOrder: NewOrder
+            , iConfirmOrder: IConfirmOrder
+        ): OrderCarDialogFragment {
+            return OrderCarDialogFragment(newOrder, iConfirmOrder)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +39,7 @@ class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() 
         if (rootview == null) {
             rootview = inflater.inflate(R.layout.dialog_car_orde_list, container, false)
         }
-        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
         dialog?.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
         return rootview
@@ -41,6 +54,11 @@ class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() 
         Rv_summary_car.apply {
             adapter = checkOrderAdapter
             layoutManager = LinearLayoutManager(context)
+        }
+        btn.setOnClickListener {
+            iConfirmOrder.confirmOrderListener()
+            dialog?.dismiss()
+            newOrder.clearData()
         }
     }
 

@@ -63,7 +63,8 @@ class AdditionalFragment(override var onProductOrderAdded: OnProductOrderAdded?)
     }
 
     override fun onProductSelected(product: Product) {
-        QuantityDialog(this, product).show(childFragmentManager, "null")
+        val dialog = onProductOrderAdded?.let { QuantityDialog.newInstance(product, it) }
+        childFragmentManager.let { dialog?.show(it, "null") }
     }
 
     override fun setProduct(product: ProductOrder) {

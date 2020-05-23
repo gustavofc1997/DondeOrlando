@@ -31,10 +31,8 @@ class ProductsAdapter(private val productClickListener: IProductSelected?) :
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val product = productList[position]
         holder.bind(product)
-        with(holder.containerView) {
-            this.setOnClickListener {
-                productClickListener?.onProductSelected(product)
-            }
+        holder.itemView.cardView.setOnClickListener {
+            productClickListener?.onProductSelected(product)
         }
     }
 

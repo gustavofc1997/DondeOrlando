@@ -30,10 +30,8 @@ class StockAdapter(private val productClickListenerStock: IProductSelected?) :
     override fun onBindViewHolder(holder: StockVH, position: Int) {
         val product = stockProductList[position]
         holder.bind(product)
-        with(holder.containerView) {
-            this.setOnClickListener {
-                productClickListenerStock?.onProductSelected(product)
-            }
+        holder.itemView.card_view_stock.setOnClickListener {
+            productClickListenerStock?.onProductSelected(product)
         }
     }
 

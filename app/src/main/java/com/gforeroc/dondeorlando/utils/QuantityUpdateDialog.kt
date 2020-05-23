@@ -18,6 +18,15 @@ class QuantityUpdateDialog(
     private var window: Window? = null
     private var rootView: View? = null
 
+    companion object {
+        fun newInstance(
+            products: Product,
+            onQuantityUpdate: OnQuantityUpdate
+        ): QuantityUpdateDialog {
+            return QuantityUpdateDialog(onQuantityUpdate, products)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

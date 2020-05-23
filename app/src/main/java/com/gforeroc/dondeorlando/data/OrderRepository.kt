@@ -5,11 +5,13 @@ import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.WriteBatch
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+
 
 class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderRepository {
 
@@ -54,6 +56,36 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
         }
     }
 
+    override fun deleteOrders(): Completable {
+        return Completable.create { emitter ->
+            remoteDB.collection(MENU_ORDERS).whereEqualTo("visibility", 0)
+                .get()
+                .addOnSuccessListener {
+                    val batch: WriteBatch = remoteDB.batch()
+                    val list: List<DocumentSnapshot> = it.documents
+                    for (document in list) {
+                        batch.delete(document.reference)
+                    }
+                    batch.commit()
+                        .addOnSuccessListener {
+                            if (!emitter.isDisposed) {
+                                emitter.onComplete()
+                            }
+                        }
+                        .addOnFailureListener { batchIt ->
+                            if (!emitter.isDisposed) {
+                                emitter.onError(batchIt)
+                            }
+                        }
+                }
+                .addOnFailureListener {
+                    if (!emitter.isDisposed) {
+                        emitter.onError(it)
+                    }
+                }
+        }
+    }
+
     private fun mapDocumentToRemoteTask(document: DocumentSnapshot) =
         document.toObject(MyOrder::class.java)!!
 
@@ -63,12 +95,11 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
             .map { list ->
                 list.map(::mapDocumentToRemoteTask)
             }
-
 }
 
 interface IOrderRepository {
     var remoteDB: FirebaseFirestore
     fun sendOrder(order: NewOrder): Completable
     fun getChangeObservable(): Observable<List<MyOrder>>
-
+    fun deleteOrders(): Completable
 }
