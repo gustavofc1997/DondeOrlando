@@ -1,6 +1,5 @@
 package com.gforeroc.dondeorlando.utils
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.domain.NewOrder
 import kotlinx.android.synthetic.main.dialog_car_orde_list.*
-
 
 class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() {
 
@@ -29,8 +27,8 @@ class OrderCarDialogFragment(private val newOrder: NewOrder) : DialogFragment() 
             rootview = inflater.inflate(R.layout.dialog_car_orde_list, container, false)
         }
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog?.setCancelable(true)
-        dialog?.setCanceledOnTouchOutside(true)
+        dialog?.setCancelable(false)
+        dialog?.setCanceledOnTouchOutside(false)
         return rootview
     }
 

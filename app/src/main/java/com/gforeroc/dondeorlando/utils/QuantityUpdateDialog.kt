@@ -28,8 +28,8 @@ class QuantityUpdateDialog(
             rootView = inflater.inflate(R.layout.dialog_quantity_update, container, false)
         }
         setStyle(STYLE_NO_TITLE, R.style.DialogStyle)
-        dialog?.setCancelable(true)
-        dialog?.setCanceledOnTouchOutside(true)
+        dialog?.setCancelable(false)
+        dialog?.setCanceledOnTouchOutside(false)
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         return rootView
     }

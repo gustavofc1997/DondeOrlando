@@ -35,8 +35,8 @@ class SummaryOrderDialogFragment(
             )
         }
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog?.setCancelable(true)
-        dialog?.setCanceledOnTouchOutside(true)
+        dialog?.setCancelable(false)
+        dialog?.setCanceledOnTouchOutside(false)
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         return rootView
     }

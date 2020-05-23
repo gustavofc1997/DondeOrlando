@@ -12,12 +12,13 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
+import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class OrdersFragment: Fragment() {
+class OrdersFragment : Fragment() {
 
     private val ordersAdapter = OrdersAdapter()
     private val ordersViewModel: OrdersViewModel by viewModel()
@@ -32,7 +33,18 @@ class OrdersFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recycler_orders.adapter = ordersAdapter
         recycler_orders.layoutManager = LinearLayoutManager(context)
-        recycler_orders.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        recycler_orders.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager.VERTICAL
+            )
+        )
+        button_close.setOnClickListener { closeSell() }
+    }
+
+    private fun closeSell() {
+        val dialog = PasswordDialogFragment()
+        childFragmentManager.let { dialog.show(it, "PasswordDialog") }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,14 +58,27 @@ class OrdersFragment: Fragment() {
         val myMap = HashMap<String, Long>()
         args.forEach { orderData ->
             orderData.items.forEach { product ->
-                txt_total_ventas.text = args.map { it.total * (product.quantity) }.sum().toString()
-                val myKey = product.product.name
-                if (myMap.containsKey(myKey)) {
-                    var quantity = myMap[myKey] ?: 0L
-                    quantity += product.quantity
-                    myMap[myKey] = quantity
+                if (product.additional) {
+                    txt_total_ventas.text = args.map { it.total * (product.quantity) }.sum().toString()
+                    val additional = " --Adicional"
+                    val myKey = product.product.name.plus(additional)
+                    if (myMap.containsKey(myKey)) {
+                        var quantity = myMap[myKey] ?: 0L
+                        quantity += product.quantity
+                        myMap[myKey] = quantity
+                    } else {
+                        myMap[myKey] = product.quantity
+                    }
                 } else {
-                    myMap[myKey] = product.quantity
+                    txt_total_ventas.text = args.map { it.total * (product.quantity) }.sum().toString()
+                    val myKey = product.product.name
+                    if (myMap.containsKey(myKey)) {
+                        var quantity = myMap[myKey] ?: 0L
+                        quantity += product.quantity
+                        myMap[myKey] = quantity
+                    } else {
+                        myMap[myKey] = product.quantity
+                    }
                 }
             }
         }
