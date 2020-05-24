@@ -64,7 +64,7 @@ class OrderCarDialogFragment(
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.apply { setLayout(530, 410) }
+        dialog?.window?.apply { setLayout(530, ViewGroup.LayoutParams.WRAP_CONTENT)}
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
 }

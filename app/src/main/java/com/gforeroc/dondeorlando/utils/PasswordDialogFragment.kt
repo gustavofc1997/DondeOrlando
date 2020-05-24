@@ -111,7 +111,6 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog?.window?.apply { setLayout(480, 630) }
     }
 
     override fun onNumberClick(view: View, number: Int) {
