@@ -11,10 +11,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.IPasswordAction
-import com.gforeroc.dondeorlando.databinding.DialogPasswordBinding
+import com.gforeroc.dondeorlando.databinding.KeypadBinding
 import com.pixplicity.easyprefs.library.Prefs
 import ir.androidexception.andexalertdialog.AndExAlertDialog
-import kotlinx.android.synthetic.main.dialog_password.*
+import kotlinx.android.synthetic.main.keypad.*
 
 
 class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
@@ -38,11 +38,10 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val binding: DialogPasswordBinding =
-            DataBindingUtil.inflate(inflater, R.layout.dialog_password, container, false)
+        val binding: KeypadBinding =
+            DataBindingUtil.inflate(inflater, R.layout.keypad, container, false)
         binding.listener = this
         window = dialog?.window
-        setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.setCancelable(false)
         return binding.root
@@ -88,6 +87,10 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
         delegate = iPasswordAction
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
     private fun removeAt() {
         val removeAt = et_code.text?.length
         if (removeAt != null) {
@@ -106,12 +109,6 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
             .OnPositiveClicked {
             }
             .build();
-    }
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog?.window?.apply { setLayout(480, 630) }
     }
 
     override fun onNumberClick(view: View, number: Int) {

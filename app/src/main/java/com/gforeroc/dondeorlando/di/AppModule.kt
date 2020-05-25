@@ -19,12 +19,11 @@ val appModule = module {
             .setPersistenceEnabled(true)
             .build()
     }
-
+    single<IProductRepository>(named("sideRepository")) { SideRepository(firebaseDatabase()) }
     single<IProductRepository>(named("beveragesRepository")) { BeveragesRepository(firebaseDatabase()) }
     single<IProductRepository>(named("othersRepository")) { OthersRepository(firebaseDatabase()) }
     single<IProductRepository>(named("meatsRepository")) { MeatsRepository(firebaseDatabase()) }
     single<IOrderRepository>() { OrderRepository(firebaseDatabase()) }
-    single<IProductRepository>(named("sideRepository")) { SideRepository(firebaseDatabase()) }
 
     viewModel { BeveragesViewModel(get(named("beveragesRepository"))) }
     viewModel { OrdersViewModel(get()) }
