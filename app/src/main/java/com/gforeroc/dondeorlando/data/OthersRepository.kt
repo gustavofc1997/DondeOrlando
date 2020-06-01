@@ -6,9 +6,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
-import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class OthersRepository (override var remoteDB: FirebaseFirestore) : IProductRepository {
 
@@ -40,24 +43,12 @@ class OthersRepository (override var remoteDB: FirebaseFirestore) : IProductRepo
             emitter.setCancellable { listeningRegistration.remove() }
         }
 
-    override fun getAllProducts(): Single<List<Product>> {
-        return Single.create<List<DocumentSnapshot>> { emitter ->
-            remoteDB.collection(MENU_COLLECTION).document(OTHERS_DOCUMENT).collection(ITEMS).get()
-                .addOnSuccessListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onSuccess(it.documents)
-                    }
-                }
-                .addOnFailureListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onError(it)
-                    }
-                }
+    override suspend fun getAllProducts() {
+        GlobalScope.launch(Dispatchers.IO) {
+            remoteDB.collection(MENU_COLLECTION).document(OTHERS_DOCUMENT).collection(ITEMS)
+                .get().await().map(::mapDocumentToRemoteTask)
+                .toList()
         }
-            .observeOn(Schedulers.io())
-            .flatMapObservable { Observable.fromIterable(it) }
-            .map(::mapDocumentToRemoteTask)
-            .toList()
     }
 
     private fun mapDocumentToRemoteTask(document: DocumentSnapshot) =

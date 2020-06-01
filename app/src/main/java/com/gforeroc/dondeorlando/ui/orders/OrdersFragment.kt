@@ -15,6 +15,7 @@ import com.gforeroc.dondeorlando.data.IShowOrders
 import com.gforeroc.dondeorlando.data.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
+import com.gforeroc.dondeorlando.utils.ADDITIONAL
 import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import kotlinx.android.synthetic.main.fragment_orders.*
@@ -75,8 +76,7 @@ class OrdersFragment : Fragment() {
                 if (product.additional) {
                     txt_total_ventas.text =
                         args.map { it.total * (product.quantity) }.sum().toString()
-                    val additional = " --Adicional"
-                    val myKey = product.product.name.plus(additional)
+                    val myKey = product.product.name.plus(ADDITIONAL)
                     if (myMap.containsKey(myKey)) {
                         var quantity = myMap[myKey] ?: 0L
                         quantity += product.quantity

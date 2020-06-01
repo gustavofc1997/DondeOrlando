@@ -1,5 +1,6 @@
 package com.gforeroc.dondeorlando.data
 
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -7,7 +8,7 @@ import io.reactivex.Single
 
 interface IProductRepository {
     var remoteDB: FirebaseFirestore
-    fun getAllProducts(): Single<List<Product>>
+    suspend fun getAllProducts()
     fun getChangeObservable(): Observable<List<Product>>
-    fun updateStock(quantity: Long, id:String): Completable
+    fun updateStock(quantity: Long, id: String): Completable
 }
