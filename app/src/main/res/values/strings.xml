@@ -13,7 +13,7 @@
     <string name="product">Producto</string>
     <string name="quantity">Cantidad</string>
     <string name="price">Precio</string>
-    <string name="total">Total</string>
+    <string name="total">$0.0</string>
     <string name="total_car">Total :</string>
     <string name="summary_order">Resumen de la orden</string>
     <string name="report_sales">Reporte de ventas</string>
@@ -25,8 +25,6 @@
     <string name="text_add_quantity">Selecciona la cantidad que quieres añadir!</string>
     <string name="text_check_box">Es una porción adicional?</string>
     <string name="text_btn_add">Agregar</string>
-    <string name="check_box_text">Es cortesia?</string>
-    <string name="btn_text_confirm">Confirmar</string>
     <string name="et_password">Escribe tu codigo de seguridad</string>
     <string name="et_update_pass">Escribe tu nuevo codigo</string>
 </resources>

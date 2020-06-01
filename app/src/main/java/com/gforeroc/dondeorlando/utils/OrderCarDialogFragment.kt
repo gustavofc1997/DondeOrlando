@@ -1,24 +1,23 @@
 package com.gforeroc.dondeorlando.utils
 
+import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.util.DisplayMetrics
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
-import kotlinx.android.synthetic.main.dialog_car_orde_list.*
+import kotlinx.android.synthetic.main.dialog_car_order.*
+
 
 class OrderCarDialogFragment(
     private val newOrder: NewOrder,
     private val iConfirmOrder: IConfirmOrder
 ) : DialogFragment() {
 
-    private var windows: Window? = null
     private var rootview: View? = null
 
     companion object {
@@ -35,9 +34,8 @@ class OrderCarDialogFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        windows = dialog?.window
         if (rootview == null) {
-            rootview = inflater.inflate(R.layout.dialog_car_orde_list, container, false)
+            rootview = inflater.inflate(R.layout.dialog_car_order, container, false)
         }
         setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
         dialog?.setCancelable(false)
@@ -45,9 +43,25 @@ class OrderCarDialogFragment(
         return rootview
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val window = dialog?.window;
+        window?.let {
+            val lp = WindowManager.LayoutParams()
+            lp.copyFrom(it.attributes)
+            val displayMetrics = DisplayMetrics()
+            activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
+            val widthLcl = (displayMetrics.widthPixels * 0.9f).toInt()
+            val heightLcl = (displayMetrics.heightPixels * 0.8f).toInt()
+            lp.width = widthLcl
+            lp.height = heightLcl
+            it.attributes = lp
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Rv_summary_car.setHasFixedSize(true)
         close_dialog_car.setOnClickListener { dismiss() }
         text_total_car.text = newOrder.total.toString()
         val checkOrderAdapter = CheckOrderAdapter(newOrder.items)
@@ -60,11 +74,5 @@ class OrderCarDialogFragment(
             dialog?.dismiss()
             newOrder.clearData()
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.apply { setLayout(530, 410) }
-        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
 }

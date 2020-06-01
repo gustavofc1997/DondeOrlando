@@ -9,7 +9,7 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.dialog_check_order_item.view.*
 import java.util.*
 
-class CheckOrderAdapter(private var taskList: ArrayList<ProductOrder>) :
+class CheckOrderAdapter(private var items: ArrayList<ProductOrder>) :
     RecyclerView.Adapter<CheckVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckVH {
@@ -18,14 +18,14 @@ class CheckOrderAdapter(private var taskList: ArrayList<ProductOrder>) :
         return CheckVH(view)
     }
 
-    override fun getItemCount() = taskList.size
+    override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: CheckVH, position: Int) {
-        val task = taskList[position]
+        val task = items[position]
         with(holder.containerView) {
             if (task.isAdditional) {
-                val aditional = " --Adicional"
-                product.text = task.product.Name.plus(aditional)
+                val additional = " --Adicional"
+                product.text = task.product.Name.plus(additional)
                 quantity.text = task.quantity.toString()
                 price.text = (task.product.Additional.toInt() * task.quantity).toString()
             } else {
@@ -39,5 +39,4 @@ class CheckOrderAdapter(private var taskList: ArrayList<ProductOrder>) :
 
 class CheckVH(override val containerView: View) :
     RecyclerView.ViewHolder(containerView),
-    LayoutContainer {
-}
+    LayoutContainer
