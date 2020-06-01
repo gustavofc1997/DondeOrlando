@@ -15,11 +15,9 @@ import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.PageAdapter
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.OrderCarDialogFragment
-import com.gforeroc.dondeorlando.utils.SummaryOrderDialogFragment
 import com.gforeroc.dondeorlando.utils.ZoomOutPageTransformer
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import ir.androidexception.andexalertdialog.AndExAlertDialog
-import kotlinx.android.synthetic.main.dialog_car_orde_list.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -78,16 +76,6 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
             showWarningDialog()
     }
 
-    private fun sendOrder() {
-        if (canFinishOrder()) {
-            newOrder.setDate()
-            newOrder.calculateTotals()
-            val dialog = SummaryOrderDialogFragment.newInstance(newOrder, this)
-            childFragmentManager.let { dialog.show(it, "SummaryOrderDialogFragment") }
-        } else
-            showWarningDialog()
-    }
-
     private fun canFinishOrder(): Boolean {
         return newOrder.items.isNotEmpty()
     }
@@ -95,7 +83,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.cancel_order -> findNavController().popBackStack()
-            R.id.finish_order -> sendOrder()
+            R.id.finish_order -> checkOrderCar()
         }
         return super.onOptionsItemSelected(item)
     }

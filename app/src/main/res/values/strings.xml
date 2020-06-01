@@ -1,30 +1,19 @@
 <resources>
     <string name="app_name">Donde Orlando</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Donde Orlando</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
     <string name="menu_home">Inicio</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
     <string name="cancel_order">Cancelar Orden</string>
     <string name="finish_order">Terminar Orden</string>
     <string name="menu_sales">Ventas</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_inventory">Inventario</string>
     <string name="menu_update">Actualizar</string>
-    <string name="check_additional">¿Is additional?</string>
-    <string name="ver_carrito">Ver Carrito</string>
     <string name="product">Producto</string>
     <string name="quantity">Cantidad</string>
     <string name="price">Precio</string>
-    <string name="total">Total</string>
+    <string name="total">$0.0</string>
     <string name="total_car">Total :</string>
     <string name="summary_order">Resumen de la orden</string>
     <string name="report_sales">Reporte de ventas</string>
@@ -36,8 +25,6 @@
     <string name="text_add_quantity">Selecciona la cantidad que quieres añadir!</string>
     <string name="text_check_box">Es una porción adicional?</string>
     <string name="text_btn_add">Agregar</string>
-    <string name="check_box_text">Es cortesia?</string>
-    <string name="btn_text_confirm">Confirmar</string>
-    <string name="et_password">Escribe tu codigo PIN</string>
+    <string name="et_password">Escribe tu codigo de seguridad</string>
     <string name="et_update_pass">Escribe tu nuevo codigo</string>
 </resources>

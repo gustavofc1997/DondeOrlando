@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+        android:background="@android:color/transparent"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/title_car"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:gravity="center"
@@ -31,60 +34,70 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/close_dialog_order"
+                android:id="@+id/close_dialog_car"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
+                android:padding="4dp"
                 android:src="@drawable/ic_close"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="16dp"
+            android:weightSum="3"
             app:layout_constraintTop_toBottomOf="@+id/constraint">
 
             <TextView
-                android:id="@+id/text_name_product"
-                android:layout_width="200dp"
+                android:id="@+id/text_name_product_car"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="24sp"
                 android:layout_height="match_parent"
                 android:text="@string/product"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_quantity_product"
-                android:layout_width="70dp"
+                android:id="@+id/text_quantity_product_car"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="24sp"
                 android:text="@string/quantity"
                 android:textColor="@android:color/black"
-                android:textSize="17sp" />
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_price_product"
-                android:layout_width="match_parent"
+                android:id="@+id/text_price_product_car"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@string/price"
+                android:textSize="24sp"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
+                android:textStyle="bold" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Rv_summary"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="insideInset"
+            android:id="@+id/Rv_summary_car"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="400dp"
             android:layout_marginLeft="17dp"
             android:layout_marginRight="17dp"
-            app:layout_constraintBottom_toTopOf="@+id/text_Total"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout"
@@ -94,62 +107,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="Rv_summary"
+            app:constraint_referenced_ids="Rv_summary_car"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_check" />
+            app:layout_constraintTop_toBottomOf="@id/text_total_car" />
 
         <TextView
-            android:id="@+id/text_title_total"
+            android:id="@+id/text_title_total_car"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:text="@string/total_car"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="26sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/text_Total"
-            app:layout_constraintTop_toBottomOf="@+id/Rv_summary" />
+            app:layout_constraintRight_toLeftOf="@+id/text_total_car"
+            app:layout_constraintTop_toBottomOf="@+id/Rv_summary_car" />
 
         <TextView
-            android:id="@+id/text_Total"
+            android:id="@+id/text_total_car"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
             android:text="@string/total"
-            android:textSize="18sp"
+            android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Rv_summary" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/checkFree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:buttonTint="@android:color/holo_green_light"
-            android:text="@string/check_box_text"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_Total" />
+            app:layout_constraintTop_toBottomOf="@+id/Rv_summary_car" />
 
         <Button
-            android:id="@+id/button_check"
+            android:id="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_custom"
-            android:elevation="10dp"
-            android:text="@string/btn_text_confirm"
+            android:gravity="center"
+            android:text="@string/finish_order"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkFree" />
-
+            app:layout_constraintTop_toBottomOf="@+id/text_title_total_car" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
