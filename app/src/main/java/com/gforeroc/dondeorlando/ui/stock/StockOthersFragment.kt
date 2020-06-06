@@ -72,7 +72,7 @@ class StockOthersFragment() : BaseFragment(), IProductSelected,
         onProductOrderAdded?.setProduct(product)
     }
 
-    override fun updateQuantity(setUpdateQuantity: Long, id: String) {
+    override suspend fun updateQuantity(setUpdateQuantity: Long, id: String) {
         stockOthersViewModelViewModel.updateQuantity(setUpdateQuantity, id)
     }
 }

@@ -64,11 +64,14 @@ class MeatsRepository(override var remoteDB: FirebaseFirestore) : IProductReposi
                 list.map(::mapDocumentToRemoteTask)
             }
 
-    override fun updateStock(quantity: Long, id: String): Completable {
-        remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS).document(id)
-            .update(
-                mapOf("Amount" to quantity)
-            )
+    override suspend fun updateStock(quantity: Long, id: String): Completable {
+        GlobalScope.launch(Dispatchers.IO) {
+            remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS)
+                .document(id)
+                .update(
+                    mapOf("Amount" to quantity)
+                ).await()
+        }
         return Completable.complete()
     }
 }

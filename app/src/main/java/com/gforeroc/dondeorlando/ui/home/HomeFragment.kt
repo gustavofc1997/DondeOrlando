@@ -88,7 +88,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun confirmOrderListener() {
+    override suspend fun confirmOrderListener() {
         ordersViewModel.sendOrder(newOrder)
     }
 

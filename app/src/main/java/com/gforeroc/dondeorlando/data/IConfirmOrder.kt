@@ -2,5 +2,5 @@ package com.gforeroc.dondeorlando.data
 
 interface IConfirmOrder {
 
-    fun confirmOrderListener()
+     suspend fun confirmOrderListener()
 }

@@ -28,7 +28,7 @@ class StockMeatViewModel(override var repository: IProductRepository) : BaseView
             .addTo(disposable)
     }
 
-    fun updateQuantity(setUpdateQuantity: Long, id: String) {
+    suspend fun updateQuantity(setUpdateQuantity: Long, id: String) {
         repository.updateStock(setUpdateQuantity, id)
     }
 

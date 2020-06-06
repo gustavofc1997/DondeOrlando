@@ -11,6 +11,10 @@ import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderRepository {
@@ -40,20 +44,11 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
             emitter.setCancellable { listeningRegistration.remove() }
         }
 
-    override fun sendOrder(order: NewOrder): Completable {
-        return Completable.create { emitter ->
-            remoteDB.collection(MENU_ORDERS).document().set(order)
-                .addOnSuccessListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onComplete()
-                    }
-                }
-                .addOnFailureListener {
-                    if (!emitter.isDisposed) {
-                        emitter.onError(it)
-                    }
-                }
+    override suspend fun sendOrder(order: NewOrder): Completable {
+        GlobalScope.launch(Dispatchers.IO) {
+            remoteDB.collection(MENU_ORDERS).document().set(order).await()
         }
+        return Completable.complete()
     }
 
     override fun deleteOrders(): Completable {
@@ -99,7 +94,7 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
 
 interface IOrderRepository {
     var remoteDB: FirebaseFirestore
-    fun sendOrder(order: NewOrder): Completable
+    suspend fun sendOrder(order: NewOrder): Completable
     fun getChangeObservable(): Observable<List<MyOrder>>
     fun deleteOrders(): Completable
 }

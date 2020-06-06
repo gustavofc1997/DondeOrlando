@@ -9,7 +9,11 @@ import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.Product
+import com.squareup.okhttp.Dispatcher
 import kotlinx.android.synthetic.main.dialog_quantity_update.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class QuantityUpdateDialog(
     private var onQuantityUpdate: OnQuantityUpdate,
@@ -50,8 +54,10 @@ class QuantityUpdateDialog(
             val updateEdit = edit_quantity.text.toString().toLong()
             val newQuantity = products.Amount.plus(updateEdit)
             val id = products.id
-            onQuantityUpdate.updateQuantity(newQuantity, id)
-            dismissAllowingStateLoss()
+            GlobalScope.launch(Dispatchers.IO) {
+                onQuantityUpdate.updateQuantity(newQuantity, id)
+            }
+            dismiss()
         }
     }
 }

@@ -28,7 +28,7 @@ class StockOthersViewModel(override var repository: IProductRepository) : BaseVi
             .addTo(disposable)
     }
 
-    fun updateQuantity(setUpdateQuantity: Long, id: String) {
+    suspend fun updateQuantity(setUpdateQuantity: Long, id: String) {
         repository.updateStock(setUpdateQuantity, id)
     }
 

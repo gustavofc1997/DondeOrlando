@@ -10,5 +10,5 @@ interface IProductRepository {
     var remoteDB: FirebaseFirestore
     suspend fun getAllProducts()
     fun getChangeObservable(): Observable<List<Product>>
-    fun updateStock(quantity: Long, id: String): Completable
+    suspend fun updateStock(quantity: Long, id: String): Completable
 }

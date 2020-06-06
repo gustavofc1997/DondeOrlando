@@ -18,7 +18,7 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
     val allOrders: LiveData<List<MyOrder>>
         get() = ordersList
 
-    fun sendOrder(order: NewOrder) {
+    suspend fun sendOrder(order: NewOrder) {
         repository.sendOrder(order).observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {

@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp">
-        android:background="@android:color/transparent"
-        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint"
@@ -95,7 +93,7 @@
             android:scrollbarStyle="insideInset"
             android:id="@+id/Rv_summary_car"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:layout_marginLeft="17dp"
             android:layout_marginRight="17dp"
             app:layout_constraintEnd_toEndOf="parent"

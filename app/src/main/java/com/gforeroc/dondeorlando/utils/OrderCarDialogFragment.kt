@@ -1,9 +1,11 @@
 package com.gforeroc.dondeorlando.utils
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.CheckOrderAdapter
@@ -11,7 +13,9 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import kotlinx.android.synthetic.main.dialog_car_order.*
-
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class OrderCarDialogFragment(
     private val newOrder: NewOrder,
@@ -70,7 +74,9 @@ class OrderCarDialogFragment(
             layoutManager = LinearLayoutManager(context)
         }
         btn.setOnClickListener {
-            iConfirmOrder.confirmOrderListener()
+            GlobalScope.launch(Dispatchers.IO) {
+                iConfirmOrder.confirmOrderListener()
+            }
             dialog?.dismiss()
             newOrder.clearData()
         }
