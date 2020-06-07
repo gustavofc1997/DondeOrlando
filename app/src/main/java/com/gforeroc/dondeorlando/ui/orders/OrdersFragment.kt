@@ -30,16 +30,20 @@ class OrdersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        return inflater.inflate(R.layout.fragment_orders, container, false)
+    }
+
+    fun validateUser() {
         showPasswordDialog(object : IShowOrders {
             override fun onPasswordSuccessful() {
                 rl_orders.visibility = View.VISIBLE
             }
         }, false)
-        return inflater.inflate(R.layout.fragment_orders, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        validateUser()
         recycler_orders.adapter = ordersAdapter
         recycler_orders.layoutManager = LinearLayoutManager(context)
         recycler_orders.addItemDecoration(
@@ -71,10 +75,11 @@ class OrdersFragment : Fragment() {
 
     private fun mapArray(args: List<MyOrder>): List<Product> {
         val myMap = HashMap<String, Long>()
+        var totalSales = ""
         args.forEach { orderData ->
             orderData.items.forEach { product ->
                 if (product.additional) {
-                    txt_total_ventas.text =
+                    totalSales =
                         args.map { it.total * (product.quantity) }.sum().toString()
                     val myKey = product.product.name.plus(ADDITIONAL)
                     if (myMap.containsKey(myKey)) {
@@ -85,7 +90,7 @@ class OrdersFragment : Fragment() {
                         myMap[myKey] = product.quantity
                     }
                 } else {
-                    txt_total_ventas.text =
+                    totalSales =
                         args.map { it.total * (product.quantity) }.sum().toString()
                     val myKey = product.product.name
                     if (myMap.containsKey(myKey)) {
@@ -98,6 +103,8 @@ class OrdersFragment : Fragment() {
                 }
             }
         }
+        val prefix = txt_total_ventas.context.getString(R.string.sales_day)
+        txt_total_ventas.text = "$prefix: $totalSales"
         return myMap.map {
             val product = Product()
             product.Name = it.key
