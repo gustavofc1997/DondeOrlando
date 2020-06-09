@@ -1,6 +1,7 @@
 package com.gforeroc.dondeorlando.di
 
 import com.gforeroc.dondeorlando.data.*
+import com.gforeroc.dondeorlando.domain.CoroutinesContextProvider
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockAdditionalViewModel
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockBeveragesViewModel
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockMeatViewModel
@@ -8,6 +9,7 @@ import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockOthersViewModel
 import com.gforeroc.dondeorlando.viewmodels.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import kotlinx.coroutines.Dispatchers
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -23,7 +25,7 @@ val appModule = module {
     single<IProductRepository>(named("beveragesRepository")) { BeveragesRepository(firebaseDatabase()) }
     single<IProductRepository>(named("othersRepository")) { OthersRepository(firebaseDatabase()) }
     single<IProductRepository>(named("meatsRepository")) { MeatsRepository(firebaseDatabase()) }
-    single<IOrderRepository>() { OrderRepository(firebaseDatabase()) }
+    single<IOrderRepository> { OrderRepository(firebaseDatabase()) }
 
     viewModel { BeveragesViewModel(get(named("beveragesRepository"))) }
     viewModel { OrdersViewModel(get()) }
@@ -35,4 +37,11 @@ val appModule = module {
     viewModel { StockAdditionalViewModel(get(named("sideRepository"))) }
     viewModel { StockOthersViewModel(get(named("othersRepository"))) }
 
+
+    single {
+        CoroutinesContextProvider(
+            Dispatchers.Main,
+            Dispatchers.IO
+        )
+    }
 }
