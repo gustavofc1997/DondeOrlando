@@ -1,4 +1,4 @@
-package com.gforeroc.dondeorlando.data
+package com.gforeroc.dondeorlando.data.repositories
 
 import android.util.Log
 import com.gforeroc.dondeorlando.domain.NewOrder
@@ -12,8 +12,8 @@ import io.reactivex.ObservableEmitter
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-
-class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderRepository {
+class OrderRepository(override var remoteDB: FirebaseFirestore) :
+    IOrderRepository {
 
     companion object {
         const val MENU_ORDERS = "orders"
@@ -41,18 +41,29 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) : IOrderReposito
         }
 
     override fun sendOrder(order: NewOrder): Completable {
+        updateStock(order)
         return Completable.create { emitter ->
             remoteDB.collection(MENU_ORDERS).document().set(order)
                 .addOnSuccessListener {
                     if (!emitter.isDisposed) {
                         emitter.onComplete()
                     }
+
                 }
                 .addOnFailureListener {
                     if (!emitter.isDisposed) {
                         emitter.onError(it)
                     }
                 }
+        }
+    }
+
+    fun updateStock(order: NewOrder) {
+        remoteDB.runBatch { batch ->
+            order.items.forEach {
+                val sfRef = remoteDB.document(it.product.path)
+                batch.update(sfRef, "Amount", (it.product.Amount.toInt() - it.quantity).toLong())
+            }
         }
     }
 

@@ -1,5 +1,6 @@
-package com.gforeroc.dondeorlando.data
+package com.gforeroc.dondeorlando.data.repositories.base
 
+import com.gforeroc.dondeorlando.data.models.Product
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
 import io.reactivex.Observable

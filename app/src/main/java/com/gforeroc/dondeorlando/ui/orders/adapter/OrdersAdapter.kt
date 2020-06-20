@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item_orders.view.*

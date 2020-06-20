@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.OnQuantityUpdate
-import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
+import com.gforeroc.dondeorlando.data.models.Product
 import kotlinx.android.synthetic.main.dialog_quantity_update.*
 
 class QuantityUpdateDialog(

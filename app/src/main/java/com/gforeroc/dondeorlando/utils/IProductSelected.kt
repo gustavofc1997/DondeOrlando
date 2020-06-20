@@ -1,6 +1,5 @@
 package com.gforeroc.dondeorlando.utils
-import com.gforeroc.dondeorlando.data.Product
-import com.gforeroc.dondeorlando.domain.ProductOrder
+import com.gforeroc.dondeorlando.data.models.Product
 
 interface IProductSelected {
     fun onProductSelected(product: Product)

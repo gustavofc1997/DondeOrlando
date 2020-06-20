@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gforeroc.dondeorlando.BR
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.IConfirmOrder
+import com.gforeroc.dondeorlando.ui.base.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.PageAdapter
@@ -22,7 +22,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : Fragment(), OnProductOrderAdded, IConfirmOrder {
+class HomeFragment : Fragment(), OnProductOrderAdded,
+    IConfirmOrder {
 
     private var mContext: Context? = null
     private lateinit var newOrder: NewOrder

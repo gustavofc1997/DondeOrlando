@@ -1,7 +1,7 @@
 package com.gforeroc.dondeorlando.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.data.models.Product
 
 class ProductDiffUtilCallback(
     private val oldList: MutableList<Product>,

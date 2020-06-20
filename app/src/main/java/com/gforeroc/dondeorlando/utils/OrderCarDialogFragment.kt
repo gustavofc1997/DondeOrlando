@@ -1,6 +1,5 @@
 package com.gforeroc.dondeorlando.utils
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
@@ -8,7 +7,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.IConfirmOrder
+import com.gforeroc.dondeorlando.ui.base.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import kotlinx.android.synthetic.main.dialog_car_order.*
 

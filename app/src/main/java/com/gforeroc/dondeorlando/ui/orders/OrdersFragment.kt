@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.IDeleteOrders
-import com.gforeroc.dondeorlando.data.IPasswordAction
-import com.gforeroc.dondeorlando.data.IShowOrders
-import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.ui.base.IDeleteOrders
+import com.gforeroc.dondeorlando.ui.base.IPasswordAction
+import com.gforeroc.dondeorlando.ui.base.IShowOrders
+import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
 import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
@@ -33,7 +33,8 @@ class OrdersFragment : Fragment() {
     }
 
     fun validateUser() {
-        showPasswordDialog(object : IShowOrders {
+        showPasswordDialog(object :
+            IShowOrders {
             override fun onPasswordSuccessful() {
                 rl_orders.visibility = View.VISIBLE
             }
@@ -52,7 +53,8 @@ class OrdersFragment : Fragment() {
             )
         )
         button_close.setOnClickListener {
-            showPasswordDialog(object : IDeleteOrders {
+            showPasswordDialog(object :
+                IDeleteOrders {
                 override fun onPasswordSuccessful() {
                     ordersViewModel.deleteOrder()
                 }

@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.OnQuantityUpdate
-import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
+import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
 import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter

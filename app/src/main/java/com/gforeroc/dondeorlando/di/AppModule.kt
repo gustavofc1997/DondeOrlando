@@ -1,6 +1,7 @@
 package com.gforeroc.dondeorlando.di
 
-import com.gforeroc.dondeorlando.data.*
+import com.gforeroc.dondeorlando.data.repositories.*
+import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockAdditionalViewModel
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockBeveragesViewModel
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockMeatViewModel
@@ -19,11 +20,31 @@ val appModule = module {
             .setPersistenceEnabled(true)
             .build()
     }
-    single<IProductRepository>(named("sideRepository")) { SideRepository(firebaseDatabase()) }
-    single<IProductRepository>(named("beveragesRepository")) { BeveragesRepository(firebaseDatabase()) }
-    single<IProductRepository>(named("othersRepository")) { OthersRepository(firebaseDatabase()) }
-    single<IProductRepository>(named("meatsRepository")) { MeatsRepository(firebaseDatabase()) }
-    single<IOrderRepository>() { OrderRepository(firebaseDatabase()) }
+    single<IProductRepository>(named("sideRepository")) {
+        SideRepository(
+            firebaseDatabase()
+        )
+    }
+    single<IProductRepository>(named("beveragesRepository")) {
+        BeveragesRepository(
+            firebaseDatabase()
+        )
+    }
+    single<IProductRepository>(named("othersRepository")) {
+        OthersRepository(
+            firebaseDatabase()
+        )
+    }
+    single<IProductRepository>(named("meatsRepository")) {
+        MeatsRepository(
+            firebaseDatabase()
+        )
+    }
+    single<IOrderRepository>() {
+        OrderRepository(
+            firebaseDatabase()
+        )
+    }
 
     viewModel { BeveragesViewModel(get(named("beveragesRepository"))) }
     viewModel { OrdersViewModel(get()) }

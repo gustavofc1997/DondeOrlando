@@ -10,7 +10,7 @@ import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.IPasswordAction
+import com.gforeroc.dondeorlando.ui.base.IPasswordAction
 import com.gforeroc.dondeorlando.databinding.KeypadBinding
 import com.pixplicity.easyprefs.library.Prefs
 import ir.androidexception.andexalertdialog.AndExAlertDialog

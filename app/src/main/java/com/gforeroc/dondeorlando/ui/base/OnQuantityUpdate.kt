@@ -1,4 +1,4 @@
-package com.gforeroc.dondeorlando.data
+package com.gforeroc.dondeorlando.ui.base
 
 interface OnQuantityUpdate {
     fun updateQuantity(setUpdateQuantity : Long, id:String)

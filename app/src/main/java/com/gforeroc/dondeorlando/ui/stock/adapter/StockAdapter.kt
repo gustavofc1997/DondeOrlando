@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item_stock.view.*
-import kotlin.random.Random
 
 class StockAdapter(private val productClickListenerStock: IProductSelected?) :
     RecyclerView.Adapter<StockVH>() {

@@ -1,6 +1,8 @@
-package com.gforeroc.dondeorlando.data
+package com.gforeroc.dondeorlando.data.repositories
 
 import android.util.Log
+import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
+import com.gforeroc.dondeorlando.data.models.Product
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
@@ -10,18 +12,21 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-class SideRepository(override var remoteDB: FirebaseFirestore)  : IProductRepository {
+class MeatsRepository(override var remoteDB: FirebaseFirestore) :
+    IProductRepository {
 
     companion object {
         private const val MENU_COLLECTION = "menu"
-        private const val MEATS_DOCUMENT = "Acompañamientos"
+        private const val MEATS_DOCUMENT = "Carnes"
         private const val ITEMS = "items"
     }
 
     private val changeObservable =
-        BehaviorSubject.create<List<DocumentSnapshot>> { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
+        BehaviorSubject.create { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
             val listeningRegistration =
-                remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS)
+                remoteDB.collection(MENU_COLLECTION).document(
+                    MEATS_DOCUMENT
+                ).collection(ITEMS)
                     .addSnapshotListener { value, error ->
                         if (value == null || error != null) {
                             return@addSnapshotListener
@@ -44,7 +49,9 @@ class SideRepository(override var remoteDB: FirebaseFirestore)  : IProductReposi
 
     override fun getAllProducts(): Single<List<Product>> {
         return Single.create<List<DocumentSnapshot>> { emitter ->
-            remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS).get()
+            remoteDB.collection(MENU_COLLECTION).document(
+                MEATS_DOCUMENT
+            ).collection(ITEMS).get()
                 .addOnSuccessListener {
                     if (!emitter.isDisposed) {
                         emitter.onSuccess(it.documents)
@@ -62,8 +69,13 @@ class SideRepository(override var remoteDB: FirebaseFirestore)  : IProductReposi
             .toList()
     }
 
-    private fun mapDocumentToRemoteTask(document: DocumentSnapshot) =
-        document.toObject(Product::class.java)!!.apply { id = document.id }
+    private fun mapDocumentToRemoteTask(document: DocumentSnapshot): Product {
+        return document.toObject(Product::class.java)!!.apply {
+            id = document.id
+            path = document.reference.path
+        }
+    }
+
 
     override fun getChangeObservable(): Observable<List<Product>> =
         changeObservable.hide()
@@ -72,9 +84,13 @@ class SideRepository(override var remoteDB: FirebaseFirestore)  : IProductReposi
                 list.map(::mapDocumentToRemoteTask)
             }
 
-    override fun updateStock(quantity: Long, id:String): Completable {
-        remoteDB.collection(MENU_COLLECTION).document(MEATS_DOCUMENT).collection(ITEMS).document(id).update(
-            mapOf("Amount" to quantity))
+    override fun updateStock(quantity: Long, id: String): Completable {
+        remoteDB.collection(MENU_COLLECTION).document(
+            MEATS_DOCUMENT
+        ).collection(ITEMS).document(id)
+            .update(
+                mapOf("Amount" to quantity)
+            )
         return Completable.complete()
     }
 }

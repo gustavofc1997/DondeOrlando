@@ -1,4 +1,4 @@
-package com.gforeroc.dondeorlando.ui.update
+package com.gforeroc.dondeorlando.ui.changePassword
 
 import android.content.Context
 import android.os.Bundle
@@ -8,16 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.IPasswordAction
-import com.gforeroc.dondeorlando.data.IShowOrders
-import com.gforeroc.dondeorlando.utils.DEFAULT_PASSWORD
+import com.gforeroc.dondeorlando.ui.base.IPasswordAction
+import com.gforeroc.dondeorlando.ui.base.IShowOrders
 import com.gforeroc.dondeorlando.utils.KEY_PASSWORD
 import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.pixplicity.easyprefs.library.Prefs
 import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.fragment_update_password.*
 
-class UpdatePasswordFragment : Fragment() {
+class ChangePasswordFragment : Fragment() {
 
     private var mContext: Context? = null
 
@@ -26,7 +25,8 @@ class UpdatePasswordFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        showPasswordDialog(object : IShowOrders {
+        showPasswordDialog(object :
+            IShowOrders {
             override fun onPasswordSuccessful() {
                 cl_orders.visibility = View.VISIBLE
             }
@@ -47,7 +47,7 @@ class UpdatePasswordFragment : Fragment() {
                 val password = et_update.text.toString()
                 Prefs.putString(KEY_PASSWORD, password)
                 Prefs.edit().apply()
-                showWarningDialog(password)
+                showWarningDialog()
                 et_update.setText("")
             } else {
                 Toast.makeText(context, "Solo 4 Numeros", Toast.LENGTH_LONG).show()
@@ -60,10 +60,10 @@ class UpdatePasswordFragment : Fragment() {
         childFragmentManager.let { dialog.show(it, "PasswordDialog") }
     }
 
-    private fun showWarningDialog(message: String) {
+    private fun showWarningDialog() {
         AndExAlertDialog.Builder(context)
-            .setTitle("Success")
-            .setMessage(message)
+            .setTitle("Genial!")
+            .setMessage("Has actualizado tu clave, no la olvides")
             .setPositiveBtnText("Cerrar")
             .setCancelableOnTouchOutside(false)
             .OnPositiveClicked {

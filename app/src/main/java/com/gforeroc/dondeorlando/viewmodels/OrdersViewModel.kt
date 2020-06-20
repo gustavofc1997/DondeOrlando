@@ -3,7 +3,7 @@ package com.gforeroc.dondeorlando.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gforeroc.dondeorlando.data.IOrderRepository
+import com.gforeroc.dondeorlando.data.repositories.IOrderRepository
 import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.utils.addTo

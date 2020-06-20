@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.data.Product
+import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import kotlinx.android.synthetic.main.dialog_quantity.*
 
