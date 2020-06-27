@@ -7,7 +7,6 @@
     <string name="finish_order">Terminar Orden</string>
     <string name="menu_sales">Ventas</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="menu_inventory">Inventario</string>
     <string name="menu_update">Actualizar</string>
     <string name="product">Producto</string>

@@ -9,57 +9,32 @@
     tools:context=".ui.orders.OrdersFragment">
 
     <TextView
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/txt_ventas_dia"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="wrap_content"
         android:text="@string/report_sales"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/txt_total_ventas"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_ventas_dia"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_orders"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_below="@+id/txt_total_ventas"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_orders"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="0.85"
-            android:padding="10dp" />
-
-        <Button
-            android:id="@+id/button_close"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_weight="0.15"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:background="@drawable/button_custom"
-            android:text="@string/close_sales"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="17sp" />
-
-    </LinearLayout>
+        android:layout_below="@id/txt_total_ventas"
+        android:layout_marginTop="10dp"
+        android:padding="10dp" />
 
 </RelativeLayout>

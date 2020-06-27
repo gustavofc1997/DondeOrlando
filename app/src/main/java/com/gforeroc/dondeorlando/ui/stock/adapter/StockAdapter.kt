@@ -34,9 +34,10 @@ class StockAdapter(private val productClickListenerStock: IProductSelected?) :
         }
     }
 
+
     fun setItems(newTaskList: List<Product>) {
         val diffResult =
-            DiffUtil.calculateDiff(ProductDiffUtilCallback(stockProductList, newTaskList))
+            DiffUtil.calculateDiff(ProductDiffUtilCallback(this.stockProductList, newTaskList))
         stockProductList.clear()
         stockProductList.addAll(newTaskList)
         diffResult.dispatchUpdatesTo(this)

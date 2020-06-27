@@ -2,8 +2,8 @@ package com.gforeroc.dondeorlando.ui.stock.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
 import com.gforeroc.dondeorlando.data.models.Product
+import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
 import com.gforeroc.dondeorlando.utils.addTo
 import com.gforeroc.dondeorlando.viewmodels.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,8 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 class StockMeatViewModel(override var repository: IProductRepository) : BaseViewModel() {
 
     private val stockMeatList = MutableLiveData<List<Product>>()
-    val stockMeats: LiveData<List<Product>>
-    get() = stockMeatList
+    val stockMeats: LiveData<List<Product>> get() = stockMeatList
 
     init {
         repository.getChangeObservable()

@@ -2,8 +2,8 @@ package com.gforeroc.dondeorlando.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
 import com.gforeroc.dondeorlando.data.models.Product
+import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
 import com.gforeroc.dondeorlando.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
 

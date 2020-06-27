@@ -1,8 +1,8 @@
 package com.gforeroc.dondeorlando.data.repositories
 
 import android.util.Log
-import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
 import com.gforeroc.dondeorlando.data.models.Product
+import com.gforeroc.dondeorlando.data.repositories.base.IProductRepository
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
