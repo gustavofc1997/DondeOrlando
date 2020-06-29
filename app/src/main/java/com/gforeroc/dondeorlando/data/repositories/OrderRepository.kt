@@ -48,7 +48,6 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) :
                     if (!emitter.isDisposed) {
                         emitter.onComplete()
                     }
-
                 }
                 .addOnFailureListener {
                     if (!emitter.isDisposed) {

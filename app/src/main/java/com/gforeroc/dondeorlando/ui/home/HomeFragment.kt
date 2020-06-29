@@ -3,22 +3,28 @@ package com.gforeroc.dondeorlando.ui.home
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.gforeroc.dondeorlando.BR
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.ui.base.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.PageAdapter
+import com.gforeroc.dondeorlando.ui.base.IConfirmOrder
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.OrderCarDialogFragment
+import com.gforeroc.dondeorlando.utils.OrdersAction
 import com.gforeroc.dondeorlando.utils.ZoomOutPageTransformer
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
+import es.dmoral.toasty.Toasty
 import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -56,6 +62,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded,
         viewpager.setPageTransformer(true, ZoomOutPageTransformer())
         tabCategories.setupWithViewPager(viewpager)
         btn_car.setOnClickListener { checkOrderCar() }
+        initObservers()
     }
 
     override fun setProduct(product: ProductOrder) {
@@ -71,7 +78,7 @@ class HomeFragment : Fragment(), OnProductOrderAdded,
         if (canFinishOrder()) {
             newOrder.setDate()
             newOrder.calculateTotals()
-            val dialogCar = OrderCarDialogFragment.newInstance(newOrder, this)
+            val dialogCar: DialogFragment = OrderCarDialogFragment.newInstance(newOrder, this)
             childFragmentManager.let { dialogCar.show(it, "OrderCarDialogFragment") }
         } else
             showWarningDialog()
@@ -91,6 +98,46 @@ class HomeFragment : Fragment(), OnProductOrderAdded,
 
     override fun confirmOrderListener() {
         ordersViewModel.sendOrder(newOrder)
+    }
+
+    private fun initObservers() {
+        ordersViewModel.getError().observe(this) { result ->
+            context?.let {
+                when (result) {
+                    OrdersAction.SAVEORDER_SUCCESS -> {
+                        Toasty.success(
+                            it,
+                            "Venta registrada exitosamente!",
+                            Toast.LENGTH_SHORT,
+                            true
+                        ).show()
+                    }
+
+                    OrdersAction.SAVEORDER_ERROR -> {
+                        Toasty.success(
+                            it,
+                            "Hubo un error al guardar la orden",
+                            Toast.LENGTH_SHORT,
+                            true
+                        ).show()
+
+                    }
+                    else -> {
+                        Toasty.info(it, "Intenta nuevamente", Toast.LENGTH_SHORT, true).show()
+                    }
+                }
+            }
+        }
+
+        ordersViewModel.getLoading().observe(this) { isLoading ->
+            if (isLoading != null) {
+                if (isLoading) {
+                    loadingPanelHome.visibility = View.VISIBLE
+                } else {
+                    loadingPanelHome.visibility = View.GONE
+                }
+            }
+        }
     }
 
     private fun showWarningDialog() {

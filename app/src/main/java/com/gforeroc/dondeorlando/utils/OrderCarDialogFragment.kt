@@ -1,14 +1,14 @@
 package com.gforeroc.dondeorlando.utils
 
+import android.graphics.Point
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.ui.base.IConfirmOrder
 import com.gforeroc.dondeorlando.domain.NewOrder
+import com.gforeroc.dondeorlando.ui.base.IConfirmOrder
 import kotlinx.android.synthetic.main.dialog_car_order.*
 
 
@@ -16,8 +16,6 @@ class OrderCarDialogFragment(
     private val newOrder: NewOrder,
     private val iConfirmOrder: IConfirmOrder
 ) : DialogFragment() {
-
-    private var rootview: View? = null
 
     companion object {
         fun newInstance(
@@ -33,30 +31,23 @@ class OrderCarDialogFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (rootview == null) {
-            rootview = inflater.inflate(R.layout.dialog_car_order, container, false)
-        }
-        setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
+        val rv = inflater.inflate(R.layout.dialog_car_order, container, false)
         dialog?.setCancelable(false)
+        setStyle(STYLE_NORMAL,R.style.DialogStyle);
         dialog?.setCanceledOnTouchOutside(false)
-        return rootview
+        return rv
     }
 
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        val window = dialog?.window;
-        window?.let {
-            val lp = WindowManager.LayoutParams()
-            lp.copyFrom(it.attributes)
-            val displayMetrics = DisplayMetrics()
-            activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
-            val widthLcl = (displayMetrics.widthPixels * 0.9f).toInt()
-            val heightLcl = (displayMetrics.heightPixels * 0.8f).toInt()
-            lp.width = widthLcl
-            lp.height = heightLcl
-            it.attributes = lp
-        }
+        val window = dialog!!.window
+        val size = Point()
+        val display = window?.windowManager?.defaultDisplay
+        display?.getSize(size)
+        val width: Int = size.x
+        window?.setLayout((width * 0.75).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
+        window?.setGravity(Gravity.CENTER)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

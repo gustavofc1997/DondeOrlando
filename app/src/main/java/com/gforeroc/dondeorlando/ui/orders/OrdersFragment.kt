@@ -1,9 +1,13 @@
 package com.gforeroc.dondeorlando.ui.orders
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.R
@@ -13,8 +17,11 @@ import com.gforeroc.dondeorlando.ui.base.IDeleteOrders
 import com.gforeroc.dondeorlando.ui.base.IPasswordAction
 import com.gforeroc.dondeorlando.ui.base.IShowOrders
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
+import com.gforeroc.dondeorlando.utils.OrdersAction
 import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
+import com.gforeroc.dondeorlando.utils.convertToMoney
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -39,6 +46,41 @@ class OrdersFragment : Fragment() {
         }, false)
     }
 
+    private fun initObservers() {
+        ordersViewModel.getError().observe(this) { result ->
+            context?.let {
+                when (result) {
+                    OrdersAction.DELETE_SUCCESS -> {
+                        Toasty.success(it, "Ventas cerradas!", Toast.LENGTH_SHORT, true).show()
+                    }
+
+                    OrdersAction.DELETE_ERROR -> {
+                        Toasty.success(
+                            it,
+                            "Hubo un error al cerrar las ventas",
+                            Toast.LENGTH_SHORT,
+                            true
+                        ).show()
+
+                    }
+                    else -> {
+                        Toasty.info(it, "Intenta nuevamente", Toast.LENGTH_SHORT, true).show()
+                    }
+                }
+            }
+        }
+
+        ordersViewModel.getLoading().observe(this) { isLoading ->
+            if (isLoading != null) {
+                if (isLoading) {
+                    loadingPanel.visibility = View.VISIBLE
+                } else {
+                    loadingPanel.visibility = View.GONE
+                }
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         validateUser()
@@ -50,6 +92,15 @@ class OrdersFragment : Fragment() {
                 LinearLayoutManager.VERTICAL
             )
         )
+        button_close.setOnClickListener {
+            showPasswordDialog(object :
+                IDeleteOrders {
+                override fun onPasswordSuccessful() {
+                    ordersViewModel.deleteOrder()
+                }
+            }, true)
+        }
+        initObservers()
     }
 
     private fun showPasswordDialog(listener: IPasswordAction, isDismissible: Boolean) {
@@ -62,23 +113,6 @@ class OrdersFragment : Fragment() {
         ordersViewModel.allOrders.observe(this, Observer {
             ordersAdapter.setItems(mapArray(it))
         })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.orders, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.close_sales -> showPasswordDialog(object :
-                IDeleteOrders {
-                override fun onPasswordSuccessful() {
-                    ordersViewModel.deleteOrder()
-                }
-            }, true)
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun mapArray(args: List<MyOrder>): List<Product> {
@@ -113,7 +147,8 @@ class OrdersFragment : Fragment() {
             }
         }
         val prefix = txt_total_ventas.context.getString(R.string.sales_day)
-        txt_total_ventas.text = "$prefix: $totalSales"
+        val value = totalSales.toInt().convertToMoney()
+        txt_total_ventas.text = "$prefix: $value"
         return myMap.map {
             val product = Product()
             product.Name = it.key
