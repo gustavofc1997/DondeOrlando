@@ -17,13 +17,17 @@ class NewOrder(
     var visibility = View.GONE
 
     fun addProduct(productOrder: ProductOrder) {
-        val result = items.find {
-            it.product.Name == productOrder.product.Name
-        }
-        if (result != null) {
-            result.quantity = result.quantity.plus(productOrder.quantity)
-        } else {
+        if (productOrder.isAdditional) {
             items.add(productOrder)
+        } else {
+            val result = items.find {
+                it.product.Name == productOrder.product.Name
+            }
+            if (result != null) {
+                result.quantity = result.quantity.plus(productOrder.quantity)
+            } else {
+                items.add(productOrder)
+            }
         }
         changeVisibility()
     }
