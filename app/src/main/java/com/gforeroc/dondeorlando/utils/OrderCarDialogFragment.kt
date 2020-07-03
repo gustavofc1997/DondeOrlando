@@ -53,7 +53,7 @@ class OrderCarDialogFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         close_dialog_car.setOnClickListener { dismiss() }
-        text_total_car.text = newOrder.total.toString()
+        text_total_car.text = newOrder.total.toInt().convertToMoney()
         val checkOrderAdapter = CheckOrderAdapter(newOrder.items)
         Rv_summary_car.apply {
             adapter = checkOrderAdapter

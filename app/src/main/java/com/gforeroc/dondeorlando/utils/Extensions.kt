@@ -10,7 +10,7 @@ fun Disposable.addTo(compositeDisposable: CompositeDisposable) {
 }
 
 fun Int.convertToMoney(): String {
-    val formatter = DecimalFormat("#,###")
+    val formatter = DecimalFormat("$#,###")
     formatter.currency = Currency.getInstance(Locale.US)
     return formatter.format(this).toString()
 }

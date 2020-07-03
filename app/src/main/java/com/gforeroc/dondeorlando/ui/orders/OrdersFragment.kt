@@ -41,7 +41,7 @@ class OrdersFragment : Fragment() {
         showPasswordDialog(object :
             IShowOrders {
             override fun onPasswordSuccessful() {
-                rl_orders.visibility = View.VISIBLE
+                cl_parent.visibility = View.VISIBLE
             }
         }, false)
     }
@@ -111,7 +111,15 @@ class OrdersFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ordersViewModel.allOrders.observe(this, Observer {
-            ordersAdapter.setItems(mapArray(it))
+            if (it.isNotEmpty()) {
+                llEmptyView.visibility = View.GONE
+                cl_orders.visibility = View.VISIBLE
+                ordersAdapter.setItems(mapArray(it))
+            } else {
+                llEmptyView.visibility = View.VISIBLE
+                cl_orders.visibility = View.GONE
+            }
+
         })
     }
 

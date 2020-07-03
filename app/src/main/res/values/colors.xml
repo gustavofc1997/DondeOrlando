@@ -7,8 +7,7 @@
     <color name="primary_green">#00c853</color>
     <color name="dark_red">#d50000</color>
     <color name="grayPrimary">#b5b8b1</color>
-
-
+    <color name="overlay">#70000000</color>
     <color name="green" >#66bb6a</color>
 
 </resources>

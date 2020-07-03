@@ -51,12 +51,13 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
         repository.deleteOrders().observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
+                    loading.value = false
                     repoLoadError.value = DELETE_SUCCESS
-                    loading.setValue(false)
                 },
                 {
                     repoLoadError.value = DELETE_ERROR
                     loading.value = false
+                    it.printStackTrace()
                 }
             )
             .addTo(disposable)

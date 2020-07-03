@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.domain.ProductOrder
+import com.gforeroc.dondeorlando.utils.convertToMoney
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.dialog_check_order_item.view.*
 import java.util.*
@@ -27,11 +28,11 @@ class CheckOrderAdapter(private var items: ArrayList<ProductOrder>) :
                 val additional = " --Adicional"
                 product.text = task.product.Name.plus(additional)
                 quantity.text = task.quantity.toString()
-                price.text = (task.product.Additional.toInt() * task.quantity).toString()
+                price.text = (task.product.Additional.toInt() * task.quantity).convertToMoney()
             } else {
                 product.text = task.product.Name
                 quantity.text = task.quantity.toString()
-                price.text = task.product.Price
+                price.text = task.product.Price.toInt().convertToMoney()
             }
         }
     }

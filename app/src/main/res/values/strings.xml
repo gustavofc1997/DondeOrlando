@@ -11,7 +11,7 @@
     <string name="menu_update">Actualizar</string>
     <string name="product">Producto</string>
     <string name="quantity">Cantidad</string>
-    <string name="price">Precio</string>
+    <string name="price">Precio unitario</string>
     <string name="total">$0.0</string>
     <string name="total_car">Total :</string>
     <string name="summary_order">Resumen de la orden</string>

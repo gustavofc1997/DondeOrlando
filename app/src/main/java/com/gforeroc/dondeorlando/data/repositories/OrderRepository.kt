@@ -68,7 +68,7 @@ class OrderRepository(override var remoteDB: FirebaseFirestore) :
 
     override fun deleteOrders(): Completable {
         return Completable.create { emitter ->
-            remoteDB.collection(MENU_ORDERS).whereEqualTo("visibility", 0)
+            remoteDB.collection(MENU_ORDERS)
                 .get()
                 .addOnSuccessListener {
                     val batch: WriteBatch = remoteDB.batch()
