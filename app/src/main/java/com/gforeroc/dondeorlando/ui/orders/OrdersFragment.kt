@@ -17,6 +17,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gforeroc.dondeorlando.MainActivity
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
@@ -114,11 +115,8 @@ class OrdersFragment : Fragment() {
             }, true)
         }
         initObservers()
-
         btn_home.setOnClickListener {
-            val myFragment: Fragment = HomeFragment()
-                childFragmentManager.beginTransaction()
-                    .replace(R.id.cl_parent, myFragment).commit()
+            (activity as MainActivity).setCheckedHome()
         }
     }
 
