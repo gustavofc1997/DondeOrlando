@@ -5,9 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.GravityCompat
+import androidx.core.view.get
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.R
@@ -16,13 +23,19 @@ import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
 import com.gforeroc.dondeorlando.ui.base.IDeleteOrders
 import com.gforeroc.dondeorlando.ui.base.IPasswordAction
 import com.gforeroc.dondeorlando.ui.base.IShowOrders
+import com.gforeroc.dondeorlando.ui.home.HomeFragment
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
 import com.gforeroc.dondeorlando.utils.OrdersAction
 import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.gforeroc.dondeorlando.utils.convertToMoney
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
+import com.google.android.material.internal.NavigationMenu
+import com.google.android.material.internal.NavigationMenuItemView
+import com.google.android.material.navigation.NavigationView
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_orders.*
+import org.koin.android.ext.android.get
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -101,11 +114,18 @@ class OrdersFragment : Fragment() {
             }, true)
         }
         initObservers()
+
+        btn_home.setOnClickListener {
+            val myFragment: Fragment = HomeFragment()
+                childFragmentManager.beginTransaction()
+                    .replace(R.id.cl_parent, myFragment).commit()
+        }
     }
 
     private fun showPasswordDialog(listener: IPasswordAction, isDismissible: Boolean) {
         val dialog = PasswordDialogFragment.newInstance(listener, isDismissible)
         childFragmentManager.let { dialog.show(it, "PasswordDialog") }
+        dialog.isCancelable = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
