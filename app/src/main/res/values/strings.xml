@@ -24,6 +24,6 @@
     <string name="text_add_quantity">Selecciona la cantidad que quieres añadir!</string>
     <string name="text_check_box">Es una porción adicional?</string>
     <string name="text_btn_add">Agregar</string>
-    <string name="et_password">Escribe tu codigo de seguridad</string>
+    <string name="et_password">Codigo de seguridad</string>
     <string name="et_update_pass">Escribe tu nuevo codigo</string>
 </resources>

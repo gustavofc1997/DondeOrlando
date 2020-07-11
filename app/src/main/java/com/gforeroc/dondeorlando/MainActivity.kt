@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun setCheckedHome() {
         navView.setCheckedItem(R.id.nav_home)
-        navView.menu.performIdentifierAction(R.id.nav_home, 0);
+        navView.menu.performIdentifierAction(R.id.nav_home, 0)
     }
 
     override fun onSupportNavigateUp(): Boolean {
