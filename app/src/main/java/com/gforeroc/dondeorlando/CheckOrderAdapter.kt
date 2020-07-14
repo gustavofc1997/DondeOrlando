@@ -28,11 +28,13 @@ class CheckOrderAdapter(private var items: ArrayList<ProductOrder>) :
                 val additional = " --Adicional"
                 product.text = task.product.Name.plus(additional)
                 quantity.text = task.quantity.toString()
-                price.text = (task.product.Additional.toInt() * task.quantity).convertToMoney()
+                price.text = task.product.Additional.toInt().convertToMoney()
+                price_sum.text = (task.product.Additional.toInt() * task.quantity).convertToMoney()
             } else {
                 product.text = task.product.Name
                 quantity.text = task.quantity.toString()
                 price.text = task.product.Price.toInt().convertToMoney()
+                price_sum.text = (task.product.Price.toInt() * task.quantity).convertToMoney()
             }
         }
     }
