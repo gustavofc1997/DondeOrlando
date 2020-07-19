@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gforeroc.dondeorlando.MainActivity
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.myOrders.MyOrder
@@ -24,6 +25,13 @@ import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.collections.HashMap
+import kotlin.collections.List
+import kotlin.collections.forEach
+import kotlin.collections.isNotEmpty
+import kotlin.collections.map
+import kotlin.collections.set
+import kotlin.collections.sum
 
 
 class OrdersFragment : Fragment() {
@@ -101,11 +109,15 @@ class OrdersFragment : Fragment() {
             }, true)
         }
         initObservers()
+        btn_home.setOnClickListener {
+            (activity as MainActivity).setCheckedHome()
+        }
     }
 
     private fun showPasswordDialog(listener: IPasswordAction, isDismissible: Boolean) {
         val dialog = PasswordDialogFragment.newInstance(listener, isDismissible)
         childFragmentManager.let { dialog.show(it, "PasswordDialog") }
+        dialog.isCancelable = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

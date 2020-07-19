@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/cl_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="gone"
     tools:context=".ui.orders.OrdersFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,30 +88,48 @@
         android:id="@+id/llEmptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_empty"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop" />
+        android:visibility="visible">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:shadowColor="@android:color/white"
+            android:shadowDx="1"
+            android:shadowDy="1"
             android:text="Ouh.. al parecer no tienes ventas registradas!"
-            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:textSize="35sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:shadowColor="@android:color/white"
+            android:shadowDx="1"
+            android:shadowDy="1"
             android:text="Ve al inicio y registra nuevas ventas"
-            android:textSize="18sp" />
+            android:textColor="@android:color/white"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_custom"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="Registrar ventas"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="28sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
