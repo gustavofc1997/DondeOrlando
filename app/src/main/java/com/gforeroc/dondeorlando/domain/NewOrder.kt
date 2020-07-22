@@ -18,6 +18,7 @@ class NewOrder(
 
     fun addProduct(productOrder: ProductOrder) {
         val resultAdditional = items.find {
+            it.product.id == productOrder.product.id &&
             it.isAdditional == productOrder.isAdditional
         }
         if (resultAdditional != null) {
