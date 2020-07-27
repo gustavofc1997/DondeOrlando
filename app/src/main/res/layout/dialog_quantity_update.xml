@@ -29,12 +29,12 @@
 
             <ImageView
                 android:id="@+id/close_dialog_update"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="0.06"
-                android:src="@drawable/ic_close" />
+                android:layout_weight="0.02"
+                android:src="@drawable/ic_close_keypad" />
 
         </LinearLayout>
 
