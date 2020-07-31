@@ -49,12 +49,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@id/viewpager"
                     android:layout_alignBottom="@id/viewpager"
-                    app:fabCustomSize="70dp"
-                    android:layout_margin="30dp"
+                    app:fabCustomSize="@dimen/fab_size"
+                    android:layout_margin="@dimen/margin_fab"
                     android:src="@drawable/ic_shopping_cart"
                     android:visibility="@{currentOrder.visibility}"
                     app:backgroundTint="@color/colorPrimary"
-                    app:maxImageSize="40dp" />
+                    app:maxImageSize="@dimen/et_margin_large" />
             </RelativeLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -68,8 +68,8 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ProgressBar
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:indeterminate="true" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

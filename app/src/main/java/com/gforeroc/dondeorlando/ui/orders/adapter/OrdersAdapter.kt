@@ -41,5 +41,4 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersVH>() {
 }
 
 class OrdersVH(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-    LayoutContainer {
-}
+    LayoutContainer

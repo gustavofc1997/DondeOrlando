@@ -4,41 +4,41 @@
     android:layout_height="wrap_content"
     android:layout_weight="3"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="@dimen/default_dimen">
 
     <TextView
         android:id="@+id/product"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/default_width_size"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="@android:color/black"
-        android:textSize="22sp" />
+        android:textSize="@dimen/text_size_middle" />
 
     <TextView
         android:id="@+id/quantity"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/default_width_size"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
         android:textColor="@android:color/black"
-        android:textSize="22sp" />
+        android:textSize="@dimen/text_size_middle" />
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/default_width_size"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end"
         android:textColor="@android:color/black"
-        android:textSize="22sp" />
+        android:textSize="@dimen/text_size_middle" />
 
     <TextView
         android:id="@+id/price_sum"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/default_width_size"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end"
         android:textColor="@android:color/black"
-        android:textSize="22sp" />
+        android:textSize="@dimen/text_size_middle" />
 
 </LinearLayout>

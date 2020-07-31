@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="@dimen/corner_radius">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +24,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_size_middle"
                 android:textStyle="bold" />
 
             <ImageView
@@ -37,7 +36,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_alignEnd="@+id/tv_product_name"
                 android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/margin_middle"
                 android:src="@drawable/ic_close_keypad" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -45,24 +44,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/margin_middle"
+            android:layout_marginEnd="@dimen/margin_middle"
             android:text="@string/text_add_quantity"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/text_size_middle"/>
 
         <com.github.guilhe.views.QuantityPickerView
             android:id="@+id/qty_orden"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="32sp"
+            android:layout_margin="@dimen/margin_large"
             app:btnAdd="@drawable/custom_btn_add"
             app:btnRemove="@drawable/custom_btn_remove"
             app:isOpen="true"
             app:min="1"
             app:textLabelFormatter="%s"
-            app:textLabelSize="18sp"
+            app:textLabelSize="@dimen/text_size_middle"
             app:value="1" />
 
         <CheckBox
@@ -71,18 +70,18 @@
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
             android:text="@string/text_check_box"
-            android:textSize="18sp" />
+            android:textSize="@dimen/text_size_middle" />
 
         <Button
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/text_margin"
             android:background="@drawable/button_custom"
             android:text="@string/text_btn_add"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="17sp" />
+            android:textSize="@dimen/text_size_middle" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

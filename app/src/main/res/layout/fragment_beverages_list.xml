@@ -6,8 +6,8 @@
     android:name="com.gforeroc.dondeorlando.ui.home.beverages.BeveragesFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginStart="@dimen/activity_vertical_margin"
+    android:layout_marginEnd="@dimen/activity_vertical_margin"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.beverages.BeveragesFragment"
     tools:listitem="@layout/fragment_beverages" />

@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockMeatViewModel
 import com.gforeroc.dondeorlando.utils.IProductSelected
@@ -31,7 +31,6 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_stock_list, container, false)
-        // Set the adapter
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = GridLayoutManager(context, columnCount)
@@ -63,7 +62,7 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun onProductSelected(product: Product) {
-       val dialog =  QuantityUpdateDialog.newInstance(product, this)
+        val dialog = QuantityUpdateDialog.newInstance(product, this)
         childFragmentManager.let { dialog.show(it, "null") }
     }
 

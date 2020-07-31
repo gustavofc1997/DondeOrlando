@@ -18,6 +18,7 @@ import com.gforeroc.dondeorlando.ui.base.IDeleteOrders
 import com.gforeroc.dondeorlando.ui.base.IPasswordAction
 import com.gforeroc.dondeorlando.ui.base.IShowOrders
 import com.gforeroc.dondeorlando.ui.orders.adapter.OrdersAdapter
+import com.gforeroc.dondeorlando.utils.ADDITIONAL
 import com.gforeroc.dondeorlando.utils.OrdersAction
 import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.gforeroc.dondeorlando.utils.convertToMoney
@@ -59,20 +60,26 @@ class OrdersFragment : Fragment() {
             context?.let {
                 when (result) {
                     OrdersAction.DELETE_SUCCESS -> {
-                        Toasty.success(it, "Ventas cerradas!", Toast.LENGTH_SHORT, true).show()
+                        Toasty.success(
+                            it,
+                            getString(R.string.msg_close_sell),
+                            Toast.LENGTH_SHORT,
+                            true
+                        ).show()
                     }
 
                     OrdersAction.DELETE_ERROR -> {
                         Toasty.success(
                             it,
-                            "Hubo un error al cerrar las ventas",
+                            getString(R.string.msg_error_close_sells),
                             Toast.LENGTH_SHORT,
                             true
                         ).show()
 
                     }
                     else -> {
-                        Toasty.info(it, "Intenta nuevamente", Toast.LENGTH_SHORT, true).show()
+                        Toasty.info(it, getString(R.string.msg_try_again), Toast.LENGTH_SHORT, true)
+                            .show()
                     }
                 }
             }
@@ -143,8 +150,7 @@ class OrdersFragment : Fragment() {
                 if (product.additional) {
                     totalSales =
                         args.map { it.total * (product.quantity) }.sum().toString()
-                    val additional = " --Adicional"
-                    val myKey = product.product.name.plus(additional)
+                    val myKey = product.product.name.plus(ADDITIONAL)
                     if (myMap.containsKey(myKey)) {
                         var quantity = myMap[myKey] ?: 0L
                         quantity += product.quantity

@@ -13,7 +13,7 @@
         app:cardBackgroundColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="12dp">
+        app:cardCornerRadius="@dimen/corner_radius">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/dimen_large"
                 android:background="@android:color/white">
 
                 <ImageView
@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/button_custom_close"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="@dimen/margin_middle"
                     android:visibility="gone"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -43,8 +43,7 @@
                     android:gravity="center"
                     android:text="@string/et_password"
                     android:textColor="@android:color/black"
-                    android:textSize="22sp"
-                    android:padding="-50dp"
+                    android:textSize="@dimen/default_text_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +54,7 @@
                 android:id="@+id/et_text_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:padding="@dimen/default_padding"
                 app:endIconMode="password_toggle"
                 app:hintEnabled="false">
 
@@ -66,16 +65,16 @@
                     android:background="@android:color/white"
                     android:focusable="false"
                     android:gravity="center"
-                    android:hint="1234"
+                    android:hint="@string/text_hint"
                     android:inputType="numberPassword"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/text_size_large" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/margin_middle"
                 android:columnCount="3"
                 android:orientation="horizontal">
 
@@ -84,28 +83,28 @@
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 1)}"
-                    android:text="1" />
+                    android:text="@string/keypad_1" />
 
                 <Button
                     android:id="@+id/btn_2"
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 2)}"
-                    android:text="2" />
+                    android:text="@string/keypad_2" />
 
                 <Button
                     android:id="@+id/btn_3"
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 3)}"
-                    android:text="3" />
+                    android:text="@string/keypad_3" />
 
                 <Button
                     android:id="@+id/btn_4"
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 4)}"
-                    android:text="4"
+                    android:text="@string/keypad_4"
                     android:textSize="50sp" />
 
                 <Button
@@ -113,35 +112,35 @@
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 5)}"
-                    android:text="5" />
+                    android:text="@string/keypad_5" />
 
                 <Button
                     android:id="@+id/btn_6"
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 6)}"
-                    android:text="6" />
+                    android:text="@string/keypad_6" />
 
                 <Button
                     android:id="@+id/btn_7"
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 7)}"
-                    android:text="7" />
+                    android:text="@string/keypad_7" />
 
                 <Button
                     android:id="@+id/btn_8"
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 8)}"
-                    android:text="8" />
+                    android:text="@string/keypad_8" />
 
                 <Button
                     android:id="@+id/btn_9"
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 9)}"
-                    android:text="9" />
+                    android:text="@string/keypad_9" />
 
                 <Button
                     android:id="@+id/btn_remove"
@@ -153,7 +152,7 @@
                     style="@style/keypad_button"
                     android:background="@drawable/button_custom_password"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 0)}"
-                    android:text="0" />
+                    android:text="@string/keypad_0" />
 
                 <Button
                     android:id="@+id/btn_check"
@@ -161,7 +160,5 @@
                     android:background="@drawable/button_custom_check" />
             </GridLayout>
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
 </layout>

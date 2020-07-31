@@ -42,15 +42,15 @@ class ChangePasswordFragment : Fragment() {
         setHasOptionsMenu(true)
 
         btn_update_pass.setOnClickListener {
-            val lenght = et_update.text?.length ?: 0
-            if (lenght == 4) {
+            val length = et_update.text?.length ?: 0
+            if (length == 4) {
                 val password = et_update.text.toString()
                 Prefs.putString(KEY_PASSWORD, password)
                 Prefs.edit().apply()
                 showWarningDialog()
                 et_update.setText("")
             } else {
-                Toast.makeText(context, "Solo 4 Numeros", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.msg_numbers), Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -62,9 +62,9 @@ class ChangePasswordFragment : Fragment() {
 
     private fun showWarningDialog() {
         AndExAlertDialog.Builder(context)
-            .setTitle("Genial!")
-            .setMessage("Has actualizado tu clave, no la olvides")
-            .setPositiveBtnText("Cerrar")
+            .setTitle(getString(R.string.title_alert_dialog))
+            .setMessage(getString(R.string.msg_alert_dialog))
+            .setPositiveBtnText(getString(R.string.btn_close_alert_dialog))
             .setCancelableOnTouchOutside(false)
             .OnPositiveClicked {
             }

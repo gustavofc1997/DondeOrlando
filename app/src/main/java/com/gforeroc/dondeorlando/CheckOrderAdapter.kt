@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.domain.ProductOrder
+import com.gforeroc.dondeorlando.utils.ADDITIONAL
 import com.gforeroc.dondeorlando.utils.convertToMoney
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.dialog_check_order_item.view.*
@@ -25,8 +26,7 @@ class CheckOrderAdapter(private var items: ArrayList<ProductOrder>) :
         val task = items[position]
         with(holder.containerView) {
             if (task.isAdditional) {
-                val additional = " --Adicional"
-                product.text = task.product.Name.plus(additional)
+                product.text = task.product.Name.plus(ADDITIONAL)
                 quantity.text = task.quantity.toString()
                 price.text = task.product.Additional.toInt().convertToMoney()
                 price_sum.text = (task.product.Additional.toInt() * task.quantity).convertToMoney()

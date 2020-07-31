@@ -24,7 +24,6 @@ import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
 import es.dmoral.toasty.Toasty
 import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -104,26 +103,27 @@ class HomeFragment : Fragment(), OnProductOrderAdded,
         ordersViewModel.getError().observe(this) { result ->
             context?.let {
                 when (result) {
-                    OrdersAction.SAVEORDER_SUCCESS -> {
+                    OrdersAction.SAVE_ORDER_SUCCESS -> {
                         Toasty.success(
                             it,
-                            "Venta registrada exitosamente!",
+                            getString(R.string.msg_success_sells),
                             Toast.LENGTH_SHORT,
                             true
                         ).show()
                     }
 
-                    OrdersAction.SAVEORDER_ERROR -> {
+                    OrdersAction.SAVE_ORDER_ERROR -> {
                         Toasty.success(
                             it,
-                            "Hubo un error al guardar la orden",
+                            getString(R.string.msg_error_sells),
                             Toast.LENGTH_SHORT,
                             true
                         ).show()
 
                     }
                     else -> {
-                        Toasty.info(it, "Intenta nuevamente", Toast.LENGTH_SHORT, true).show()
+                        Toasty.info(it, getString(R.string.msg_try_again), Toast.LENGTH_SHORT, true)
+                            .show()
                     }
                 }
             }
@@ -142,16 +142,12 @@ class HomeFragment : Fragment(), OnProductOrderAdded,
 
     private fun showWarningDialog() {
         AndExAlertDialog.Builder(context)
-            .setTitle("Oopss")
-            .setMessage("Debes agregar productos primero")
-            .setPositiveBtnText("Cerrar")
+            .setTitle(getString(R.string.msg_title_empty_products))
+            .setMessage(getString(R.string.msg_add_product))
+            .setPositiveBtnText(getString(R.string.btn_close_alert_dialog))
             .setCancelableOnTouchOutside(false)
             .OnPositiveClicked {
             }
-            .build();
+            .build()
     }
-
 }
-
-
-

@@ -11,7 +11,6 @@ import com.gforeroc.dondeorlando.domain.NewOrder
 import com.gforeroc.dondeorlando.ui.base.IConfirmOrder
 import kotlinx.android.synthetic.main.dialog_car_order.*
 
-
 class OrderCarDialogFragment(
     private val newOrder: NewOrder,
     private val iConfirmOrder: IConfirmOrder
@@ -33,7 +32,7 @@ class OrderCarDialogFragment(
     ): View? {
         val rv = inflater.inflate(R.layout.dialog_car_order, container, false)
         dialog?.setCancelable(false)
-        setStyle(STYLE_NORMAL,R.style.DialogStyle);
+        setStyle(STYLE_NORMAL, R.style.DialogStyle);
         dialog?.setCanceledOnTouchOutside(false)
         return rv
     }
