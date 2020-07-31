@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/et_margin_large"
             android:background="@color/colorPrimary">
 
             <TextView
@@ -52,7 +52,7 @@
 
         <com.github.guilhe.views.QuantityPickerView
             android:id="@+id/qty_orden"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/padding_large"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/margin_large"
@@ -61,7 +61,7 @@
             app:isOpen="true"
             app:min="1"
             app:textLabelFormatter="%s"
-            app:textLabelSize="@dimen/text_size_middle"
+            app:textLabelSize="@dimen/text_size"
             app:value="1" />
 
         <CheckBox
