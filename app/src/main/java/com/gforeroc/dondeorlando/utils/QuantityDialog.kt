@@ -47,6 +47,7 @@ class QuantityDialog(var product: Product, private val quantityAdded: OnProductO
         super.onViewCreated(view, savedInstanceState)
         close_dialog_quantity.setOnClickListener { dismiss() }
         qty_orden.setBackgroundColor(resources.getColor(R.color.colorAccent))
+        qty_orden.max = product.Amount.toInt()
         tv_product_name.text = product.Name
         btn_add.setOnClickListener {
             val productOrder = ProductOrder(product, qty_orden.value)
