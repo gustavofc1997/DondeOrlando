@@ -34,7 +34,6 @@ import kotlin.collections.map
 import kotlin.collections.set
 import kotlin.collections.sum
 
-
 class OrdersFragment : Fragment() {
 
     private val ordersAdapter = OrdersAdapter()

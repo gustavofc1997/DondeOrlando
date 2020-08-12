@@ -33,11 +33,11 @@
 
             <TextView
                 android:id="@+id/tv_quantity"
-                android:layout_width="@dimen/indicator_width"
-                android:layout_height="@dimen/indicator_height"
+                android:layout_width="@dimen/indicator_width_home"
+                android:layout_height="@dimen/indicator_height_home"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/bit_margin"
-                android:layout_marginEnd="@dimen/bit_margin"
+                android:layout_marginEnd="@dimen/margin_middle"
                 android:background="@drawable/item_count"
                 android:gravity="center"
                 android:textColor="@android:color/white"

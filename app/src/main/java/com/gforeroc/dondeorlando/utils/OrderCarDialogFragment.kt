@@ -45,7 +45,7 @@ class OrderCarDialogFragment(
         val display = window?.windowManager?.defaultDisplay
         display?.getSize(size)
         val width: Int = size.x
-        window?.setLayout((width * 0.75).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
+        window?.setLayout((width * 0.85).toInt(),  WindowManager.LayoutParams.WRAP_CONTENT)
         window?.setGravity(Gravity.CENTER)
     }
 

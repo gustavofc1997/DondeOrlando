@@ -48,7 +48,7 @@
             android:layout_marginTop="@dimen/margin_middle"
             android:padding="@dimen/margin_middle"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent=".6"
+            app:layout_constraintHeight_percent=".5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_total_ventas" />
 

@@ -1,12 +1,10 @@
 package com.gforeroc.dondeorlando.utils
 
+import android.graphics.Point
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
@@ -89,6 +87,14 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val window = dialog!!.window
+        val size = Point()
+        val display = window?.windowManager?.defaultDisplay
+        display?.getSize(size)
+        val height: Int = size.y
+        val width: Int = size.x
+        window?.setLayout((width * 0.40).toInt(), (height * 0.90).toInt())
+        window?.setGravity(Gravity.CENTER)
     }
 
     private fun removeAt() {

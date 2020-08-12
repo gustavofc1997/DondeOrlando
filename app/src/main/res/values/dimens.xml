@@ -15,8 +15,11 @@
     <dimen name="default_padding">20dp</dimen>
     <dimen name="padding_middle">14dp</dimen>
     <dimen name="bit_corner">4dp</dimen>
-    <dimen name="indicator_width">45dp</dimen>
-    <dimen name="indicator_height">45dp</dimen>
+    <dimen name="bit_margin_stock">2dp</dimen>
+    <dimen name="indicator_width">40dp</dimen>
+    <dimen name="indicator_height">40dp</dimen>
+    <dimen name="indicator_width_home">45dp</dimen>
+    <dimen name="indicator_height_home">45dp</dimen>
     <dimen name="bit_margin">5dp</dimen>
     <dimen name="margin_middle">10dp</dimen>
     <dimen name="default_width_size">0dp</dimen>

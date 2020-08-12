@@ -17,6 +17,7 @@ import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityDialog
 import com.gforeroc.dondeorlando.viewmodels.MeatViewModel
+import kotlinx.android.synthetic.main.recycler_item.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MeatFragment(override var onProductOrderAdded: OnProductOrderAdded?) : BaseFragment(),
