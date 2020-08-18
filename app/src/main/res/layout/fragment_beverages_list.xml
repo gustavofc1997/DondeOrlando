@@ -5,9 +5,11 @@
     android:id="@+id/list"
     android:name="com.gforeroc.dondeorlando.ui.home.beverages.BeveragesFragment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginStart="@dimen/activity_vertical_margin"
     android:layout_marginEnd="@dimen/activity_vertical_margin"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/padding_large"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.beverages.BeveragesFragment"
     tools:listitem="@layout/fragment_beverages" />
