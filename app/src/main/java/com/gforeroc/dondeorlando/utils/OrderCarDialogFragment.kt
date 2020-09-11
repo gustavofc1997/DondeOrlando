@@ -65,8 +65,8 @@ class OrderCarDialogFragment(
             layoutManager = LinearLayoutManager(context)
         }
         btn.setOnClickListener {
-            iConfirmOrder.confirmOrderListener()
             newOrder.Courtesy = chk_courtesy.isChecked
+            iConfirmOrder.confirmOrderListener()
             dialog?.dismiss()
             newOrder.clearData()
         }

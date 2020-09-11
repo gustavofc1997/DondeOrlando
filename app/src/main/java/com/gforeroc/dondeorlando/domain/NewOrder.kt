@@ -11,7 +11,7 @@ class NewOrder(
     var items: ArrayList<ProductOrder> = arrayListOf(),
     var total: Long = 0,
     private var date: String? = null,
-    var Courtesy: Boolean = true
+    var Courtesy: Boolean = false
 ) : BaseObservable() {
 
     @Bindable
