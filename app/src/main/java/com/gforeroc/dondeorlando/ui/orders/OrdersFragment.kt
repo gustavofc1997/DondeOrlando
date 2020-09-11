@@ -177,7 +177,7 @@ class OrdersFragment : Fragment() {
         val prefixSales = txt_total_ventas.context.getString(R.string.sales_day)
         val prefixCourtesy = txt_total_ventas.context.getString(R.string.courtesy_day)
         txt_total_ventas.text = "($prefixSales $sales) - ($prefixCourtesy $courtesySales)"
-       
+
     }
 
     private fun fillOrdersPaid(products: List<Product>) {
@@ -218,7 +218,7 @@ class OrdersFragment : Fragment() {
             product.Name = it.key
             product.Quantity = it.value
             product
-        }
+        }.sortedBy { it.Name }
     }
 
     private fun calculateTotal(args: List<MyOrder>): String {
