@@ -10,7 +10,8 @@ import java.util.*
 class NewOrder(
     var items: ArrayList<ProductOrder> = arrayListOf(),
     var total: Long = 0,
-    private var date: String? = null
+    private var date: String? = null,
+    var Courtesy: Boolean = true
 ) : BaseObservable() {
 
     @Bindable

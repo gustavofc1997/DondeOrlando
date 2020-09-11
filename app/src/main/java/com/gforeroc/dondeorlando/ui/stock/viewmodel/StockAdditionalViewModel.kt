@@ -31,6 +31,10 @@ class StockAdditionalViewModel(override var repository: IProductRepository) : Ba
         repository.updateStock(setUpdateQuantity, id)
     }
 
+    fun updateQuantityCheck(id: String){
+        repository.updateStockCheck(id)
+    }
+
     override fun onCleared() {
         super.onCleared()
         disposable.clear()

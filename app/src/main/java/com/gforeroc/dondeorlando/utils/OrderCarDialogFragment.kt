@@ -60,6 +60,7 @@ class OrderCarDialogFragment(
         }
         btn.setOnClickListener {
             iConfirmOrder.confirmOrderListener()
+            newOrder.Courtesy = chk_courtesy.isChecked
             dialog?.dismiss()
             newOrder.clearData()
         }

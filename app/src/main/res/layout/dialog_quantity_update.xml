@@ -44,21 +44,46 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/et_margin_large"
             android:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
             android:hint="@string/hint_quantity"
             android:inputType="phone"
             android:textColorHint="@color/grayPrimary"
-            android:textSize="@dimen/text_size_middle" />
+            android:textSize="@dimen/btn_text" />
 
-        <Button
-            android:id="@+id/btn_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/margin_middle"
-            android:background="@drawable/button_custom"
-            android:text="@string/text_update"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size_middle" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chk_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.5"
+                android:layout_margin="8dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="@string/text_check_box_delete"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_check" />
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="@dimen/margin_middle"
+                android:background="@drawable/button_custom"
+                android:paddingStart="@dimen/paddingStart"
+                android:paddingEnd="@dimen/paddingEnd"
+                android:text="@string/text_update"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_middle" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

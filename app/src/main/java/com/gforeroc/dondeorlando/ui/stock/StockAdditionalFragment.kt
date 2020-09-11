@@ -73,4 +73,8 @@ class StockAdditionalFragment() : BaseFragment(), IProductSelected,
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
         stockAdditionalViewModel.updateQuantity(setUpdateQuantity, id)
     }
+
+    override fun updateQuantityCheck(id: String) {
+        stockAdditionalViewModel.updateQuantityCheck(id)
+    }
 }

@@ -31,13 +31,11 @@ class ChangePasswordFragment : Fragment() {
                 cl_orders.visibility = View.VISIBLE
             }
         })
-
         return inflater.inflate(R.layout.fragment_update_password, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         mContext = this.activity?.applicationContext
         setHasOptionsMenu(true)
 
@@ -56,8 +54,9 @@ class ChangePasswordFragment : Fragment() {
     }
 
     private fun showPasswordDialog(listener: IPasswordAction) {
-        val dialog = PasswordDialogFragment.newInstance(listener, false)
+        val dialog = PasswordDialogFragment.newInstance(listener, false, false, true)
         childFragmentManager.let { dialog.show(it, "PasswordDialog") }
+        dialog.isCancelable = false
     }
 
     private fun showWarningDialog() {

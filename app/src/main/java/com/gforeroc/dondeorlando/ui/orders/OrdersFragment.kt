@@ -1,14 +1,13 @@
 package com.gforeroc.dondeorlando.ui.orders
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.MainActivity
 import com.gforeroc.dondeorlando.R
@@ -51,7 +50,7 @@ class OrdersFragment : Fragment() {
             override fun onPasswordSuccessful() {
                 cl_parent.visibility = View.VISIBLE
             }
-        }, false)
+        }, false, isVisibleCheck = false, isVisibleBack = true)
     }
 
     private fun initObservers() {
@@ -99,7 +98,7 @@ class OrdersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         validateUser()
         recycler_orders.adapter = ordersAdapter
-        recycler_orders.layoutManager = LinearLayoutManager(context)
+        recycler_orders.layoutManager = GridLayoutManager(context, 2)
         recycler_orders.addItemDecoration(
             DividerItemDecoration(
                 context,
@@ -112,7 +111,7 @@ class OrdersFragment : Fragment() {
                 override fun onPasswordSuccessful() {
                     ordersViewModel.deleteOrder()
                 }
-            }, true)
+            }, true, isVisibleCheck = true, isVisibleBack = false)
         }
         initObservers()
         btn_home.setOnClickListener {
@@ -120,8 +119,8 @@ class OrdersFragment : Fragment() {
         }
     }
 
-    private fun showPasswordDialog(listener: IPasswordAction, isDismissible: Boolean) {
-        val dialog = PasswordDialogFragment.newInstance(listener, isDismissible)
+    private fun showPasswordDialog(listener: IPasswordAction, isDismissible: Boolean, isVisibleCheck: Boolean, isVisibleBack: Boolean) {
+        val dialog = PasswordDialogFragment.newInstance(listener, isDismissible, isVisibleCheck, isVisibleBack)
         childFragmentManager.let { dialog.show(it, "PasswordDialog") }
         dialog.isCancelable = false
     }

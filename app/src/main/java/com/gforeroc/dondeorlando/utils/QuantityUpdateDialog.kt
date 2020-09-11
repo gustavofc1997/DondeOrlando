@@ -10,6 +10,7 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import kotlinx.android.synthetic.main.dialog_quantity_update.*
+import kotlinx.android.synthetic.main.keypad.*
 
 class QuantityUpdateDialog(
     private var onQuantityUpdate: OnQuantityUpdate,
@@ -47,10 +48,14 @@ class QuantityUpdateDialog(
         super.onViewCreated(view, savedInstanceState)
         close_dialog_update.setOnClickListener { dismiss() }
         btn_update.setOnClickListener {
-            val updateEdit = edit_quantity.text.toString().toLong()
-            val newQuantity = products.Amount.plus(updateEdit)
             val id = products.id
-            onQuantityUpdate.updateQuantity(newQuantity, id)
+            if (chk_delete.isChecked) {
+                onQuantityUpdate.updateQuantityCheck(id)
+            }else{
+                val updateEdit = edit_quantity.text.toString().toLong()
+                val newQuantity = products.Amount.plus(updateEdit)
+                onQuantityUpdate.updateQuantity(newQuantity, id)
+            }
             dismissAllowingStateLoss()
         }
     }

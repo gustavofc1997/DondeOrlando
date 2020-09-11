@@ -17,7 +17,7 @@ class SideRepository(override var remoteDB: FirebaseFirestore) :
 
     companion object {
         private const val MENU_COLLECTION = "menu"
-        private const val MEATS_DOCUMENT = "Acompañamientos"
+        private const val SIDE_DOCUMENT = "Acompañamientos"
         private const val ITEMS = "items"
     }
 
@@ -25,7 +25,7 @@ class SideRepository(override var remoteDB: FirebaseFirestore) :
         BehaviorSubject.create<List<DocumentSnapshot>> { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
             val listeningRegistration =
                 remoteDB.collection(MENU_COLLECTION).document(
-                    MEATS_DOCUMENT
+                    SIDE_DOCUMENT
                 ).collection(ITEMS)
                     .addSnapshotListener { value, error ->
                         if (value == null || error != null) {
@@ -50,7 +50,7 @@ class SideRepository(override var remoteDB: FirebaseFirestore) :
     override fun getAllProducts(): Single<List<Product>> {
         return Single.create<List<DocumentSnapshot>> { emitter ->
             remoteDB.collection(MENU_COLLECTION).document(
-                MEATS_DOCUMENT
+                SIDE_DOCUMENT
             ).collection(ITEMS).get()
                 .addOnSuccessListener {
                     if (!emitter.isDisposed) {
@@ -82,12 +82,20 @@ class SideRepository(override var remoteDB: FirebaseFirestore) :
                 list.map(::mapDocumentToRemoteTask)
             }
 
-    override fun updateStock(quantity: Long, id:String): Completable {
+    override fun updateStock(quantity: Long, id: String): Completable {
         remoteDB.collection(MENU_COLLECTION).document(
-            MEATS_DOCUMENT
+            SIDE_DOCUMENT
         ).collection(ITEMS).document(id).update(
             mapOf("Amount" to quantity)
         )
+        return Completable.complete()
+    }
+
+    override fun updateStockCheck(id: String): Completable {
+        remoteDB.collection(MENU_COLLECTION).document(SIDE_DOCUMENT).collection(ITEMS).document(id)
+            .update(
+                mapOf("Amount" to 0)
+            )
         return Completable.complete()
     }
 }

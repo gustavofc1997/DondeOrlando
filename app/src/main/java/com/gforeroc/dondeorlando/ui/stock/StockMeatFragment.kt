@@ -24,7 +24,7 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     OnProductOrderAdded, OnQuantityUpdate {
 
     var stockAdapter = StockAdapter(this)
-    private val sockMeatViewModel: StockMeatViewModel by viewModel()
+    private val stockMeatViewModel: StockMeatViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +42,7 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sockMeatViewModel.stockMeats.observe(this, Observer {
+        stockMeatViewModel.stockMeats.observe(this, Observer {
             stockAdapter.setItems(it)
         })
     }
@@ -71,6 +71,10 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
-        sockMeatViewModel.updateQuantity(setUpdateQuantity, id)
+        stockMeatViewModel.updateQuantity(setUpdateQuantity, id)
+    }
+
+    override fun updateQuantityCheck(id: String) {
+        stockMeatViewModel.updateQuantityCheck(id)
     }
 }

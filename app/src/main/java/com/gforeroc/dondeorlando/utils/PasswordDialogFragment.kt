@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import com.gforeroc.dondeorlando.MainActivity
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.databinding.KeypadBinding
 import com.gforeroc.dondeorlando.ui.base.IPasswordAction
@@ -19,15 +20,21 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
     private var window: Window? = null
     private lateinit var delegate: IPasswordAction
     private var isDismissible: Boolean = true
+    private var isVisibleCheck: Boolean = true
+    private var isVisibleBack: Boolean = true
 
     companion object {
         fun newInstance(
             iPasswordAction: IPasswordAction,
-            isDismissible: Boolean
+            isDismissible: Boolean,
+            isVisibleCheck: Boolean,
+            isVisibleBack: Boolean
         ): PasswordDialogFragment {
             return PasswordDialogFragment().apply {
                 setDelegate(iPasswordAction)
                 setDismissible(isDismissible)
+                setVisibleCheck(isVisibleCheck)
+                setVisibleBack(isVisibleBack)
             }
         }
     }
@@ -49,7 +56,18 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
         if (isDismissible) {
             close_dialog_password.visibility = View.VISIBLE
         }
+        if (isVisibleCheck) {
+            btn_check.visibility = View.VISIBLE
+            btn_back.visibility = View.GONE
+        }
+        if (isVisibleBack){
+            btn_back.visibility = View.VISIBLE
+            btn_check.visibility = View.GONE
+        }
         close_dialog_password.setOnClickListener { dismiss() }
+        btn_back.setOnClickListener {
+            (activity as MainActivity).setCheckedHome()
+        }
         btn_remove.setOnClickListener { removeAt() }
         et_code.addTextChangedListener(object : TextWatcher {
 
@@ -82,6 +100,14 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
 
     private fun setDelegate(iPasswordAction: IPasswordAction) {
         delegate = iPasswordAction
+    }
+
+    private fun setVisibleCheck(visible: Boolean) {
+        isVisibleCheck = visible
+    }
+
+    private fun setVisibleBack(visible: Boolean){
+        isVisibleBack = visible
     }
 
     override fun onStart() {

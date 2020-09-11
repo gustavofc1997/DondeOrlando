@@ -18,11 +18,13 @@
     <string name="report_sales">Reporte de ventas</string>
     <string name="sales_day">Ventas del dia</string>
     <string name="close_sales">Cerrar Ventas</string>
-    <string name="update_stock_text">Ingrese la cantidad que quieres añadir!</string>
+    <string name="update_stock_text">Ingresa la cantidad que quieres añadir!</string>
     <string name="hint_quantity">50</string>
     <string name="text_update">Actualizar</string>
     <string name="text_add_quantity">Selecciona la cantidad que quieres añadir!</string>
     <string name="text_check_box">Es una porción adicional?</string>
+    <string name="text_check_box_delete">Eliminar \n todo!</string>
+    <string name="text_check_box_courtesy">Cortesia</string>
     <string name="text_btn_add">Agregar</string>
     <string name="et_password">Codigo de seguridad</string>
     <string name="et_update_pass">Escribe tu nuevo codigo</string>

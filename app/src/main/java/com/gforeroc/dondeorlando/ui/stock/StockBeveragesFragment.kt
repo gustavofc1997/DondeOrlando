@@ -76,4 +76,8 @@ class StockBeveragesFragment() : BaseFragment(),
         stockBeveragesViewModel.updateQuantity(setUpdateQuantity, id)
     }
 
+    override fun updateQuantityCheck(id: String) {
+        stockBeveragesViewModel.updateQuantityCheck(id)
+    }
+
 }

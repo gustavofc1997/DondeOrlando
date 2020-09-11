@@ -147,11 +147,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Rv_summary_car" />
 
+        <CheckBox
+            android:id="@+id/chk_courtesy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:buttonTint="@color/colorPrimary"
+            android:text="@string/text_check_box_courtesy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title_total_car"
+            android:textSize="@dimen/text_size" />
+
         <Button
             android:id="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/button_custom"
             android:gravity="center"
             android:paddingStart="@dimen/default_dimen"
@@ -162,6 +174,6 @@
             android:textSize="@dimen/default_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title_total_car" />
+            app:layout_constraintTop_toBottomOf="@+id/chk_courtesy" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
