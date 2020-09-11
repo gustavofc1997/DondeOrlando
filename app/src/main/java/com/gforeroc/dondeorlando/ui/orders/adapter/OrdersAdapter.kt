@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.recycler_item_orders.view.*
 class OrdersAdapter : RecyclerView.Adapter<OrdersVH>() {
 
     private val ordersList = emptyList<Product>().toMutableList()
-    val TYPE_HEAD: Int = 0
-    val TYPE_LIST: Int = 1
+    private val TYPE_HEAD: Int = 0
+    private val TYPE_LIST: Int = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersVH {
         val view: View
@@ -47,13 +47,11 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersVH>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0)
-            return TYPE_HEAD
         return TYPE_LIST
     }
 }
 
-class OrdersVH(override val containerView: View, var viewType: Int) :
+class OrdersVH(override val containerView: View, private var viewType: Int) :
     RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     fun bind(product: Product) {

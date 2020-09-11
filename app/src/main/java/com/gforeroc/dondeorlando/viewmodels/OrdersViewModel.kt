@@ -68,7 +68,7 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    ordersList.value = it.filter { order -> order.Courtesy }
+                    ordersList.value = it
                 },
                 {
                     it.printStackTrace()

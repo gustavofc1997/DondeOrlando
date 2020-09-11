@@ -4,6 +4,7 @@ import android.graphics.Point
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gforeroc.dondeorlando.CheckOrderAdapter
 import com.gforeroc.dondeorlando.R
@@ -54,6 +55,11 @@ class OrderCarDialogFragment(
         close_dialog_car.setOnClickListener { dismiss() }
         text_total_car.text = newOrder.total.toInt().convertToMoney()
         val checkOrderAdapter = CheckOrderAdapter(newOrder.items)
+        Rv_summary_car.addItemDecoration( DividerItemDecoration(
+            context,
+            LinearLayoutManager.VERTICAL
+        )
+        )
         Rv_summary_car.apply {
             adapter = checkOrderAdapter
             layoutManager = LinearLayoutManager(context)
