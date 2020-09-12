@@ -1,9 +1,13 @@
 package com.gforeroc.dondeorlando.ui.orders
 
+import android.content.DialogInterface
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.toColor
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
@@ -22,7 +26,9 @@ import com.gforeroc.dondeorlando.utils.OrdersAction
 import com.gforeroc.dondeorlando.utils.PasswordDialogFragment
 import com.gforeroc.dondeorlando.utils.convertToMoney
 import com.gforeroc.dondeorlando.viewmodels.OrdersViewModel
+import com.google.firebase.database.collection.LLRBNode
 import es.dmoral.toasty.Toasty
+import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.fragment_orders.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.collections.set
@@ -127,12 +133,20 @@ class OrdersFragment : Fragment() {
     }
 
     private fun showPinPad() {
-        showPasswordDialog(object :
-            IDeleteOrders {
-            override fun onPasswordSuccessful() {
-                ordersViewModel.deleteOrder()
-            }
-        }, true, isVisibleCheck = true, isVisibleBack = false)
+        val alertDialog = AlertDialog.Builder(requireContext(), R.style.AlertDialogDanger)
+        alertDialog.setTitle(getString(R.string.title_alert))
+        alertDialog.setPositiveButton(getString(R.string.positive_button)) { dialog, which ->
+            showPasswordDialog(object :
+                IDeleteOrders {
+                override fun onPasswordSuccessful() {
+                    ordersViewModel.deleteOrder()
+                }
+            }, true, isVisibleCheck = true, isVisibleBack = false)
+        }
+        alertDialog.setNegativeButton(getString(R.string.negative_button)) { dialog, which ->
+        }
+        alertDialog.create()
+        alertDialog.show()
     }
 
     private fun showPasswordDialog(
@@ -177,7 +191,6 @@ class OrdersFragment : Fragment() {
         val prefixSales = txt_total_ventas.context.getString(R.string.sales_day)
         val prefixCourtesy = txt_total_ventas.context.getString(R.string.courtesy_day)
         txt_total_ventas.text = "($prefixSales $sales) - ($prefixCourtesy $courtesySales)"
-
     }
 
     private fun fillOrdersPaid(products: List<Product>) {
@@ -233,6 +246,17 @@ class OrdersFragment : Fragment() {
             }
         }
         return totalSales
+    }
+
+    private fun showWarningDialog() {
+        AndExAlertDialog.Builder(context)
+            .setTitle(getString(R.string.msg_title_confirm))
+            .setPositiveBtnText(getString(R.string.positive_button))
+            .setNegativeBtnText(getString(R.string.negative_button))
+            .setCancelableOnTouchOutside(false)
+            .OnPositiveClicked {
+            }
+            .build()
     }
 }
 

@@ -42,6 +42,9 @@
     <string name="msg_success_sells">Venta registrada exitosamente!</string>
     <string name="msg_error_sells">Hubo un error al guardar la orden</string>
     <string name="msg_title_empty_products">Oopss</string>
+    <string name="msg_title_confirm">Estas seguro?</string>
+    <string name="positive_button">Si</string>
+    <string name="negative_button">No</string>
     <string name="msg_add_product">Debes agregar productos primero</string>
     <string name="msg_code_error">Codigo Erroneo</string>
     <string name="price_total">Total</string>
@@ -56,4 +59,5 @@
     <string name="keypad_8">8</string>
     <string name="keypad_9">9</string>
     <string name="keypad_0">0</string>
+    <string name="title_alert">¿Estas seguro que quieres cerrar las ventas?</string>
 </resources>

@@ -33,4 +33,8 @@
         <item name="android:windowMinWidthMinor">70%</item>
     </style>
 
+    <style name="AlertDialogDanger" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#d50000</item>
+    </style>
+
 </resources>
