@@ -32,21 +32,21 @@ class OrderCarDialogFragment(
         savedInstanceState: Bundle?
     ): View? {
         val rv = inflater.inflate(R.layout.dialog_car_order, container, false)
-        dialog?.setCancelable(false)
-        setStyle(STYLE_NORMAL, R.style.DialogStyle);
-        dialog?.setCanceledOnTouchOutside(false)
+        setStyle(STYLE_NORMAL, R.style.DialogStyle)
         return rv
     }
 
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog?.setCancelable(false)
+        dialog?.setCanceledOnTouchOutside(false)
         val window = dialog!!.window
         val size = Point()
         val display = window?.windowManager?.defaultDisplay
         display?.getSize(size)
         val width: Int = size.x
-        window?.setLayout((width * 0.85).toInt(),  WindowManager.LayoutParams.WRAP_CONTENT)
+        window?.setLayout((width * 0.85).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
         window?.setGravity(Gravity.CENTER)
     }
 
@@ -55,10 +55,11 @@ class OrderCarDialogFragment(
         close_dialog_car.setOnClickListener { dismiss() }
         text_total_car.text = newOrder.total.toInt().convertToMoney()
         val checkOrderAdapter = CheckOrderAdapter(newOrder.items)
-        Rv_summary_car.addItemDecoration( DividerItemDecoration(
-            context,
-            LinearLayoutManager.VERTICAL
-        )
+        Rv_summary_car.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager.VERTICAL
+            )
         )
         Rv_summary_car.apply {
             adapter = checkOrderAdapter

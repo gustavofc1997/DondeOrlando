@@ -18,9 +18,9 @@
             android:title="@string/menu_inventory" />
 
         <item
-            android:id="@+id/nav_update"
+            android:id="@+id/nav_configuration"
             android:icon="@drawable/ic_lock"
-            android:title="@string/menu_update" />
+            android:title="@string/menu_configuration" />
     </group>
 
 </menu>

@@ -145,6 +145,7 @@ class OrdersFragment : Fragment() {
         }
         alertDialog.setNegativeButton(getString(R.string.negative_button)) { dialog, which ->
         }
+        alertDialog.setCancelable(false)
         alertDialog.create()
         alertDialog.show()
     }
@@ -246,17 +247,6 @@ class OrdersFragment : Fragment() {
             }
         }
         return totalSales
-    }
-
-    private fun showWarningDialog() {
-        AndExAlertDialog.Builder(context)
-            .setTitle(getString(R.string.msg_title_confirm))
-            .setPositiveBtnText(getString(R.string.positive_button))
-            .setNegativeBtnText(getString(R.string.negative_button))
-            .setCancelableOnTouchOutside(false)
-            .OnPositiveClicked {
-            }
-            .build()
     }
 }
 

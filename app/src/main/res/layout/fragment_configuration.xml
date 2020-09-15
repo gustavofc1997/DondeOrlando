@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_view"
+    tools:context=".ui.configuration.ConfigurationFragment">
+
+    <TextView
+        android:id="@+id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/et_margin_large"
+        android:textSize="@dimen/text_size_large"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="@string/title_config"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_update_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_large"
+        android:layout_marginStart="@dimen/margin_fab"
+        android:background="@drawable/button_custom"
+        android:text="@string/text_change_password"
+        android:textColor="@android:color/white"
+        android:paddingStart="@dimen/padding_middle"
+        android:paddingEnd="@dimen/padding_middle"
+        android:textSize="@dimen/text_size_middle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

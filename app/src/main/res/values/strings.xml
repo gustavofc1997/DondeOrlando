@@ -8,7 +8,7 @@
     <string name="menu_sales">Ventas</string>
 
     <string name="menu_inventory">Inventario</string>
-    <string name="menu_update">Actualizar</string>
+    <string name="menu_configuration">Configuracion</string>
     <string name="product">Producto</string>
     <string name="quantity">Cantidad</string>
     <string name="price">Unidad</string>
@@ -21,21 +21,25 @@
     <string name="close_sales">Cerrar Ventas</string>
     <string name="update_stock_text">Ingresa la cantidad que quieres añadir!</string>
     <string name="hint_quantity">50</string>
-    <string name="text_update">Actualizar</string>
+    <string name="text_next">Siguiente</string>
+    <string name="text_change_password">Cambiar contraseña</string>
     <string name="text_add_quantity">Selecciona la cantidad que quieres añadir!</string>
     <string name="text_check_box">Es una porción adicional?</string>
     <string name="text_check_box_delete">Eliminar \n todo!</string>
     <string name="text_check_box_courtesy">Cortesia</string>
+    <string name="text_update">Actualizar</string>
     <string name="text_btn_add">Agregar</string>
     <string name="et_password">Codigo de seguridad</string>
-    <string name="et_update_pass">Escribe tu nuevo codigo</string>
+    <string name="et_update_pass">Escribe tu nueva contraseña</string>
+    <string name="et_pass">Escribe tu contraseña actual</string>
+    <string name="et_confirm_pass">Repite tu nueva contraseña</string>
     <string name="txt_empty_sells">No tienes ventas registradas!</string>
     <string name="txt_new_sells">Ve al inicio y registra nuevas ventas</string>
     <string name="btn_add_sells">Registrar ventas</string>
     <string name="msg_close_sell">Ventas cerradas!</string>
     <string name="msg_error_close_sells">Hubo un error al cerrar las ventas</string>
     <string name="msg_try_again">Intenta nuevamente</string>
-    <string name="msg_numbers">Solo 4 Numeros</string>
+    <string name="msg_numbers">Ingresa 4 digitos</string>
     <string name="title_alert_dialog">Genial!</string>
     <string name="msg_alert_dialog">Has actualizado tu clave, no la olvides</string>
     <string name="btn_close_alert_dialog">Cerrar</string>
@@ -60,4 +64,9 @@
     <string name="keypad_9">9</string>
     <string name="keypad_0">0</string>
     <string name="title_alert">¿Estas seguro que quieres cerrar las ventas?</string>
+    <string name="pass_not_match">Las contraseñas no coinciden</string>
+    <string name="title_config">CONFIGURACION</string>
+    <string name="pass_error">Contraseña erronea</string>
+    <string name="pass_current">Contraseña actual</string>
+    <string name="pass_change">Cambiar contraseña</string>
 </resources>
