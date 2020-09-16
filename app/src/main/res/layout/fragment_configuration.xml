@@ -4,35 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_view"
+    android:padding="16dp"
     tools:context=".ui.configuration.ConfigurationFragment">
 
-    <TextView
-        android:id="@+id/title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/et_margin_large"
-        android:textSize="@dimen/text_size_large"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:text="@string/title_config"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
-    <Button
+    <LinearLayout
         android:id="@+id/btn_update_pass"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_large"
-        android:layout_marginStart="@dimen/margin_fab"
-        android:background="@drawable/button_custom"
-        android:text="@string/text_change_password"
-        android:textColor="@android:color/white"
-        android:paddingStart="@dimen/padding_middle"
-        android:paddingEnd="@dimen/padding_middle"
-        android:textSize="@dimen/text_size_middle"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cambiar contraseña"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_middle">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualiza tu contraseña para mantenerte más seguro" />
+
+        <View
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlNormal">@color/colorPrimary</item>
@@ -18,12 +21,12 @@
         <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="keypad_button" parent="@android:style/Widget.Button">
+    <style name="keypad_button">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_marginStart">5dp</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_height">100dp</item>
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">48sp</item>
         <item name="android:background">@drawable/button_custom_password</item>
     </style>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

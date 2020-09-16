@@ -46,7 +46,6 @@ class ChangePasswordDialogFragment : DialogFragment() {
         setHasOptionsMenu(true)
         close_dialog.setOnClickListener { dismiss() }
         close_dialog_confirm.setOnClickListener { dismiss() }
-
         btn_update_dialog.setOnClickListener {
             val length = et_update.text?.length ?: 0
             val myPrefs =
