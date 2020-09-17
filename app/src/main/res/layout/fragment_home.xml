@@ -51,9 +51,9 @@
                     android:layout_alignBottom="@id/viewpager"
                     app:fabCustomSize="@dimen/fab_size"
                     android:layout_margin="@dimen/margin_fab"
+                    style="@style/FloatingButton"
                     android:src="@drawable/ic_shopping_cart"
                     android:visibility="@{currentOrder.visibility}"
-                    app:backgroundTint="@color/colorPrimary"
                     app:maxImageSize="@dimen/et_margin_large" />
             </RelativeLayout>
         </com.google.android.material.appbar.AppBarLayout>
