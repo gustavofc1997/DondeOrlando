@@ -119,7 +119,7 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
         display?.getSize(size)
         val height: Int = size.y
         val width: Int = size.x
-        window?.setLayout((width * 0.40).toInt(), (height * 0.90).toInt())
+        window?.setLayout((width * 0.40).toInt(), (height * 0.95).toInt())
         window?.setGravity(Gravity.CENTER)
     }
 
