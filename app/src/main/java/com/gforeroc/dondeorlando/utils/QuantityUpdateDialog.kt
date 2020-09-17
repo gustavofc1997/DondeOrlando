@@ -1,16 +1,13 @@
 package com.gforeroc.dondeorlando.utils
 
+import android.graphics.Point
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import kotlinx.android.synthetic.main.dialog_quantity_update.*
-import kotlinx.android.synthetic.main.keypad.*
 
 class QuantityUpdateDialog(
     private var onQuantityUpdate: OnQuantityUpdate,
@@ -28,6 +25,20 @@ class QuantityUpdateDialog(
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog?.setCancelable(false)
+        dialog?.setCanceledOnTouchOutside(false)
+        val window = dialog!!.window
+        val size = Point()
+        val display = window?.windowManager?.defaultDisplay
+        display?.getSize(size)
+        val width: Int = size.x
+        window?.setLayout((width * 0.4).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
+        window?.setGravity(Gravity.CENTER)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,7 +48,7 @@ class QuantityUpdateDialog(
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.dialog_quantity_update, container, false)
         }
-        setStyle(STYLE_NO_TITLE, R.style.DialogStyle)
+        setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Dialog)
         dialog?.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -51,12 +62,18 @@ class QuantityUpdateDialog(
             val id = products.id
             if (chk_delete.isChecked) {
                 onQuantityUpdate.updateQuantityCheck(id)
-            }else{
+                dismissAllowingStateLoss()
+            } else {
+                if (edit_quantity.text?.isEmpty()!!) {
+                    edit_quantity.error = "Debes ingresar una cantidad"
+                    return@setOnClickListener
+                }
                 val updateEdit = edit_quantity.text.toString().toLong()
                 val newQuantity = products.Amount.plus(updateEdit)
                 onQuantityUpdate.updateQuantity(newQuantity, id)
+                dismissAllowingStateLoss()
+
             }
-            dismissAllowingStateLoss()
         }
     }
 }

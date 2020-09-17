@@ -7,54 +7,60 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary">
 
             <TextView
-                android:layout_width="@dimen/default_width_size"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.8"
                 android:gravity="center"
-                android:text="@string/update_stock_text"
+                android:text="Actualizar inventario"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_middle"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/close_dialog_update"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/margin_middle"
-                android:layout_weight="0.02"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="0.04"
                 android:src="@drawable/ic_close_keypad" />
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/edit_quantity"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_text_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/et_margin_large"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:hint="@string/hint_quantity"
-            android:inputType="phone"
-            android:textColorHint="@color/grayPrimary"
-            android:textSize="@dimen/btn_text" />
+            android:layout_margin="@dimen/default_padding"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="¿Cuanto quieres añadir al inventario?"
+                android:inputType="number"
+                android:textSize="@dimen/btn_text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -62,9 +68,9 @@
                 android:id="@+id/chk_delete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="0.5"
-                android:layout_margin="8dp"
                 android:buttonTint="@color/colorPrimary"
                 android:text="@string/text_check_box_delete"
                 android:textColor="@color/colorPrimary"
