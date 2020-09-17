@@ -160,9 +160,8 @@
                     android:onClick="@{(v) -> listener.onNumberClick(v, 9)}"
                     android:text="@string/keypad_9" />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_remove"
-                    style="@style/keypad_button"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_below="@id/btn_7"
@@ -174,28 +173,28 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_below="@id/btn_8"
-                    android:layout_gravity="center"
                     android:layout_toEndOf="@id/btn_remove"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 0)}"
                     android:text="@string/keypad_0" />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_check"
                     style="@style/keypad_button"
+                    android:gravity="center"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_below="@id/btn_9"
-                    android:layout_toEndOf="@id/btn_0"
-                    android:background="@drawable/button_custom_check" />
+                    android:src="@drawable/button_custom_check"
+                    android:layout_toEndOf="@id/btn_0" />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_back"
-                    style="@style/keypad_button"
                     android:layout_width="80dp"
+                    style="@style/keypad_button"
                     android:layout_height="80dp"
                     android:layout_below="@id/btn_9"
                     android:layout_toEndOf="@id/btn_0"
-                    android:background="@drawable/button_custom_back"
+                    android:src="@drawable/button_custom_back"
                     android:visibility="gone" />
             </RelativeLayout>
         </LinearLayout>

@@ -21,11 +21,12 @@
         <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="keypad_button">
+    <style name="keypad_button" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_marginStart">5dp</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_height">100dp</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textSize">48sp</item>
         <item name="android:background">@drawable/button_custom_password</item>
     </style>
