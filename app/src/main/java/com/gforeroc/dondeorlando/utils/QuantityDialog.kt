@@ -49,9 +49,22 @@ class QuantityDialog(var product: Product, private val quantityAdded: OnProductO
         qty_orden.setBackgroundColor(resources.getColor(R.color.colorAccent))
         qty_orden.max = product.Amount.toInt()
         tv_product_name.text = product.Name
+        chk_additional.setOnClickListener {
+            if (chk_additional.isChecked) {
+                et_additional_price.visibility = View.VISIBLE
+            } else {
+                et_additional_price.visibility = View.GONE
+            }
+        }
+
         btn_add.setOnClickListener {
-            val productOrder = ProductOrder(product, qty_orden.value)
+            val productOrder = ProductOrder(product.copy(), qty_orden.value)
             productOrder.isAdditional = chk_additional.isChecked
+            if (chk_additional.isChecked) {
+                if (et_price.text?.isNotEmpty()!!){
+                    productOrder.product.Additional = et_price.text.toString()
+                }
+            }
             quantityAdded.setProduct(productOrder)
             dismiss()
         }

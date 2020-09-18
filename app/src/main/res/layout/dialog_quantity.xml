@@ -20,24 +20,24 @@
                 android:id="@+id/tv_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_middle"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/close_dialog_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:layout_constraintLeft_toRightOf="@+id/tv_product_name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_alignEnd="@+id/tv_product_name"
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/margin_middle"
-                android:src="@drawable/ic_close_keypad" />
+                android:src="@drawable/ic_close_keypad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/tv_product_name"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -47,8 +47,8 @@
             android:layout_marginStart="@dimen/margin_middle"
             android:layout_marginEnd="@dimen/margin_middle"
             android:text="@string/text_add_quantity"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_size_middle"/>
+            android:textSize="@dimen/text_size_middle"
+            android:textStyle="bold" />
 
         <com.github.guilhe.views.QuantityPickerView
             android:id="@+id/qty_orden"
@@ -72,15 +72,34 @@
             android:text="@string/text_check_box"
             android:textSize="@dimen/text_size_middle" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_additional_price"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLength="5"
+                android:hint="Escribe el precio"
+                android:inputType="number"
+                android:textSize="@dimen/text_size" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/text_margin"
+            android:background="@drawable/button_custom"
             android:paddingStart="@dimen/start_padding"
             android:paddingEnd="@dimen/end_padding"
-            android:background="@drawable/button_custom"
             android:text="@string/text_btn_add"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
