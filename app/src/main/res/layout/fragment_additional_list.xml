@@ -6,10 +6,10 @@
     android:name="com.gforeroc.dondeorlando.ui.home.additional.AdditionalFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginStart="@dimen/activity_vertical_margin"
+    android:layout_marginEnd="@dimen/activity_vertical_margin"
     android:clipToPadding="false"
-    android:paddingBottom="110dp"
+    android:paddingBottom="@dimen/padding_large"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.additional.AdditionalFragment"
     tools:listitem="@layout/fragment_additional" />

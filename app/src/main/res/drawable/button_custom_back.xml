@@ -8,8 +8,8 @@
                 android:right="15dp"
                 android:top="15dp" />
             <corners android:radius="10dp" />
-            <solid android:color="@android:color/secondary_text_dark" />
+            <solid android:color="@color/grayPrimary" />
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_remove" />
+    <item android:drawable="@drawable/ic_volver_foreground" />
 </layer-list>

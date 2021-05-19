@@ -10,7 +10,8 @@ import java.util.*
 class NewOrder(
     var items: ArrayList<ProductOrder> = arrayListOf(),
     var total: Long = 0,
-    var date: String? = null
+    private var date: String? = null,
+    var Courtesy: Boolean = false
 ) : BaseObservable() {
 
     @Bindable
@@ -18,12 +19,19 @@ class NewOrder(
 
     fun addProduct(productOrder: ProductOrder) {
         val resultAdditional = items.find {
-            it.product.id == productOrder.product.id &&
-            it.isAdditional == productOrder.isAdditional
+            it.product.id == productOrder.product.id && it.isAdditional == productOrder.isAdditional
         }
         if (resultAdditional != null) {
-            resultAdditional.quantity = resultAdditional.quantity.plus(productOrder.quantity)
-        }else{
+            if (resultAdditional.isAdditional) {
+                if (resultAdditional.product.Additional == productOrder.product.Additional) {
+                    resultAdditional.quantity = resultAdditional.quantity.plus(productOrder.quantity)
+                } else {
+                    items.add(productOrder)
+                }
+            } else {
+                resultAdditional.quantity = resultAdditional.quantity.plus(productOrder.quantity)
+            }
+        } else {
             items.add(productOrder)
         }
         changeVisibility()

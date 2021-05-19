@@ -80,12 +80,22 @@ class OthersRepository(override var remoteDB: FirebaseFirestore) :
                 list.map(::mapDocumentToRemoteTask)
             }
 
-    override fun updateStock(quantity: Long, id:String): Completable {
+    override fun updateStock(quantity: Long, id: String): Completable {
         remoteDB.collection(MENU_COLLECTION).document(
             OTHERS_DOCUMENT
         ).collection(ITEMS).document(id).update(
             mapOf("Amount" to quantity)
         )
+        return Completable.complete()
+    }
+
+    override fun updateStockCheck(id: String): Completable {
+        remoteDB.collection(MENU_COLLECTION).document(OTHERS_DOCUMENT).collection(
+            ITEMS
+        ).document(id)
+            .update(
+                mapOf("Amount" to 0)
+            )
         return Completable.complete()
     }
 }

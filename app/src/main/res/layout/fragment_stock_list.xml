@@ -4,8 +4,8 @@
     android:id="@+id/list_stock"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginStart="@dimen/activity_vertical_margin"
+    android:layout_marginEnd="@dimen/activity_vertical_margin"
     android:clipToPadding="false"
-    android:paddingBottom="20dp"
+    android:paddingBottom="@dimen/default_padding"
     app:layoutManager="LinearLayoutManager" />

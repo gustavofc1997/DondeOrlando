@@ -26,11 +26,11 @@ class OrdersViewModel(var repository: IOrderRepository) : ViewModel() {
         repository.sendOrder(order).observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    repoLoadError.value = SAVEORDER_SUCCESS
+                    repoLoadError.value = SAVE_ORDER_SUCCESS
                     loading.setValue(false)
                 },
                 {
-                    repoLoadError.value = SAVEORDER_ERROR
+                    repoLoadError.value = SAVE_ORDER_ERROR
                     loading.value = false
                     it.printStackTrace()
                 }

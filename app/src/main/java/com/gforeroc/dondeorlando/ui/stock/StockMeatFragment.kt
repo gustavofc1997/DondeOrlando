@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockMeatViewModel
 import com.gforeroc.dondeorlando.utils.IProductSelected
@@ -24,14 +24,13 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     OnProductOrderAdded, OnQuantityUpdate {
 
     var stockAdapter = StockAdapter(this)
-    private val sockMeatViewModel: StockMeatViewModel by viewModel()
+    private val stockMeatViewModel: StockMeatViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_stock_list, container, false)
-        // Set the adapter
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = GridLayoutManager(context, columnCount)
@@ -43,7 +42,7 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sockMeatViewModel.stockMeats.observe(this, Observer {
+        stockMeatViewModel.stockMeats.observe(this, Observer {
             stockAdapter.setItems(it)
         })
     }
@@ -63,7 +62,7 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun onProductSelected(product: Product) {
-       val dialog =  QuantityUpdateDialog.newInstance(product, this)
+        val dialog = QuantityUpdateDialog.newInstance(product, this)
         childFragmentManager.let { dialog.show(it, "null") }
     }
 
@@ -72,6 +71,10 @@ class StockMeatFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
-        sockMeatViewModel.updateQuantity(setUpdateQuantity, id)
+        stockMeatViewModel.updateQuantity(setUpdateQuantity, id)
+    }
+
+    override fun updateQuantityCheck(id: String) {
+        stockMeatViewModel.updateQuantityCheck(id)
     }
 }

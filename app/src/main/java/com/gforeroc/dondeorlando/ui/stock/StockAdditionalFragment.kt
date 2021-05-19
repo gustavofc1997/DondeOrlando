@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockAdditionalViewModel
 import com.gforeroc.dondeorlando.utils.IProductSelected
@@ -20,11 +20,11 @@ import com.gforeroc.dondeorlando.utils.OnProductOrderAdded
 import com.gforeroc.dondeorlando.utils.QuantityUpdateDialog
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class StockAdditionalFragment() : BaseFragment(),IProductSelected,
+class StockAdditionalFragment() : BaseFragment(), IProductSelected,
     OnProductOrderAdded, OnQuantityUpdate {
 
     var stockAdapter = StockAdapter(this)
-    private val stockAdditionalViewModel : StockAdditionalViewModel by viewModel()
+    private val stockAdditionalViewModel: StockAdditionalViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +62,7 @@ class StockAdditionalFragment() : BaseFragment(),IProductSelected,
     }
 
     override fun onProductSelected(product: Product) {
-        val dialog =  QuantityUpdateDialog.newInstance(product, this)
+        val dialog = QuantityUpdateDialog.newInstance(product, this)
         childFragmentManager.let { dialog.show(it, "null") }
     }
 
@@ -72,5 +72,9 @@ class StockAdditionalFragment() : BaseFragment(),IProductSelected,
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
         stockAdditionalViewModel.updateQuantity(setUpdateQuantity, id)
+    }
+
+    override fun updateQuantityCheck(id: String) {
+        stockAdditionalViewModel.updateQuantityCheck(id)
     }
 }

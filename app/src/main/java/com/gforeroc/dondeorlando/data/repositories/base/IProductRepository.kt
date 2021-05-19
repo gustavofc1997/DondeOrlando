@@ -11,4 +11,5 @@ interface IProductRepository {
     fun getAllProducts(): Single<List<Product>>
     fun getChangeObservable(): Observable<List<Product>>
     fun updateStock(quantity: Long, id:String): Completable
+    fun updateStockCheck(id: String): Completable
 }

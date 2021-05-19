@@ -14,7 +14,6 @@ import com.gforeroc.dondeorlando.utils.ConstantsArray
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_orders, R.id.nav_inventory, R.id.nav_update
+                R.id.nav_home, R.id.nav_orders, R.id.nav_inventory, R.id.nav_configuration
             ), drawer_layout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

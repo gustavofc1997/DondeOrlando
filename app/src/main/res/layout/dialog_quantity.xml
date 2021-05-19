@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="@dimen/corner_radius">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,55 +13,55 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/et_margin_large"
             android:background="@color/colorPrimary">
 
             <TextView
                 android:id="@+id/tv_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_size_middle"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/close_dialog_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:layout_constraintLeft_toRightOf="@+id/tv_product_name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_alignEnd="@+id/tv_product_name"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_close" />
+                android:layout_marginEnd="@dimen/margin_middle"
+                android:src="@drawable/ic_close_keypad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/tv_product_name"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/margin_middle"
+            android:layout_marginEnd="@dimen/margin_middle"
             android:text="@string/text_add_quantity"
-            android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/text_size_middle"
+            android:textStyle="bold" />
 
         <com.github.guilhe.views.QuantityPickerView
             android:id="@+id/qty_orden"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/padding_large"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="32sp"
+            android:layout_margin="@dimen/margin_large"
             app:btnAdd="@drawable/custom_btn_add"
             app:btnRemove="@drawable/custom_btn_remove"
             app:isOpen="true"
             app:min="1"
             app:textLabelFormatter="%s"
-            app:textLabelSize="18sp"
+            app:textLabelSize="@dimen/text_size"
             app:value="1" />
 
         <CheckBox
@@ -71,18 +70,39 @@
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
             android:text="@string/text_check_box"
-            android:textSize="18sp" />
+            android:textSize="@dimen/text_size_middle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_additional_price"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLength="5"
+                android:hint="Escribe el precio"
+                android:inputType="number"
+                android:textSize="@dimen/text_size" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/text_margin"
             android:background="@drawable/button_custom"
+            android:paddingStart="@dimen/start_padding"
+            android:paddingEnd="@dimen/end_padding"
             android:text="@string/text_btn_add"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="17sp" />
+            android:textSize="@dimen/text_size_middle" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

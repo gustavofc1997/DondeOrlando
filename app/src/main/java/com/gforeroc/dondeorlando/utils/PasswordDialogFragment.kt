@@ -1,36 +1,40 @@
 package com.gforeroc.dondeorlando.utils
 
+import android.graphics.Point
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import com.gforeroc.dondeorlando.MainActivity
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.ui.base.IPasswordAction
 import com.gforeroc.dondeorlando.databinding.KeypadBinding
+import com.gforeroc.dondeorlando.ui.base.IPasswordAction
 import com.pixplicity.easyprefs.library.Prefs
 import ir.androidexception.andexalertdialog.AndExAlertDialog
 import kotlinx.android.synthetic.main.keypad.*
-
 
 class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
 
     private var window: Window? = null
     private lateinit var delegate: IPasswordAction
     private var isDismissible: Boolean = true
+    private var isVisibleCheck: Boolean = true
+    private var isVisibleBack: Boolean = true
 
     companion object {
         fun newInstance(
             iPasswordAction: IPasswordAction,
-            isDismissible: Boolean
+            isDismissible: Boolean,
+            isVisibleCheck: Boolean,
+            isVisibleBack: Boolean
         ): PasswordDialogFragment {
             return PasswordDialogFragment().apply {
                 setDelegate(iPasswordAction)
                 setDismissible(isDismissible)
+                setVisibleCheck(isVisibleCheck)
+                setVisibleBack(isVisibleBack)
             }
         }
     }
@@ -52,7 +56,18 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
         if (isDismissible) {
             close_dialog_password.visibility = View.VISIBLE
         }
+        if (isVisibleCheck) {
+            btn_check.visibility = View.VISIBLE
+            btn_back.visibility = View.GONE
+        }
+        if (isVisibleBack){
+            btn_back.visibility = View.VISIBLE
+            btn_check.visibility = View.GONE
+        }
         close_dialog_password.setOnClickListener { dismiss() }
+        btn_back.setOnClickListener {
+            (activity as MainActivity).setCheckedHome()
+        }
         btn_remove.setOnClickListener { removeAt() }
         et_code.addTextChangedListener(object : TextWatcher {
 
@@ -87,10 +102,27 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
         delegate = iPasswordAction
     }
 
+    private fun setVisibleCheck(visible: Boolean) {
+        isVisibleCheck = visible
+    }
+
+    private fun setVisibleBack(visible: Boolean){
+        isVisibleBack = visible
+    }
+
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val window = dialog!!.window
+        val size = Point()
+        val display = window?.windowManager?.defaultDisplay
+        display?.getSize(size)
+        val height: Int = size.y
+        val width: Int = size.x
+        window?.setLayout((width * 0.40).toInt(), (height * 0.95).toInt())
+        window?.setGravity(Gravity.CENTER)
     }
+
     private fun removeAt() {
         val removeAt = et_code.text?.length
         if (removeAt != null) {
@@ -102,9 +134,9 @@ class PasswordDialogFragment : DialogFragment(), OnNumberClickListener {
 
     private fun showWarningDialog() {
         AndExAlertDialog.Builder(context)
-            .setTitle("Oopss")
-            .setMessage("Codigo Erroneo")
-            .setPositiveBtnText("Cerrar")
+            .setTitle(getString(R.string.msg_title_empty_products))
+            .setMessage(getString(R.string.msg_code_error))
+            .setPositiveBtnText(getString(R.string.btn_close_alert_dialog))
             .setCancelableOnTouchOutside(false)
             .OnPositiveClicked {
             }

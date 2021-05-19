@@ -17,7 +17,7 @@ class BeveragesRepository(override var remoteDB: FirebaseFirestore) :
 
     companion object {
         private const val MENU_COLLECTION = "menu"
-        private const val MEATS_DOCUMENT = "Bebidas"
+        private const val BEVERAGES_DOCUMENT = "Bebidas"
         private const val ITEMS = "items"
     }
 
@@ -25,7 +25,7 @@ class BeveragesRepository(override var remoteDB: FirebaseFirestore) :
         BehaviorSubject.create<List<DocumentSnapshot>> { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
             val listeningRegistration =
                 remoteDB.collection(MENU_COLLECTION).document(
-                    MEATS_DOCUMENT
+                    BEVERAGES_DOCUMENT
                 ).collection(ITEMS)
                     .addSnapshotListener { value, error ->
                         if (value == null || error != null) {
@@ -48,7 +48,7 @@ class BeveragesRepository(override var remoteDB: FirebaseFirestore) :
     override fun getAllProducts(): Single<List<Product>> {
         return Single.create<List<DocumentSnapshot>> { emitter ->
             remoteDB.collection(MENU_COLLECTION).document(
-                MEATS_DOCUMENT
+                BEVERAGES_DOCUMENT
             ).collection(ITEMS).get()
                 .addOnSuccessListener {
                     if (!emitter.isDisposed) {
@@ -83,9 +83,19 @@ class BeveragesRepository(override var remoteDB: FirebaseFirestore) :
 
     override fun updateStock(quantity: Long, id:String): Completable {
         remoteDB.collection(MENU_COLLECTION).document(
-            MEATS_DOCUMENT
+            BEVERAGES_DOCUMENT
         ).collection(ITEMS).document(id).update(
             mapOf("Amount" to quantity))
+        return Completable.complete()
+    }
+
+    override fun updateStockCheck(id: String): Completable {
+        remoteDB.collection(MENU_COLLECTION).document(BEVERAGES_DOCUMENT).collection(
+           ITEMS
+        ).document(id)
+            .update(
+                mapOf("Amount" to 0)
+            )
         return Completable.complete()
     }
 }

@@ -10,10 +10,9 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="12dp">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,19 +21,19 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@android:color/white">
+                android:layout_height="@dimen/dimen_large"
+                android:background="@color/colorPrimary">
 
                 <ImageView
                     android:id="@+id/close_dialog_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_middle"
                     android:src="@drawable/button_custom_close"
-                    android:layout_marginEnd="10dp"
                     android:visibility="gone"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_title"/>
+                    app:layout_constraintEnd_toEndOf="@+id/tv_title"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -42,9 +41,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/et_password"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp"
-                    android:padding="-50dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/default_text_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -53,115 +51,153 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/et_text_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                app:endIconMode="password_toggle"
-                app:hintEnabled="false">
+                android:layout_margin="@dimen/default_padding"
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
                     android:focusable="false"
                     android:gravity="center"
-                    android:hint="1234"
+                    android:hint="Escribe tu código"
                     android:inputType="numberPassword"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/text_size" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <GridLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:columnCount="3"
-                android:orientation="horizontal">
+                android:layout_marginBottom="@dimen/margin_middle">
 
                 <Button
                     android:id="@+id/btn_1"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 1)}"
-                    android:text="1" />
+                    android:text="@string/keypad_1" />
 
                 <Button
                     android:id="@+id/btn_2"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_toEndOf="@+id/btn_1"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 2)}"
-                    android:text="2" />
+                    android:text="@string/keypad_2" />
 
                 <Button
                     android:id="@+id/btn_3"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_toEndOf="@+id/btn_2"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 3)}"
-                    android:text="3" />
+                    android:text="@string/keypad_3" />
 
                 <Button
                     android:id="@+id/btn_4"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_1"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 4)}"
-                    android:text="4"
-                    android:textSize="50sp" />
+                    android:text="@string/keypad_4" />
 
                 <Button
                     android:id="@+id/btn_5"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_2"
+                    android:layout_toEndOf="@id/btn_4"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 5)}"
-                    android:text="5" />
+                    android:text="@string/keypad_5" />
 
                 <Button
                     android:id="@+id/btn_6"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_3"
+                    android:layout_toEndOf="@id/btn_5"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 6)}"
-                    android:text="6" />
+                    android:text="@string/keypad_6" />
 
                 <Button
                     android:id="@+id/btn_7"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/btn_4"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 7)}"
-                    android:text="7" />
+                    android:text="@string/keypad_7" />
 
                 <Button
                     android:id="@+id/btn_8"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_5"
+                    android:layout_toEndOf="@id/btn_7"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 8)}"
-                    android:text="8" />
+                    android:text="@string/keypad_8" />
 
                 <Button
                     android:id="@+id/btn_9"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_6"
+                    android:layout_toEndOf="@id/btn_8"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 9)}"
-                    android:text="9" />
+                    android:text="@string/keypad_9" />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_remove"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_delete" />
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_7"
+                    android:background="@drawable/ic_eliminar" />
 
                 <Button
                     android:id="@+id/btn_0"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_password"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_8"
+                    android:layout_marginStart="5dp"
+                    android:layout_toStartOf="@+id/btn_9"
+                    android:layout_toEndOf="@id/btn_remove"
                     android:onClick="@{(v) -> listener.onNumberClick(v, 0)}"
-                    android:text="0" />
+                    android:text="@string/keypad_0" />
 
-                <Button
+                <ImageView
                     android:id="@+id/btn_check"
                     style="@style/keypad_button"
-                    android:background="@drawable/button_custom_check" />
-            </GridLayout>
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_9"
+                    android:layout_toEndOf="@id/btn_0"
+                    android:background="@drawable/ic_check_black_24dp"
+                    android:gravity="center" />
+
+                <ImageView
+                    android:id="@+id/btn_back"
+                    style="@style/keypad_button"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/btn_9"
+                    android:layout_toEndOf="@id/btn_0"
+                    android:background="@drawable/ic_volver_foreground"
+                    android:visibility="gone" />
+            </RelativeLayout>
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
 </layout>

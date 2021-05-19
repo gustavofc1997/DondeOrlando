@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gforeroc.dondeorlando.R
-import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.domain.ProductOrder
 import com.gforeroc.dondeorlando.ui.base.BaseFragment
+import com.gforeroc.dondeorlando.ui.base.OnQuantityUpdate
 import com.gforeroc.dondeorlando.ui.stock.adapter.StockAdapter
 import com.gforeroc.dondeorlando.ui.stock.viewmodel.StockOthersViewModel
 import com.gforeroc.dondeorlando.utils.IProductSelected
@@ -31,7 +31,6 @@ class StockOthersFragment() : BaseFragment(), IProductSelected,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_meat_list, container, false)
-        // Set the adapter
         if (view is RecyclerView) {
             with(view) {
                 layoutManager =
@@ -64,7 +63,7 @@ class StockOthersFragment() : BaseFragment(), IProductSelected,
     }
 
     override fun onProductSelected(product: Product) {
-        val dialog =  QuantityUpdateDialog.newInstance(product, this)
+        val dialog = QuantityUpdateDialog.newInstance(product, this)
         childFragmentManager.let { dialog.show(it, "null") }
     }
 
@@ -74,5 +73,9 @@ class StockOthersFragment() : BaseFragment(), IProductSelected,
 
     override fun updateQuantity(setUpdateQuantity: Long, id: String) {
         stockOthersViewModelViewModel.updateQuantity(setUpdateQuantity, id)
+    }
+
+    override fun updateQuantityCheck(id: String) {
+        stockOthersViewModelViewModel.updateQuantityCheck(id)
     }
 }

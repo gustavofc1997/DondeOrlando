@@ -9,6 +9,8 @@ import com.gforeroc.dondeorlando.R
 import com.gforeroc.dondeorlando.data.models.Product
 import com.gforeroc.dondeorlando.utils.IProductSelected
 import com.gforeroc.dondeorlando.utils.ProductDiffUtilCallback
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.recycler_item_stock.view.*
@@ -52,7 +54,18 @@ class StockVH(override val containerView: View) : RecyclerView.ViewHolder(contai
             product_title_stock.text = product.Name
             tv_stock_quantity.text = product.Amount.toString()
             product_id_stock.text = product.id
-            Picasso.get().load(product.Image).fit().centerCrop().into(iv_stock)
+
+            Picasso.get()
+                .load(product.Image).fit().centerCrop()
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(iv_stock, object : Callback {
+                    override fun onSuccess() {}
+                    override fun onError(e: Exception?) {
+                        Picasso.get().load(product.Image).fit().centerCrop().error(R.drawable.placeholder)
+                            .into(iv_stock)
+                    }
+                })
+
             when {
                 product.Amount <= 20 -> {
                     tv_stock_quantity.setBackgroundDrawable(resources.getDrawable(R.drawable.item_count))
